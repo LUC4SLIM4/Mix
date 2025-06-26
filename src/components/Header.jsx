@@ -1,0 +1,310 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { Menu, X, Zap, Phone, MessageCircle } from "lucide-react"
+
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isTransparent, setIsTransparent] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      const isHomePage = location.pathname === "/"
+
+      // Para a home, o header fica transparente até passar do banner (aproximadamente 80vh)
+      if (isHomePage) {
+        const bannerHeight = window.innerHeight * 0.8
+        setIsTransparent(scrollY < bannerHeight - 100)
+        setIsScrolled(scrollY > 50)
+      } else {
+        setIsTransparent(false)
+        setIsScrolled(scrollY > 50)
+      }
+    }
+
+    handleScroll() // Executa na montagem
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [location.pathname])
+
+  const navItems = [
+    { path: "/", label: "Início" },
+    { path: "/estoque", label: "Veículos" },
+    { path: "/simulacao", label: "Financiamento" },
+    { path: "/venda", label: "Venda" },
+    { path: "/sobre", label: "Sobre" },
+    { path: "/contato", label: "Contato" },
+  ]
+
+  return (
+    <>
+
+      {/* Main Header */}
+      <header
+        style={{
+          position: "fixed",
+          top: isTransparent ? "0" : "0",
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          background: isTransparent
+            ? "rgba(0, 0, 0, 0.1)"
+            : isScrolled
+              ? "rgba(255, 255, 255, 0.95)"
+              : "var(--accent-white)",
+          backdropFilter: isTransparent ? "blur(10px)" : isScrolled ? "blur(20px)" : "none",
+          transition: "all 0.3s ease",
+          boxShadow: isTransparent ? "none" : isScrolled ? "var(--shadow-lg)" : "var(--shadow)",
+          border: isTransparent ? "1px solid rgba(255, 255, 255, 0.1)" : "none",
+        }}
+      >
+        <div className="container">
+          <nav
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0.75rem 0",
+              minHeight: "70px",
+            }}
+          >
+            {/* Logo Diferenciado */}
+            <Link
+              to="/"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                textDecoration: "none",
+              }}
+            >
+              <div>
+                <h1
+                  style={{
+                    fontSize: "1.5rem",
+                    fontWeight: "800",
+                    color: isTransparent ? "var(--accent-white)" : "var(--secondary-black)",
+                    margin: 0,
+                    letterSpacing: "1px",
+                    transition: "color 0.3s ease",
+                    textShadow: isTransparent ? "0 2px 4px rgba(0, 0, 0, 0.3)" : "none",
+                  }}
+                >
+                  MIX
+                </h1>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: isTransparent ? "rgba(255, 107, 53, 0.9)" : "var(--primary-orange)",
+                    margin: 0,
+                    fontWeight: "600",
+                    letterSpacing: "2px",
+                    transition: "color 0.3s ease",
+                  }}
+                >
+                  VEÍCULOS
+                </p>
+              </div>
+            </Link>
+
+            {/* Navigation Horizontal */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "2.5rem",
+              }}
+              className="desktop-menu"
+            >
+              <ul
+                style={{
+                  display: "flex",
+                  listStyle: "none",
+                  gap: "1.75rem",
+                  margin: 0,
+                  padding: 0,
+                }}
+              >
+                {navItems.map((item) => (
+                  <li key={item.path}>
+                    <Link
+                      to={item.path}
+                      style={{
+                        color: isTransparent
+                          ? location.pathname === item.path
+                            ? "var(--primary-orange)"
+                            : "var(--accent-white)"
+                          : location.pathname === item.path
+                            ? "var(--primary-orange)"
+                            : "var(--gray-700)",
+                        textDecoration: "none",
+                        fontWeight: "600",
+                        fontSize: "0.8rem",
+                        transition: "all 0.3s ease",
+                        padding: "0.5rem 0",
+                        position: "relative",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
+                        textShadow: isTransparent ? "0 2px 4px rgba(0, 0, 0, 0.3)" : "none",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.color = "var(--primary-orange)"
+                        e.target.style.transform = "translateY(-1px)"
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.color = isTransparent
+                          ? location.pathname === item.path
+                            ? "var(--primary-orange)"
+                            : "var(--accent-white)"
+                          : location.pathname === item.path
+                            ? "var(--primary-orange)"
+                            : "var(--gray-700)"
+                        e.target.style.transform = "translateY(0)"
+                      }}
+                    >
+                      {item.label}
+                      {location.pathname === item.path && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            bottom: "-6px",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            width: "5px",
+                            height: "5px",
+                            background: "var(--primary-orange)",
+                            borderRadius: "50%",
+                            boxShadow: "0 0 6px var(--primary-orange)",
+                          }}
+                        />
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                className="btn"
+                style={{
+                  background: isTransparent ? "rgba(255, 107, 53, 0.9)" : "var(--primary-orange)",
+                  color: "var(--accent-white)",
+                  border: isTransparent ? "1px solid rgba(255, 255, 255, 0.2)" : "none",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <MessageCircle size={16} />
+                Fale Conosco
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="mobile-menu-btn"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{
+                display: "none",
+                background: isTransparent ? "rgba(255, 107, 53, 0.9)" : "var(--primary-orange)",
+                border: "none",
+                color: "var(--accent-white)",
+                cursor: "pointer",
+                padding: "0.6rem",
+                borderRadius: "10px",
+                boxShadow: isTransparent ? "0 8px 32px rgba(255, 107, 53, 0.3)" : "var(--shadow)",
+                transition: "all 0.3s ease",
+              }}
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </nav>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div
+              className="mobile-menu"
+              style={{
+                position: "absolute",
+                top: "100%",
+                left: 0,
+                right: 0,
+                backgroundColor: isTransparent ? "rgba(0, 0, 0, 0.9)" : "var(--accent-white)",
+                backdropFilter: "blur(20px)",
+                boxShadow: "var(--shadow-xl)",
+                borderRadius: "0 0 14px 14px",
+                padding: "1.5rem",
+                border: isTransparent ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid var(--gray-200)",
+                borderTop: "none",
+              }}
+            >
+              <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                {navItems.map((item) => (
+                  <li key={item.path} style={{ marginBottom: "0.4rem" }}>
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      style={{
+                        display: "block",
+                        color: isTransparent ? "var(--accent-white)" : "var(--gray-700)",
+                        textDecoration: "none",
+                        padding: "0.75rem",
+                        borderRadius: "10px",
+                        fontWeight: "600",
+                        backgroundColor:
+                          location.pathname === item.path
+                            ? isTransparent
+                              ? "rgba(255, 107, 53, 0.2)"
+                              : "var(--gray-100)"
+                            : "transparent",
+                        transition: "all 0.2s ease",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
+                        fontSize: "0.8rem",
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div
+                style={{
+                  marginTop: "1.25rem",
+                  paddingTop: "1.25rem",
+                  borderTop: `1px solid ${isTransparent ? "rgba(255, 255, 255, 0.1)" : "var(--gray-200)"}`,
+                }}
+              >
+                <button
+                  className="btn"
+                  style={{
+                    width: "100%",
+                    background: isTransparent ? "rgba(255, 107, 53, 0.9)" : "var(--primary-orange)",
+                    color: "var(--accent-white)",
+                  }}
+                >
+                  <MessageCircle size={16} />
+                  Fale Conosco
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <style jsx>{`
+          @media (max-width: 768px) {
+            .desktop-menu {
+              display: none !important;
+            }
+            .mobile-menu-btn {
+              display: block !important;
+            }
+          }
+        `}</style>
+      </header>
+    </>
+  )
+}
+
+export default Header
