@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Header />
       <ScrollToTop />
-      <main>
+      <main style={{ minHeight: "100vh" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/estoque" element={<Estoque />} />

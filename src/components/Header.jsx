@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Menu, X, Zap, Phone, MessageCircle } from "lucide-react"
+import { Menu, X, MessageCircle } from "lucide-react"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -42,7 +42,6 @@ const Header = () => {
 
   return (
     <>
-
       {/* Main Header */}
       <header
         style={{
@@ -72,7 +71,7 @@ const Header = () => {
               minHeight: "70px",
             }}
           >
-            {/* Logo Diferenciado */}
+            {/* Logo Responsivo */}
             <Link
               to="/"
               style={{
@@ -80,12 +79,13 @@ const Header = () => {
                 alignItems: "center",
                 gap: "0.75rem",
                 textDecoration: "none",
+                flexShrink: 0,
               }}
             >
               <div>
                 <h1
                   style={{
-                    fontSize: "1.5rem",
+                    fontSize: "clamp(1.25rem, 3vw, 1.5rem)",
                     fontWeight: "800",
                     color: isTransparent ? "var(--accent-white)" : "var(--secondary-black)",
                     margin: 0,
@@ -98,7 +98,7 @@ const Header = () => {
                 </h1>
                 <p
                   style={{
-                    fontSize: "0.75rem",
+                    fontSize: "clamp(0.6rem, 2vw, 0.75rem)",
                     color: isTransparent ? "rgba(255, 107, 53, 0.9)" : "var(--primary-orange)",
                     margin: 0,
                     fontWeight: "600",
@@ -111,12 +111,12 @@ const Header = () => {
               </div>
             </Link>
 
-            {/* Navigation Horizontal */}
+            {/* Navigation Desktop */}
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "2.5rem",
+                gap: "clamp(1rem, 3vw, 2.5rem)",
               }}
               className="desktop-menu"
             >
@@ -124,7 +124,7 @@ const Header = () => {
                 style={{
                   display: "flex",
                   listStyle: "none",
-                  gap: "1.75rem",
+                  gap: "clamp(0.75rem, 2vw, 1.75rem)",
                   margin: 0,
                   padding: 0,
                 }}
@@ -143,13 +143,14 @@ const Header = () => {
                             : "var(--gray-700)",
                         textDecoration: "none",
                         fontWeight: "600",
-                        fontSize: "0.8rem",
+                        fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)",
                         transition: "all 0.3s ease",
                         padding: "0.5rem 0",
                         position: "relative",
                         textTransform: "uppercase",
                         letterSpacing: "0.5px",
                         textShadow: isTransparent ? "0 2px 4px rgba(0, 0, 0, 0.3)" : "none",
+                        whiteSpace: "nowrap",
                       }}
                       onMouseEnter={(e) => {
                         e.target.style.color = "var(--primary-orange)"
@@ -194,10 +195,14 @@ const Header = () => {
                   color: "var(--accent-white)",
                   border: isTransparent ? "1px solid rgba(255, 255, 255, 0.2)" : "none",
                   transition: "all 0.3s ease",
+                  padding: "clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2vw, 1.5rem)",
+                  fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)",
+                  gap: "0.5rem",
+                  whiteSpace: "nowrap",
                 }}
               >
                 <MessageCircle size={16} />
-                Fale Conosco
+                <span className="btn-text">Fale Conosco</span>
               </button>
             </div>
 
@@ -215,6 +220,7 @@ const Header = () => {
                 borderRadius: "10px",
                 boxShadow: isTransparent ? "0 8px 32px rgba(255, 107, 53, 0.3)" : "var(--shadow)",
                 transition: "all 0.3s ease",
+                flexShrink: 0,
               }}
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -230,13 +236,15 @@ const Header = () => {
                 top: "100%",
                 left: 0,
                 right: 0,
-                backgroundColor: isTransparent ? "rgba(0, 0, 0, 0.9)" : "var(--accent-white)",
+                backgroundColor: isTransparent ? "rgba(0, 0, 0, 0.95)" : "var(--accent-white)",
                 backdropFilter: "blur(20px)",
                 boxShadow: "var(--shadow-xl)",
                 borderRadius: "0 0 14px 14px",
                 padding: "1.5rem",
                 border: isTransparent ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid var(--gray-200)",
                 borderTop: "none",
+                maxHeight: "80vh",
+                overflowY: "auto",
               }}
             >
               <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
@@ -249,7 +257,7 @@ const Header = () => {
                         display: "block",
                         color: isTransparent ? "var(--accent-white)" : "var(--gray-700)",
                         textDecoration: "none",
-                        padding: "0.75rem",
+                        padding: "0.875rem",
                         borderRadius: "10px",
                         fontWeight: "600",
                         backgroundColor:
@@ -261,7 +269,7 @@ const Header = () => {
                         transition: "all 0.2s ease",
                         textTransform: "uppercase",
                         letterSpacing: "0.5px",
-                        fontSize: "0.8rem",
+                        fontSize: "0.9rem",
                       }}
                     >
                       {item.label}
@@ -282,6 +290,8 @@ const Header = () => {
                     width: "100%",
                     background: isTransparent ? "rgba(255, 107, 53, 0.9)" : "var(--primary-orange)",
                     color: "var(--accent-white)",
+                    padding: "1rem",
+                    fontSize: "0.9rem",
                   }}
                 >
                   <MessageCircle size={16} />
@@ -293,12 +303,24 @@ const Header = () => {
         </div>
 
         <style jsx>{`
+          @media (max-width: 1024px) {
+            .btn-text {
+              display: none;
+            }
+          }
+
           @media (max-width: 768px) {
             .desktop-menu {
               display: none !important;
             }
             .mobile-menu-btn {
               display: block !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .container {
+              padding-inline: 1rem;
             }
           }
         `}</style>
