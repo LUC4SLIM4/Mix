@@ -84,7 +84,7 @@ const Home = () => {
           `,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
+          backgroundAttachment: window.innerWidth > 768 ? "fixed" : "scroll",
           zIndex: -1,
         }}
       />
@@ -109,8 +109,8 @@ const Home = () => {
               position: "absolute",
               top: "10%",
               right: "5%",
-              width: "250px",
-              height: "250px",
+              width: "clamp(150px, 30vw, 250px)",
+              height: "clamp(150px, 30vw, 250px)",
               background: "rgba(255, 107, 53, 0.1)",
               borderRadius: "50%",
               filter: "blur(100px)",
@@ -122,8 +122,8 @@ const Home = () => {
               position: "absolute",
               bottom: "15%",
               left: "8%",
-              width: "180px",
-              height: "180px",
+              width: "clamp(120px, 25vw, 180px)",
+              height: "clamp(120px, 25vw, 180px)",
               background: "rgba(255, 255, 255, 0.05)",
               borderRadius: "50%",
               filter: "blur(80px)",
@@ -132,7 +132,14 @@ const Home = () => {
           />
 
           <div className="container" style={{ position: "relative", zIndex: 2 }}>
-            <div className="grid grid-2" style={{ alignItems: "center", gap: "3rem" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(400px, 100%), 1fr))",
+                alignItems: "center",
+                gap: "clamp(2rem, 6vw, 3rem)",
+              }}
+            >
               {/* Conteúdo Principal */}
               <div className="animate-slide-in">
                 <div
@@ -142,24 +149,26 @@ const Home = () => {
                     gap: "0.5rem",
                     background: "rgba(255, 255, 255, 0.1)",
                     backdropFilter: "blur(20px)",
-                    padding: "0.6rem 1.25rem",
+                    padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(1rem, 2.5vw, 1.25rem)",
                     borderRadius: "40px",
-                    marginBottom: "1.5rem",
+                    marginBottom: "clamp(1rem, 3vw, 1.5rem)",
                     border: "1px solid rgba(255, 255, 255, 0.2)",
                     boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
                   }}
                 >
                   <Zap size={14} style={{ color: "var(--primary-orange)" }} />
-                  <span style={{ fontSize: "0.8rem", fontWeight: "600", color: "var(--accent-white)" }}>
+                  <span
+                    style={{ fontSize: "clamp(0.7rem, 2vw, 0.8rem)", fontWeight: "600", color: "var(--accent-white)" }}
+                  >
                     Mais de 15 anos de experiência
                   </span>
                 </div>
 
                 <h1
                   style={{
-                    fontSize: "clamp(2rem, 5vw, 3.5rem)",
+                    fontSize: "clamp(1.75rem, 7vw, 3.5rem)",
                     fontWeight: "900",
-                    marginBottom: "1.25rem",
+                    marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
                     lineHeight: "1.1",
                     color: "var(--accent-white)",
                     textShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
@@ -170,11 +179,11 @@ const Home = () => {
 
                 <p
                   style={{
-                    fontSize: "1.1rem",
-                    marginBottom: "2rem",
+                    fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)",
+                    marginBottom: "clamp(1.5rem, 4vw, 2rem)",
                     color: "rgba(255, 255, 255, 0.9)",
                     lineHeight: "1.6",
-                    maxWidth: "480px",
+                    maxWidth: "min(480px, 100%)",
                     textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
                   }}
                 >
@@ -183,7 +192,7 @@ const Home = () => {
                 </p>
 
                 {/* Lista de Benefícios */}
-                <div style={{ marginBottom: "2.5rem" }}>
+                <div style={{ marginBottom: "clamp(2rem, 5vw, 2.5rem)" }}>
                   {[
                     "Veículos inspecionados e certificados",
                     "Financiamento facilitado em até 60x",
@@ -195,16 +204,19 @@ const Home = () => {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "0.75rem",
-                        marginBottom: "0.6rem",
+                        gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                        marginBottom: "clamp(0.4rem, 1vw, 0.6rem)",
                       }}
                     >
-                      <CheckCircle size={18} style={{ color: "var(--success)", flexShrink: 0 }} />
+                      <CheckCircle
+                        size={window.innerWidth <= 480 ? 16 : 18}
+                        style={{ color: "var(--success)", flexShrink: 0 }}
+                      />
                       <span
                         style={{
                           color: "rgba(255, 255, 255, 0.9)",
                           fontWeight: "500",
-                          fontSize: "0.9rem",
+                          fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                           textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
                         }}
                       >
@@ -215,16 +227,17 @@ const Home = () => {
                 </div>
 
                 {/* CTA Buttons */}
-                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", gap: "clamp(0.75rem, 2vw, 1rem)", flexWrap: "wrap" }}>
                   <a
                     href="/estoque"
                     className="btn"
                     style={{
-                      padding: "1rem 2rem",
+                      padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
                       background: "var(--primary-orange)",
                       color: "var(--accent-white)",
                       border: "1px solid rgba(255, 255, 255, 0.1)",
                       backdropFilter: "blur(20px)",
+                      fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                     }}
                   >
                     <Car size={18} />
@@ -234,16 +247,20 @@ const Home = () => {
                     href="/contato"
                     className="btn"
                     style={{
-                      padding: "1rem 2rem",
+                      padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
                       background: "rgba(255, 255, 255, 0.1)",
                       color: "var(--accent-white)",
                       border: "2px solid rgba(255, 255, 255, 0.3)",
                       backdropFilter: "blur(20px)",
                       boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+                      fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                     }}
                   >
                     <MessageCircle size={18} />
-                    Falar com Especialista
+                    <span style={{ display: window.innerWidth <= 480 ? "none" : "inline" }}>
+                      Falar com Especialista
+                    </span>
+                    <span style={{ display: window.innerWidth <= 480 ? "inline" : "none" }}>Contato</span>
                   </a>
                 </div>
               </div>
@@ -254,8 +271,8 @@ const Home = () => {
                   style={{
                     background: "rgba(255, 255, 255, 0.1)",
                     backdropFilter: "blur(20px)",
-                    borderRadius: "20px",
-                    padding: "2.5rem",
+                    borderRadius: "clamp(16px, 4vw, 20px)",
+                    padding: "clamp(2rem, 5vw, 2.5rem)",
                     boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
                     border: "1px solid rgba(255, 255, 255, 0.2)",
                     position: "relative",
@@ -273,10 +290,10 @@ const Home = () => {
                     }}
                   />
 
-                  <div style={{ textAlign: "center", marginBottom: "1.75rem" }}>
+                  <div style={{ textAlign: "center", marginBottom: "clamp(1.25rem, 3vw, 1.75rem)" }}>
                     <h3
                       style={{
-                        fontSize: "1.25rem",
+                        fontSize: "clamp(1rem, 3vw, 1.25rem)",
                         fontWeight: "700",
                         color: "var(--accent-white)",
                         marginBottom: "0.5rem",
@@ -285,7 +302,7 @@ const Home = () => {
                     >
                       Encontre seu veículo ideal
                     </h3>
-                    <p style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}>
+                    <p style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
                       Preencha os filtros e descubra as melhores opções
                     </p>
                   </div>
@@ -294,7 +311,11 @@ const Home = () => {
                     <div className="form-group">
                       <label
                         className="form-label"
-                        style={{ color: "rgba(255, 255, 255, 0.9)", textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)" }}
+                        style={{
+                          color: "rgba(255, 255, 255, 0.9)",
+                          textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+                          fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
+                        }}
                       >
                         Marca do Veículo
                       </label>
@@ -305,6 +326,7 @@ const Home = () => {
                           backdropFilter: "blur(10px)",
                           border: "2px solid rgba(255, 255, 255, 0.2)",
                           color: "var(--accent-white)",
+                          fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                         }}
                         value={searchFilters.marca}
                         onChange={(e) => setSearchFilters({ ...searchFilters, marca: e.target.value })}
@@ -336,7 +358,11 @@ const Home = () => {
                     <div className="form-group">
                       <label
                         className="form-label"
-                        style={{ color: "rgba(255, 255, 255, 0.9)", textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)" }}
+                        style={{
+                          color: "rgba(255, 255, 255, 0.9)",
+                          textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+                          fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
+                        }}
                       >
                         Modelo
                       </label>
@@ -347,6 +373,7 @@ const Home = () => {
                           backdropFilter: "blur(10px)",
                           border: "2px solid rgba(255, 255, 255, 0.2)",
                           color: "var(--accent-white)",
+                          fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                         }}
                         value={searchFilters.modelo}
                         onChange={(e) => setSearchFilters({ ...searchFilters, modelo: e.target.value })}
@@ -375,7 +402,11 @@ const Home = () => {
                     <div className="form-group">
                       <label
                         className="form-label"
-                        style={{ color: "rgba(255, 255, 255, 0.9)", textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)" }}
+                        style={{
+                          color: "rgba(255, 255, 255, 0.9)",
+                          textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+                          fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
+                        }}
                       >
                         Ano
                       </label>
@@ -386,6 +417,7 @@ const Home = () => {
                           backdropFilter: "blur(10px)",
                           border: "2px solid rgba(255, 255, 255, 0.2)",
                           color: "var(--accent-white)",
+                          fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                         }}
                         value={searchFilters.ano}
                         onChange={(e) => setSearchFilters({ ...searchFilters, ano: e.target.value })}
@@ -419,6 +451,7 @@ const Home = () => {
                         background: "var(--primary-orange)",
                         color: "var(--accent-white)",
                         border: "1px solid rgba(255, 255, 255, 0.1)",
+                        fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                       }}
                     >
                       <Search size={18} />
@@ -428,19 +461,19 @@ const Home = () => {
 
                   <div
                     style={{
-                      marginTop: "1.75rem",
-                      padding: "1.25rem",
+                      marginTop: "clamp(1.25rem, 3vw, 1.75rem)",
+                      padding: "clamp(1rem, 2.5vw, 1.25rem)",
                       background: "rgba(255, 255, 255, 0.05)",
-                      borderRadius: "14px",
+                      borderRadius: "clamp(12px, 3vw, 14px)",
                       textAlign: "center",
                       border: "1px solid rgba(255, 255, 255, 0.1)",
                     }}
                   >
                     <p
                       style={{
-                        fontSize: "0.8rem",
+                        fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
                         color: "rgba(255, 255, 255, 0.8)",
-                        marginBottom: "0.75rem",
+                        marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                       }}
                     >
                       Precisa de ajuda para escolher?
@@ -448,8 +481,8 @@ const Home = () => {
                     <button
                       className="btn"
                       style={{
-                        fontSize: "0.75rem",
-                        padding: "0.6rem 1.25rem",
+                        fontSize: "clamp(0.7rem, 1.8vw, 0.75rem)",
+                        padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(1rem, 2.5vw, 1.25rem)",
                         background: "rgba(255, 255, 255, 0.1)",
                         color: "var(--accent-white)",
                         border: "2px solid rgba(255, 255, 255, 0.2)",
@@ -457,7 +490,8 @@ const Home = () => {
                       }}
                     >
                       <Phone size={14} />
-                      Falar com Consultor
+                      <span style={{ display: window.innerWidth <= 480 ? "none" : "inline" }}>Falar com Consultor</span>
+                      <span style={{ display: window.innerWidth <= 480 ? "inline" : "none" }}>Consultor</span>
                     </button>
                   </div>
                 </div>
@@ -468,116 +502,153 @@ const Home = () => {
 
         {/* Resto das seções com fundo sólido */}
         <div style={{ background: "var(--accent-white)", position: "relative", zIndex: 2 }}>
-          {/* Seção de Diferenciais - Layout Fluido */}
+          {/* Seção de Diferenciais - Layout Responsivo */}
           <section className="section" style={{ backgroundColor: "var(--gray-50)" }}>
             <div className="container">
-              <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+              <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
                 <h2 className="section-title">Por que escolher a Mix Veículos?</h2>
                 <p className="section-subtitle">
                   Somos especialistas em conectar você ao veículo perfeito com segurança, qualidade e confiança
                 </p>
               </div>
 
-              {/* Layout Assimétrico */}
-              <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 2fr", gap: "2.5rem", alignItems: "center" }}>
+              {/* Layout Responsivo */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: window.innerWidth > 768 ? "2fr 1fr 2fr" : "1fr",
+                  gap: "clamp(2rem, 5vw, 2.5rem)",
+                  alignItems: "center",
+                }}
+              >
                 {/* Feature 1 */}
-                <div style={{ textAlign: "right", padding: "1.5rem" }}>
+                <div
+                  style={{
+                    textAlign: window.innerWidth > 768 ? "right" : "center",
+                    padding: "clamp(1rem, 3vw, 1.5rem)",
+                  }}
+                >
                   <div
                     style={{
-                      width: "70px",
-                      height: "70px",
+                      width: "clamp(60px, 12vw, 70px)",
+                      height: "clamp(60px, 12vw, 70px)",
                       background: "var(--success)",
-                      borderRadius: "18px",
+                      borderRadius: "clamp(14px, 3vw, 18px)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      marginLeft: "auto",
-                      marginBottom: "1.25rem",
+                      marginLeft: window.innerWidth > 768 ? "auto" : "auto",
+                      marginRight: window.innerWidth > 768 ? "0" : "auto",
+                      marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
                       opacity: 0.1,
                     }}
                   >
-                    <Shield size={32} style={{ color: "var(--accent-white)" }} />
+                    <Shield size={window.innerWidth <= 480 ? 28 : 32} style={{ color: "var(--accent-white)" }} />
                   </div>
-                  <h3 className="text-xl" style={{ marginBottom: "0.75rem", color: "var(--secondary-black)" }}>
+                  <h3
+                    className="text-xl"
+                    style={{ marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)", color: "var(--secondary-black)" }}
+                  >
                     Qualidade Certificada
                   </h3>
-                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "0.9rem" }}>
+                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
                     Todos os veículos passam por inspeção rigorosa de 150 pontos antes da venda
                   </p>
                 </div>
 
                 {/* Centro - Ícone Principal */}
-                <div style={{ textAlign: "center" }}>
-                  <div
-                    style={{
-                      width: "100px",
-                      height: "100px",
-                      background: "var(--primary-orange)",
-                      borderRadius: "25px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: "0 auto",
-                      boxShadow: "var(--shadow-xl)",
-                    }}
-                  >
-                    <Car size={50} style={{ color: "var(--accent-white)" }} />
+                {window.innerWidth > 768 && (
+                  <div style={{ textAlign: "center" }}>
+                    <div
+                      style={{
+                        width: "clamp(80px, 15vw, 100px)",
+                        height: "clamp(80px, 15vw, 100px)",
+                        background: "var(--primary-orange)",
+                        borderRadius: "clamp(20px, 5vw, 25px)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        margin: "0 auto",
+                        boxShadow: "var(--shadow-xl)",
+                      }}
+                    >
+                      <Car size={window.innerWidth <= 480 ? 40 : 50} style={{ color: "var(--accent-white)" }} />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Feature 2 */}
-                <div style={{ textAlign: "left", padding: "1.5rem" }}>
+                <div
+                  style={{
+                    textAlign: window.innerWidth > 768 ? "left" : "center",
+                    padding: "clamp(1rem, 3vw, 1.5rem)",
+                  }}
+                >
                   <div
                     style={{
-                      width: "70px",
-                      height: "70px",
+                      width: "clamp(60px, 12vw, 70px)",
+                      height: "clamp(60px, 12vw, 70px)",
                       background: "var(--error)",
-                      borderRadius: "18px",
+                      borderRadius: "clamp(14px, 3vw, 18px)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      marginBottom: "1.25rem",
+                      marginLeft: window.innerWidth > 768 ? "0" : "auto",
+                      marginRight: window.innerWidth > 768 ? "auto" : "auto",
+                      marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
                       opacity: 0.1,
                     }}
                   >
-                    <Heart size={32} style={{ color: "var(--accent-white)" }} />
+                    <Heart size={window.innerWidth <= 480 ? 28 : 32} style={{ color: "var(--accent-white)" }} />
                   </div>
-                  <h3 className="text-xl" style={{ marginBottom: "0.75rem", color: "var(--secondary-black)" }}>
+                  <h3
+                    className="text-xl"
+                    style={{ marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)", color: "var(--secondary-black)" }}
+                  >
                     Atendimento Humanizado
                   </h3>
-                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "0.9rem" }}>
+                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
                     Equipe especializada pronta para entender suas necessidades e sonhos
                   </p>
                 </div>
               </div>
 
               {/* Feature 3 - Centralizada */}
-              <div style={{ textAlign: "center", marginTop: "2.5rem", padding: "1.5rem" }}>
+              <div
+                style={{
+                  textAlign: "center",
+                  marginTop: "clamp(2rem, 5vw, 2.5rem)",
+                  padding: "clamp(1rem, 3vw, 1.5rem)",
+                }}
+              >
                 <div
                   style={{
-                    width: "70px",
-                    height: "70px",
+                    width: "clamp(60px, 12vw, 70px)",
+                    height: "clamp(60px, 12vw, 70px)",
                     background: "var(--primary-orange)",
-                    borderRadius: "18px",
+                    borderRadius: "clamp(14px, 3vw, 18px)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    margin: "0 auto 1.25rem",
+                    margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
                     opacity: 0.1,
                   }}
                 >
-                  <Target size={32} style={{ color: "var(--accent-white)" }} />
+                  <Target size={window.innerWidth <= 480 ? 28 : 32} style={{ color: "var(--accent-white)" }} />
                 </div>
-                <h3 className="text-xl" style={{ marginBottom: "0.75rem", color: "var(--secondary-black)" }}>
+                <h3
+                  className="text-xl"
+                  style={{ marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)", color: "var(--secondary-black)" }}
+                >
                   Preço Justo Sempre
                 </h3>
                 <p
                   style={{
                     color: "var(--gray-600)",
                     lineHeight: "1.6",
-                    maxWidth: "450px",
+                    maxWidth: "min(450px, 90%)",
                     margin: "0 auto",
-                    fontSize: "0.9rem",
+                    fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                   }}
                 >
                   Avaliação transparente e preços competitivos com as melhores condições do mercado
@@ -586,10 +657,10 @@ const Home = () => {
             </div>
           </section>
 
-          {/* Veículos em Destaque - Layout Limpo */}
+          {/* Veículos em Destaque */}
           <section className="section">
             <div className="container">
-              <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+              <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
                 <h2 className="section-title">Veículos em Destaque</h2>
                 <p className="section-subtitle">
                   Seleção especial dos nossos melhores veículos com condições imperdíveis
@@ -602,8 +673,12 @@ const Home = () => {
                 ))}
               </div>
 
-              <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-                <a href="/estoque" className="btn btn-primary" style={{ padding: "1rem 2.5rem" }}>
+              <div style={{ textAlign: "center", marginTop: "clamp(2rem, 5vw, 2.5rem)" }}>
+                <a
+                  href="/estoque"
+                  className="btn btn-primary"
+                  style={{ padding: "clamp(0.75rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem)" }}
+                >
                   Ver Todo o Estoque
                   <ArrowRight size={18} />
                 </a>
@@ -611,28 +686,34 @@ const Home = () => {
             </div>
           </section>
 
-          {/* Estatísticas - Layout Horizontal */}
+          {/* Estatísticas */}
           <section
             className="section"
             style={{ backgroundColor: "var(--secondary-black)", color: "var(--accent-white)" }}
           >
             <div className="container">
-              <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-                <h2 style={{ fontSize: "2rem", fontWeight: "800", marginBottom: "1rem", color: "var(--accent-white)" }}>
+              <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
+                <h2
+                  style={{
+                    fontSize: "clamp(1.5rem, 5vw, 2rem)",
+                    fontWeight: "800",
+                    marginBottom: "1rem",
+                    color: "var(--accent-white)",
+                  }}
+                >
                   Números que <span style={{ color: "var(--primary-orange)" }}>impressionam</span>
                 </h2>
-                <p style={{ fontSize: "1rem", color: "rgba(255, 255, 255, 0.8)" }}>
+                <p style={{ fontSize: "clamp(0.875rem, 2.5vw, 1rem)", color: "rgba(255, 255, 255, 0.8)" }}>
                   Mais de uma década construindo sonhos e realizando desejos
                 </p>
               </div>
 
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(min(180px, 100%), 1fr))",
+                  gap: "clamp(1rem, 3vw, 1.5rem)",
                   alignItems: "center",
-                  flexWrap: "wrap",
-                  gap: "1.5rem",
                 }}
               >
                 {[
@@ -641,11 +722,14 @@ const Home = () => {
                   { number: "200+", label: "Veículos Premium", icon: Car },
                   { number: "98%", label: "Satisfação", icon: Star },
                 ].map((stat, index) => (
-                  <div key={index} style={{ textAlign: "center", flex: "1", minWidth: "180px" }}>
-                    <stat.icon size={30} style={{ color: "var(--primary-orange)", marginBottom: "0.75rem" }} />
+                  <div key={index} style={{ textAlign: "center", minWidth: "0" }}>
+                    <stat.icon
+                      size={window.innerWidth <= 480 ? 24 : 30}
+                      style={{ color: "var(--primary-orange)", marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)" }}
+                    />
                     <div
                       style={{
-                        fontSize: "2.5rem",
+                        fontSize: "clamp(2rem, 6vw, 2.5rem)",
                         fontWeight: "900",
                         color: "var(--primary-orange)",
                         lineHeight: "1",
@@ -656,7 +740,7 @@ const Home = () => {
                     </div>
                     <div
                       style={{
-                        fontSize: "1rem",
+                        fontSize: "clamp(0.8rem, 2.5vw, 1rem)",
                         fontWeight: "700",
                         color: "var(--accent-white)",
                         textTransform: "uppercase",
@@ -671,14 +755,14 @@ const Home = () => {
             </div>
           </section>
 
-          {/* CTA Final - Simples e Direto */}
+          {/* CTA Final */}
           <section className="section" style={{ backgroundColor: "var(--accent-white)" }}>
             <div className="container">
               <div
                 style={{
                   background: "var(--primary-orange)",
-                  borderRadius: "25px",
-                  padding: "3rem 2.5rem",
+                  borderRadius: "clamp(20px, 5vw, 25px)",
+                  padding: "clamp(2rem, 6vw, 3rem) clamp(1.5rem, 4vw, 2.5rem)",
                   textAlign: "center",
                   color: "var(--accent-white)",
                   position: "relative",
@@ -686,29 +770,37 @@ const Home = () => {
                 }}
               >
                 <div style={{ position: "relative", zIndex: 2 }}>
-                  <h2 style={{ fontSize: "2rem", fontWeight: "800", marginBottom: "1rem" }}>
+                  <h2 style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)", fontWeight: "800", marginBottom: "1rem" }}>
                     Pronto para encontrar seu veículo ideal?
                   </h2>
                   <p
                     style={{
-                      fontSize: "1.1rem",
-                      marginBottom: "2.5rem",
+                      fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)",
+                      marginBottom: "clamp(2rem, 5vw, 2.5rem)",
                       opacity: "0.9",
-                      maxWidth: "550px",
-                      margin: "0 auto 2.5rem",
+                      maxWidth: "min(550px, 90%)",
+                      margin: "0 auto clamp(2rem, 5vw, 2.5rem)",
                     }}
                   >
                     Nossa equipe especializada está pronta para ajudar você a realizar o sonho do carro novo
                   </p>
-                  <div style={{ display: "flex", gap: "1.25rem", justifyContent: "center", flexWrap: "wrap" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "clamp(0.75rem, 2vw, 1.25rem)",
+                      justifyContent: "center",
+                      flexWrap: "wrap",
+                    }}
+                  >
                     <a
                       href="tel:1134567890"
                       className="btn"
                       style={{
                         background: "var(--accent-white)",
                         color: "var(--primary-orange)",
-                        padding: "1rem 2rem",
+                        padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
                         fontWeight: "700",
+                        fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                       }}
                     >
                       <Phone size={18} />
@@ -721,8 +813,9 @@ const Home = () => {
                         background: "rgba(255, 255, 255, 0.2)",
                         color: "var(--accent-white)",
                         border: "2px solid rgba(255, 255, 255, 0.3)",
-                        padding: "1rem 2rem",
+                        padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
                         fontWeight: "700",
+                        fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
                       }}
                     >
                       <MessageCircle size={18} />
@@ -755,6 +848,13 @@ const Home = () => {
         .form-input:focus {
           border-color: var(--primary-orange) !important;
           box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2) !important;
+        }
+
+        @media (max-width: 768px) {
+          .animate-slide-in,
+          .animate-slide-up {
+            animation: none;
+          }
         }
       `}</style>
     </div>

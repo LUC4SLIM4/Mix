@@ -14,6 +14,7 @@ import {
   Calendar,
   Settings,
   Hash,
+  Shield,
 } from "lucide-react"
 
 const VendaSeuVeiculo = () => {
@@ -45,14 +46,14 @@ const VendaSeuVeiculo = () => {
 
   const modernInputStyles = {
     width: "100%",
-    padding: "1rem 1.25rem" /* Reduzido */,
-    fontSize: "0.9rem" /* Reduzido */,
+    padding: "clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem)",
+    fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
     fontWeight: "500",
     lineHeight: "1.5",
     color: "var(--secondary-black)",
     backgroundColor: "var(--accent-white)",
     border: "2px solid var(--gray-300)",
-    borderRadius: "16px" /* Reduzido */,
+    borderRadius: "clamp(12px, 3vw, 16px)",
     outline: "none",
     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
     fontFamily: "inherit",
@@ -68,36 +69,45 @@ const VendaSeuVeiculo = () => {
 
   const modernTextareaStyles = {
     ...modernInputStyles,
-    minHeight: "130px" /* Reduzido */,
+    minHeight: "clamp(100px, 20vw, 130px)",
     resize: "vertical",
-    paddingTop: "1rem" /* Reduzido */,
-    paddingBottom: "1rem" /* Reduzido */,
+    paddingTop: "clamp(0.75rem, 2vw, 1rem)",
+    paddingBottom: "clamp(0.75rem, 2vw, 1rem)",
   }
 
   const modernLabelStyles = {
     display: "flex",
     alignItems: "center",
-    fontSize: "0.8rem" /* Reduzido */,
+    fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
     fontWeight: "700",
     color: "var(--secondary-black)",
-    marginBottom: "0.6rem" /* Reduzido */,
+    marginBottom: "clamp(0.5rem, 1.5vw, 0.6rem)",
     letterSpacing: "0.5px",
     textTransform: "uppercase",
   }
 
+  const sectionHeaderStyles = {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "clamp(2rem, 5vw, 2.5rem)",
+    padding: "clamp(1rem, 2.5vw, 1.25rem) 0",
+    borderBottom: "3px solid var(--gray-200)",
+    flexDirection: window.innerWidth <= 480 ? "column" : "row",
+    textAlign: window.innerWidth <= 480 ? "center" : "left",
+    gap: window.innerWidth <= 480 ? "1rem" : "0",
+  }
+
   return (
-    <div style={{ paddingTop: "85px" }}>
-      {" "}
-      {/* Reduzido */}
+    <div style={{ paddingTop: "clamp(60px, 12vw, 85px)" }}>
       {/* Header Banner */}
       <section
         style={{
-          paddingTop: "2rem" /* Reduzido */,
-          paddingBottom: "3rem" /* Reduzido */,
+          paddingTop: "clamp(1.5rem, 4vw, 2rem)",
+          paddingBottom: "clamp(2rem, 5vw, 3rem)",
           background: "var(--secondary-black)",
           color: "var(--accent-white)",
           position: "relative",
-          minHeight: "30vh" /* Reduzido */,
+          minHeight: "clamp(25vh, 40vw, 30vh)",
           display: "flex",
           alignItems: "center",
         }}
@@ -106,8 +116,8 @@ const VendaSeuVeiculo = () => {
           <h1
             style={{
               color: "var(--accent-white)",
-              fontSize: "3rem" /* Reduzido */,
-              marginBottom: "1rem" /* Reduzido */,
+              fontSize: "clamp(1.75rem, 6vw, 3rem)",
+              marginBottom: "clamp(0.75rem, 2vw, 1rem)",
               fontWeight: "900",
             }}
           >
@@ -116,8 +126,8 @@ const VendaSeuVeiculo = () => {
           <p
             style={{
               textAlign: "center",
-              fontSize: "1.25rem" /* Reduzido */,
-              maxWidth: "650px" /* Reduzido */,
+              fontSize: "clamp(1rem, 3vw, 1.25rem)",
+              maxWidth: "min(650px, 90%)",
               margin: "1rem auto",
               color: "rgba(255, 255, 255, 0.9)",
               fontWeight: "500",
@@ -128,149 +138,150 @@ const VendaSeuVeiculo = () => {
           </p>
         </div>
       </section>
-      {/* Benefits - Layout Simples */}
-      <section style={{ backgroundColor: "var(--gray-50)", padding: "4rem 0" }}>
-        {" "}
-        {/* Reduzido */}
+
+      {/* Benefits - Layout Responsivo */}
+      <section style={{ backgroundColor: "var(--gray-50)", padding: "clamp(2.5rem, 6vw, 4rem) 0" }}>
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", textAlign: "center" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(200px, 100%), 1fr))",
+              gap: "clamp(1.5rem, 4vw, 2rem)",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
             <div style={{ flex: 1 }}>
               <div
                 style={{
-                  width: "70px" /* Reduzido */,
-                  height: "70px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 70px)",
+                  height: "clamp(60px, 12vw, 70px)",
                   background: "var(--primary-orange)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.25rem" /* Reduzido */,
+                  margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
                   opacity: 0.1,
                 }}
               >
-                <Zap size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <Zap size={window.innerWidth <= 480 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "800",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Avaliação Rápida
               </h3>
-              <p style={{ color: "var(--gray-600)", fontSize: "1rem" }}>Resposta em até 24 horas</p> {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>
+                Resposta em até 24 horas
+              </p>
             </div>
 
             <div style={{ flex: 1 }}>
               <div
                 style={{
-                  width: "70px" /* Reduzido */,
-                  height: "70px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 70px)",
+                  height: "clamp(60px, 12vw, 70px)",
                   background: "var(--primary-orange)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.25rem" /* Reduzido */,
+                  margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
                   opacity: 0.1,
                 }}
               >
-                <DollarSign size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <DollarSign size={window.innerWidth <= 480 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "800",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Melhor Preço
               </h3>
-              <p style={{ color: "var(--gray-600)", fontSize: "1rem" }}>Avaliação justa e competitiva</p>{" "}
-              {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>
+                Avaliação justa e competitiva
+              </p>
             </div>
 
             <div style={{ flex: 1 }}>
               <div
                 style={{
-                  width: "70px" /* Reduzido */,
-                  height: "70px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 70px)",
+                  height: "clamp(60px, 12vw, 70px)",
                   background: "var(--primary-orange)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.25rem" /* Reduzido */,
+                  margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
                   opacity: 0.1,
                 }}
               >
+                <Shield size={window.innerWidth <= 480 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "800",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Processo Simples
               </h3>
-              <p style={{ color: "var(--gray-600)", fontSize: "1rem" }}>Sem burocracia desnecessária</p>{" "}
-              {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>
+                Sem burocracia desnecessária
+              </p>
             </div>
           </div>
         </div>
       </section>
+
       {/* Vehicle Evaluation Form */}
       <section className="section">
         <div className="container">
-          <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-            {" "}
-            {/* Reduzido */}
+          <div style={{ maxWidth: "min(900px, 100%)", margin: "0 auto" }}>
             <div
               style={{
                 backgroundColor: "var(--accent-white)",
-                borderRadius: "25px" /* Reduzido */,
-                padding: "3.5rem" /* Reduzido */,
+                borderRadius: "clamp(20px, 5vw, 25px)",
+                padding: "clamp(2rem, 6vw, 3.5rem)",
                 boxShadow: "var(--shadow-xl)",
                 border: "2px solid var(--gray-200)",
               }}
             >
               <form onSubmit={handleSubmit}>
                 {/* Dados Pessoais */}
-                <div style={{ marginBottom: "3.5rem" }}>
-                  {" "}
-                  {/* Reduzido */}
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginBottom: "2.5rem" /* Reduzido */,
-                      padding: "1.25rem 0" /* Reduzido */,
-                      borderBottom: "3px solid var(--gray-200)",
-                    }}
-                  >
+                <div style={{ marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
+                  <div style={sectionHeaderStyles}>
                     <div
                       style={{
-                        width: "60px" /* Reduzido */,
-                        height: "60px" /* Reduzido */,
+                        width: "clamp(50px, 10vw, 60px)",
+                        height: "clamp(50px, 10vw, 60px)",
                         background: "var(--primary-orange)",
-                        borderRadius: "18px" /* Reduzido */,
+                        borderRadius: "clamp(14px, 3vw, 18px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        marginRight: "1.25rem" /* Reduzido */,
+                        marginRight: window.innerWidth <= 480 ? "0" : "clamp(1rem, 2.5vw, 1.25rem)",
                         boxShadow: "var(--shadow-lg)",
                       }}
                     >
-                      <User size={28} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                      <User size={window.innerWidth <= 480 ? 24 : 28} style={{ color: "var(--accent-white)" }} />
                     </div>
                     <h3
                       style={{
-                        fontSize: "1.75rem" /* Reduzido */,
+                        fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
                         fontWeight: "800",
                         color: "var(--secondary-black)",
                         textTransform: "uppercase",
@@ -281,34 +292,34 @@ const VendaSeuVeiculo = () => {
                       Dados Pessoais
                     </h3>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.75rem", marginBottom: "1.75rem" }}>
-                    {" "}
-                    {/* Reduzido */}
-                    <div>
-                      <label style={modernLabelStyles}>
-                        <User size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
-                        Nome *
-                      </label>
-                      <input
-                        type="text"
-                        style={focusedField === "nome" ? modernInputFocusStyles : modernInputStyles}
-                        required
-                        placeholder="Digite seu nome completo"
-                        value={formData.nome}
-                        onChange={(e) => handleInputChange("nome", e.target.value)}
-                        onFocus={() => setFocusedField("nome")}
-                        onBlur={() => setFocusedField("")}
-                      />
-                    </div>
+
+                  <div style={{ marginBottom: "clamp(1.25rem, 3vw, 1.75rem)" }}>
+                    <label style={modernLabelStyles}>
+                      <User size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
+                      Nome *
+                    </label>
+                    <input
+                      type="text"
+                      style={focusedField === "nome" ? modernInputFocusStyles : modernInputStyles}
+                      required
+                      placeholder="Digite seu nome completo"
+                      value={formData.nome}
+                      onChange={(e) => handleInputChange("nome", e.target.value)}
+                      onFocus={() => setFocusedField("nome")}
+                      onBlur={() => setFocusedField("")}
+                    />
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.75rem" }}>
-                    {" "}
-                    {/* Reduzido */}
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(min(250px, 100%), 1fr))",
+                      gap: "clamp(1.25rem, 3vw, 1.75rem)",
+                    }}
+                  >
                     <div>
                       <label style={modernLabelStyles}>
-                        <Mail size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Mail size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         E-mail *
                       </label>
                       <input
@@ -324,8 +335,7 @@ const VendaSeuVeiculo = () => {
                     </div>
                     <div>
                       <label style={modernLabelStyles}>
-                        <Phone size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Phone size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Telefone *
                       </label>
                       <input
@@ -343,36 +353,26 @@ const VendaSeuVeiculo = () => {
                 </div>
 
                 {/* Dados do Veículo */}
-                <div style={{ marginBottom: "3.5rem" }}>
-                  {" "}
-                  {/* Reduzido */}
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginBottom: "2.5rem" /* Reduzido */,
-                      padding: "1.25rem 0" /* Reduzido */,
-                      borderBottom: "3px solid var(--gray-200)",
-                    }}
-                  >
+                <div style={{ marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
+                  <div style={sectionHeaderStyles}>
                     <div
                       style={{
-                        width: "60px" /* Reduzido */,
-                        height: "60px" /* Reduzido */,
+                        width: "clamp(50px, 10vw, 60px)",
+                        height: "clamp(50px, 10vw, 60px)",
                         background: "var(--primary-orange)",
-                        borderRadius: "18px" /* Reduzido */,
+                        borderRadius: "clamp(14px, 3vw, 18px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        marginRight: "1.25rem" /* Reduzido */,
+                        marginRight: window.innerWidth <= 480 ? "0" : "clamp(1rem, 2.5vw, 1.25rem)",
                         boxShadow: "var(--shadow-lg)",
                       }}
                     >
-                      <Car size={28} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                      <Car size={window.innerWidth <= 480 ? 24 : 28} style={{ color: "var(--accent-white)" }} />
                     </div>
                     <h3
                       style={{
-                        fontSize: "1.75rem" /* Reduzido */,
+                        fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
                         fontWeight: "800",
                         color: "var(--secondary-black)",
                         textTransform: "uppercase",
@@ -383,15 +383,18 @@ const VendaSeuVeiculo = () => {
                       Dados do Veículo
                     </h3>
                   </div>
+
                   <div
-                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.75rem", marginBottom: "1.75rem" }}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(min(250px, 100%), 1fr))",
+                      gap: "clamp(1.25rem, 3vw, 1.75rem)",
+                      marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
+                    }}
                   >
-                    {" "}
-                    {/* Reduzido */}
                     <div>
                       <label style={modernLabelStyles}>
-                        <Car size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Car size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Marca *
                       </label>
                       <select
@@ -417,8 +420,7 @@ const VendaSeuVeiculo = () => {
                     </div>
                     <div>
                       <label style={modernLabelStyles}>
-                        <Car size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Car size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Modelo *
                       </label>
                       <input
@@ -433,15 +435,18 @@ const VendaSeuVeiculo = () => {
                       />
                     </div>
                   </div>
+
                   <div
-                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.75rem", marginBottom: "1.75rem" }}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(min(250px, 100%), 1fr))",
+                      gap: "clamp(1.25rem, 3vw, 1.75rem)",
+                      marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
+                    }}
                   >
-                    {" "}
-                    {/* Reduzido */}
                     <div>
                       <label style={modernLabelStyles}>
-                        <Settings size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Settings size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Versão
                       </label>
                       <input
@@ -456,8 +461,7 @@ const VendaSeuVeiculo = () => {
                     </div>
                     <div>
                       <label style={modernLabelStyles}>
-                        <Palette size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Palette size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Cor
                       </label>
                       <input
@@ -471,15 +475,18 @@ const VendaSeuVeiculo = () => {
                       />
                     </div>
                   </div>
+
                   <div
-                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.75rem", marginBottom: "1.75rem" }}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(min(250px, 100%), 1fr))",
+                      gap: "clamp(1.25rem, 3vw, 1.75rem)",
+                      marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
+                    }}
                   >
-                    {" "}
-                    {/* Reduzido */}
                     <div>
                       <label style={modernLabelStyles}>
-                        <Gauge size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Gauge size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         KM *
                       </label>
                       <input
@@ -495,8 +502,7 @@ const VendaSeuVeiculo = () => {
                     </div>
                     <div>
                       <label style={modernLabelStyles}>
-                        <Hash size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Hash size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Placa
                       </label>
                       <input
@@ -510,12 +516,10 @@ const VendaSeuVeiculo = () => {
                       />
                     </div>
                   </div>
-                  <div style={{ marginBottom: "1.75rem" }}>
-                    {" "}
-                    {/* Reduzido */}
+
+                  <div style={{ marginBottom: "clamp(1.25rem, 3vw, 1.75rem)" }}>
                     <label style={modernLabelStyles}>
-                      <Calendar size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                      {/* Reduzido */}
+                      <Calendar size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                       Ano/Modelo *
                     </label>
                     <input
@@ -529,10 +533,10 @@ const VendaSeuVeiculo = () => {
                       onBlur={() => setFocusedField("")}
                     />
                   </div>
+
                   <div>
                     <label style={modernLabelStyles}>
-                      <Settings size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                      {/* Reduzido */}
+                      <Settings size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                       Opcionais
                     </label>
                     <textarea
@@ -546,7 +550,7 @@ const VendaSeuVeiculo = () => {
                             }
                           : modernTextareaStyles
                       }
-                      rows="4" /* Reduzido */
+                      rows="4"
                       placeholder="Descreva os opcionais do veículo: ar condicionado, direção hidráulica, vidros elétricos, alarme, som, rodas de liga, etc."
                       value={formData.opcionais}
                       onChange={(e) => handleInputChange("opcionais", e.target.value)}
@@ -561,15 +565,15 @@ const VendaSeuVeiculo = () => {
                   className="btn btn-primary"
                   style={{
                     width: "100%",
-                    padding: "1.25rem 1.75rem" /* Reduzido */,
-                    fontSize: "1rem" /* Reduzido */,
+                    padding: "clamp(1rem, 2.5vw, 1.25rem) clamp(1.5rem, 3vw, 1.75rem)",
+                    fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "0.6rem" /* Reduzido */,
+                    gap: "clamp(0.5rem, 1.5vw, 0.6rem)",
                   }}
                 >
-                  <Send size={20} /> {/* Reduzido */}
+                  <Send size={window.innerWidth <= 480 ? 18 : 20} />
                   Solicitar Avaliação
                 </button>
               </form>

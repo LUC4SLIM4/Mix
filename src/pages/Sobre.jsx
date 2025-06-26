@@ -31,36 +31,37 @@ const Sobre = () => {
   ]
 
   return (
-    <div style={{ paddingTop: "102px" }}>
-      {" "}
-      {/* Reduzido */}
+    <div style={{ paddingTop: "clamp(70px, 15vw, 102px)" }}>
       {/* Hero Section */}
       <section
         style={{
           background: "var(--accent-white)",
-          padding: "4rem 0" /* Reduzido */,
+          padding: "clamp(2rem, 8vw, 4rem) 0",
           position: "relative",
           overflow: "hidden",
         }}
       >
         <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "center" }}>
-            {" "}
-            {/* Reduzido */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(400px, 100%), 1fr))",
+              gap: "clamp(2rem, 6vw, 3.5rem)",
+              alignItems: "center",
+            }}
+          >
             {/* Conteúdo */}
             <div>
-              <div className="badge badge-primary" style={{ marginBottom: "1.75rem" }}>
-                {" "}
-                {/* Reduzido */}
-                <Zap size={14} /> {/* Reduzido */}
+              <div className="badge badge-primary" style={{ marginBottom: "clamp(1rem, 3vw, 1.75rem)" }}>
+                <Zap size={14} />
                 Mais de 15 anos de história
               </div>
 
               <h1
                 style={{
-                  fontSize: "clamp(2rem, 4vw, 3rem)" /* Reduzido */,
+                  fontSize: "clamp(1.75rem, 6vw, 3rem)",
                   fontWeight: "900",
-                  marginBottom: "1.25rem" /* Reduzido */,
+                  marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
                   lineHeight: "1.1",
                   color: "var(--secondary-black)",
                 }}
@@ -70,8 +71,8 @@ const Sobre = () => {
 
               <p
                 style={{
-                  fontSize: "1.1rem" /* Reduzido */,
-                  marginBottom: "1.75rem" /* Reduzido */,
+                  fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)",
+                  marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
                   color: "var(--gray-600)",
                   lineHeight: "1.6",
                 }}
@@ -80,19 +81,18 @@ const Sobre = () => {
                 que nossos clientes merecem.
               </p>
 
-              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-                {" "}
-                {/* Reduzido */}
+              <div style={{ display: "flex", gap: "clamp(0.5rem, 2vw, 0.75rem)", flexWrap: "wrap" }}>
                 <a href="/estoque" className="btn btn-primary">
-                  <Award size={18} /> {/* Reduzido */}
+                  <Award size={18} />
                   Ver Veículos
                 </a>
                 <a href="/contato" className="btn btn-secondary">
-                  <MapPin size={18} /> {/* Reduzido */}
+                  <MapPin size={18} />
                   Nos Visite
                 </a>
               </div>
             </div>
+
             {/* Imagem */}
             <div>
               <img
@@ -100,9 +100,9 @@ const Sobre = () => {
                 alt="Showroom Mix Veículos"
                 style={{
                   width: "100%",
-                  height: "450px" /* Reduzido */,
+                  height: "clamp(300px, 50vw, 450px)",
                   objectFit: "cover",
-                  borderRadius: "20px" /* Reduzido */,
+                  borderRadius: "clamp(15px, 4vw, 20px)",
                   boxShadow: "var(--shadow-xl)",
                 }}
               />
@@ -110,157 +110,136 @@ const Sobre = () => {
           </div>
         </div>
       </section>
-      {/* Missão, Visão, Valores - Layout Fluido */}
+
+      {/* Missão, Visão, Valores - Layout Responsivo */}
       <section className="section" style={{ backgroundColor: "var(--gray-50)" }}>
         <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-            {" "}
-            {/* Reduzido */}
+          <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 4rem)" }}>
             <h2 className="section-title">Nossos Pilares</h2>
             <p className="section-subtitle">
               Os valores que nos guiam em cada negociação e relacionamento com nossos clientes
             </p>
           </div>
 
-          {/* Layout Horizontal Fluido */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "3.5rem" }}>
-            {" "}
-            {/* Reduzido */}
+          {/* Layout Responsivo */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(250px, 100%), 1fr))",
+              gap: "clamp(2rem, 5vw, 3.5rem)",
+              alignItems: "flex-start",
+            }}
+          >
             {/* Missão */}
-            <div style={{ flex: 1, textAlign: "center" }}>
+            <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  width: "80px" /* Reduzido */,
-                  height: "80px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 80px)",
+                  height: "clamp(60px, 12vw, 80px)",
                   background: "var(--primary-orange)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.75rem" /* Reduzido */,
+                  margin: "0 auto clamp(1.25rem, 3vw, 1.75rem)",
                   opacity: 0.1,
                 }}
               >
-                <Target size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <Target size={window.innerWidth <= 768 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "700",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Missão
               </h3>
-              <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "0.9rem" }}>
-                {" "}
-                {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
                 Transformar a experiência de compra de veículos através da inovação, transparência e excelência.
               </p>
             </div>
-            {/* Divisor Visual */}
-            <div
-              style={{
-                width: "2px",
-                height: "180px" /* Reduzido */,
-                background: "var(--gray-300)",
-                alignSelf: "center",
-              }}
-            />
+
             {/* Visão */}
-            <div style={{ flex: 1, textAlign: "center" }}>
+            <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  width: "80px" /* Reduzido */,
-                  height: "80px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 80px)",
+                  height: "clamp(60px, 12vw, 80px)",
                   background: "var(--success)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.75rem" /* Reduzido */,
+                  margin: "0 auto clamp(1.25rem, 3vw, 1.75rem)",
                   opacity: 0.1,
                 }}
               >
-                <Eye size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <Eye size={window.innerWidth <= 768 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "700",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Visão
               </h3>
-              <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "0.9rem" }}>
-                {" "}
-                {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
                 Ser a concessionária mais inovadora e confiável do país, reconhecida pela excelência em atendimento.
               </p>
             </div>
-            {/* Divisor Visual */}
-            <div
-              style={{
-                width: "2px",
-                height: "180px" /* Reduzido */,
-                background: "var(--gray-300)",
-                alignSelf: "center",
-              }}
-            />
+
             {/* Valores */}
-            <div style={{ flex: 1, textAlign: "center" }}>
+            <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  width: "80px" /* Reduzido */,
-                  height: "80px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 80px)",
+                  height: "clamp(60px, 12vw, 80px)",
                   background: "var(--warning)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.75rem" /* Reduzido */,
+                  margin: "0 auto clamp(1.25rem, 3vw, 1.75rem)",
                   opacity: 0.1,
                 }}
               >
-                <Gem size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <Gem size={window.innerWidth <= 768 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "700",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Valores
               </h3>
-              <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "0.9rem" }}>
-                {" "}
-                {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
                 Inovação, transparência, excelência e compromisso com o cliente orientam todas as nossas ações.
               </p>
             </div>
           </div>
         </div>
       </section>
-      {/* Timeline - Layout Mais Limpo */}
+
+      {/* Timeline - Layout Responsivo */}
       <section className="section">
         <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-            {" "}
-            {/* Reduzido */}
+          <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
             <h2 className="section-title">Nossa Trajetória</h2>
             <p className="section-subtitle">Uma jornada de crescimento, inovação e conquistas ao longo dos anos</p>
           </div>
 
-          {/* Timeline Vertical Alternada */}
-          <div style={{ maxWidth: "750px", margin: "0 auto", position: "relative" }}>
-            {" "}
-            {/* Reduzido */}
-            {/* Linha Central */}
+          {/* Timeline Responsiva */}
+          <div style={{ maxWidth: "min(750px, 100%)", margin: "0 auto", position: "relative" }}>
+            {/* Linha Central - Oculta em mobile */}
             <div
               style={{
                 position: "absolute",
@@ -271,28 +250,30 @@ const Sobre = () => {
                 background: "var(--primary-orange)",
                 transform: "translateX(-50%)",
                 zIndex: 0,
+                display: window.innerWidth <= 768 ? "none" : "block",
               }}
             />
+
             {timeline.map((item, index) => (
               <div
                 key={index}
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  marginBottom: "3.5rem" /* Reduzido */,
+                  marginBottom: "clamp(2rem, 5vw, 3.5rem)",
                   position: "relative",
                   zIndex: 1,
+                  flexDirection: window.innerWidth <= 768 ? "column" : "row",
+                  textAlign: window.innerWidth <= 768 ? "center" : index % 2 === 0 ? "right" : "left",
                 }}
               >
-                {/* Conteúdo Esquerda (anos pares) */}
-                {index % 2 === 0 && (
+                {/* Layout Desktop - Alternado */}
+                {window.innerWidth > 768 && index % 2 === 0 && (
                   <>
-                    <div style={{ flex: 1, textAlign: "right", paddingRight: "2.5rem" }}>
-                      {" "}
-                      {/* Reduzido */}
+                    <div style={{ flex: 1, textAlign: "right", paddingRight: "clamp(1.5rem, 4vw, 2.5rem)" }}>
                       <div
                         style={{
-                          fontSize: "1.75rem" /* Reduzido */,
+                          fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
                           fontWeight: "800",
                           color: "var(--primary-orange)",
                           marginBottom: "0.5rem",
@@ -302,7 +283,7 @@ const Sobre = () => {
                       </div>
                       <h3
                         style={{
-                          fontSize: "1.125rem" /* Reduzido */,
+                          fontSize: "clamp(1rem, 2.5vw, 1.125rem)",
                           fontWeight: "700",
                           marginBottom: "0.5rem",
                           color: "var(--secondary-black)",
@@ -310,17 +291,17 @@ const Sobre = () => {
                       >
                         {item.title}
                       </h3>
-                      <p style={{ color: "var(--gray-600)", lineHeight: "1.5", fontSize: "0.9rem" }}>
+                      <p
+                        style={{ color: "var(--gray-600)", lineHeight: "1.5", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}
+                      >
                         {item.description}
-                      </p>{" "}
-                      {/* Reduzido */}
+                      </p>
                     </div>
 
-                    {/* Ícone Central */}
                     <div
                       style={{
-                        width: "50px" /* Reduzido */,
-                        height: "50px" /* Reduzido */,
+                        width: "clamp(40px, 8vw, 50px)",
+                        height: "clamp(40px, 8vw, 50px)",
                         background: "var(--primary-orange)",
                         borderRadius: "50%",
                         display: "flex",
@@ -331,23 +312,21 @@ const Sobre = () => {
                         zIndex: 2,
                       }}
                     >
-                      <item.icon size={20} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                      <item.icon size={window.innerWidth <= 480 ? 16 : 20} style={{ color: "var(--accent-white)" }} />
                     </div>
 
                     <div style={{ flex: 1 }} />
                   </>
                 )}
 
-                {/* Conteúdo Direita (anos ímpares) */}
-                {index % 2 === 1 && (
+                {window.innerWidth > 768 && index % 2 === 1 && (
                   <>
                     <div style={{ flex: 1 }} />
 
-                    {/* Ícone Central */}
                     <div
                       style={{
-                        width: "50px" /* Reduzido */,
-                        height: "50px" /* Reduzido */,
+                        width: "clamp(40px, 8vw, 50px)",
+                        height: "clamp(40px, 8vw, 50px)",
                         background: "var(--primary-orange)",
                         borderRadius: "50%",
                         display: "flex",
@@ -358,15 +337,13 @@ const Sobre = () => {
                         zIndex: 2,
                       }}
                     >
-                      <item.icon size={20} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                      <item.icon size={window.innerWidth <= 480 ? 16 : 20} style={{ color: "var(--accent-white)" }} />
                     </div>
 
-                    <div style={{ flex: 1, textAlign: "left", paddingLeft: "2.5rem" }}>
-                      {" "}
-                      {/* Reduzido */}
+                    <div style={{ flex: 1, textAlign: "left", paddingLeft: "clamp(1.5rem, 4vw, 2.5rem)" }}>
                       <div
                         style={{
-                          fontSize: "1.75rem" /* Reduzido */,
+                          fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
                           fontWeight: "800",
                           color: "var(--primary-orange)",
                           marginBottom: "0.5rem",
@@ -376,7 +353,7 @@ const Sobre = () => {
                       </div>
                       <h3
                         style={{
-                          fontSize: "1.125rem" /* Reduzido */,
+                          fontSize: "clamp(1rem, 2.5vw, 1.125rem)",
                           fontWeight: "700",
                           marginBottom: "0.5rem",
                           color: "var(--secondary-black)",
@@ -384,10 +361,65 @@ const Sobre = () => {
                       >
                         {item.title}
                       </h3>
-                      <p style={{ color: "var(--gray-600)", lineHeight: "1.5", fontSize: "0.9rem" }}>
+                      <p
+                        style={{ color: "var(--gray-600)", lineHeight: "1.5", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}
+                      >
                         {item.description}
-                      </p>{" "}
-                      {/* Reduzido */}
+                      </p>
+                    </div>
+                  </>
+                )}
+
+                {/* Layout Mobile - Vertical */}
+                {window.innerWidth <= 768 && (
+                  <>
+                    <div
+                      style={{
+                        width: "clamp(50px, 12vw, 60px)",
+                        height: "clamp(50px, 12vw, 60px)",
+                        background: "var(--primary-orange)",
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        border: "4px solid var(--accent-white)",
+                        boxShadow: "var(--shadow)",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      <item.icon size={window.innerWidth <= 480 ? 20 : 24} style={{ color: "var(--accent-white)" }} />
+                    </div>
+
+                    <div>
+                      <div
+                        style={{
+                          fontSize: "clamp(1.5rem, 5vw, 2rem)",
+                          fontWeight: "800",
+                          color: "var(--primary-orange)",
+                          marginBottom: "0.5rem",
+                        }}
+                      >
+                        {item.year}
+                      </div>
+                      <h3
+                        style={{
+                          fontSize: "clamp(1.125rem, 3vw, 1.25rem)",
+                          fontWeight: "700",
+                          marginBottom: "0.5rem",
+                          color: "var(--secondary-black)",
+                        }}
+                      >
+                        {item.title}
+                      </h3>
+                      <p
+                        style={{
+                          color: "var(--gray-600)",
+                          lineHeight: "1.5",
+                          fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
+                        }}
+                      >
+                        {item.description}
+                      </p>
                     </div>
                   </>
                 )}
@@ -396,20 +428,16 @@ const Sobre = () => {
           </div>
         </div>
       </section>
-      {/* Diferenciais - Layout Simples */}
+
+      {/* Diferenciais - Layout Responsivo */}
       <section className="section" style={{ backgroundColor: "var(--gray-50)" }}>
         <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-            {" "}
-            {/* Reduzido */}
+          <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
             <h2 className="section-title">Nossos Diferenciais</h2>
             <p className="section-subtitle">O que nos torna únicos no mercado de veículos premium</p>
           </div>
 
-          {/* Layout Vertical Simples */}
-          <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-            {" "}
-            {/* Reduzido */}
+          <div style={{ maxWidth: "min(700px, 100%)", margin: "0 auto" }}>
             {[
               {
                 icon: Star,
@@ -435,18 +463,20 @@ const Sobre = () => {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "2.5rem" /* Reduzido */,
-                  marginBottom: "2.5rem" /* Reduzido */,
-                  padding: "1.75rem 0" /* Reduzido */,
+                  gap: "clamp(1.5rem, 4vw, 2.5rem)",
+                  marginBottom: "clamp(1.5rem, 4vw, 2.5rem)",
+                  padding: "clamp(1rem, 3vw, 1.75rem) 0",
                   borderBottom: index < 2 ? "1px solid var(--gray-300)" : "none",
+                  flexDirection: window.innerWidth <= 480 ? "column" : "row",
+                  textAlign: window.innerWidth <= 480 ? "center" : "left",
                 }}
               >
                 <div
                   style={{
-                    width: "70px" /* Reduzido */,
-                    height: "70px" /* Reduzido */,
+                    width: "clamp(60px, 12vw, 70px)",
+                    height: "clamp(60px, 12vw, 70px)",
                     background: value.color,
-                    borderRadius: "18px" /* Reduzido */,
+                    borderRadius: "clamp(14px, 3vw, 18px)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -454,22 +484,20 @@ const Sobre = () => {
                     opacity: 0.1,
                   }}
                 >
-                  <value.icon size={28} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                  <value.icon size={window.innerWidth <= 480 ? 24 : 28} style={{ color: "var(--accent-white)" }} />
                 </div>
                 <div>
                   <h3
                     style={{
-                      fontSize: "1.25rem" /* Reduzido */,
+                      fontSize: "clamp(1rem, 3vw, 1.25rem)",
                       fontWeight: "700",
-                      marginBottom: "0.75rem" /* Reduzido */,
+                      marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                       color: "var(--secondary-black)",
                     }}
                   >
                     {value.title}
                   </h3>
-                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "1rem" }}>
-                    {" "}
-                    {/* Reduzido */}
+                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>
                     {value.description}
                   </p>
                 </div>
@@ -478,25 +506,23 @@ const Sobre = () => {
           </div>
         </div>
       </section>
+
       {/* Estatísticas */}
       <section
         style={{
           background: "var(--secondary-black)",
           color: "var(--accent-white)",
-          padding: "4rem 0" /* Reduzido */,
+          padding: "clamp(2.5rem, 8vw, 4rem) 0",
         }}
       >
         <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-            {" "}
-            {/* Reduzido */}
-            <h2 style={{ fontSize: "2rem", fontWeight: "800", marginBottom: "0.75rem" }}>
-              {" "}
-              {/* Reduzido */}
+          <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
+            <h2 style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)", fontWeight: "800", marginBottom: "0.75rem" }}>
               Números que <span className="text-gradient">Impressionam</span>
             </h2>
-            <p style={{ fontSize: "1rem", opacity: 0.8 }}>Resultados que comprovam nossa excelência e dedicação</p>{" "}
-            {/* Reduzido */}
+            <p style={{ fontSize: "clamp(0.875rem, 2.5vw, 1rem)", opacity: 0.8 }}>
+              Resultados que comprovam nossa excelência e dedicação
+            </p>
           </div>
 
           <div className="grid grid-4">
@@ -510,16 +536,18 @@ const Sobre = () => {
                 key={index}
                 style={{
                   textAlign: "center",
-                  padding: "2rem 1.5rem" /* Reduzido */,
+                  padding: "clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem)",
                   background: "rgba(255, 255, 255, 0.05)",
-                  borderRadius: "18px" /* Reduzido */,
+                  borderRadius: "clamp(14px, 4vw, 18px)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(10px)",
                 }}
                 className="hover-lift"
               >
-                <stat.icon size={30} style={{ color: "var(--primary-orange)", marginBottom: "1.25rem" }} />{" "}
-                {/* Reduzido */}
+                <stat.icon
+                  size={window.innerWidth <= 480 ? 24 : 30}
+                  style={{ color: "var(--primary-orange)", marginBottom: "clamp(0.75rem, 2vw, 1.25rem)" }}
+                />
                 <div className="stat-number" style={{ color: "var(--primary-orange)" }}>
                   {stat.number}
                 </div>

@@ -29,14 +29,14 @@ const Financiamento = () => {
 
   const modernInputStyles = {
     width: "100%",
-    padding: "1rem 1.25rem" /* Reduzido */,
-    fontSize: "0.9rem" /* Reduzido */,
+    padding: "clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem)",
+    fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
     fontWeight: "500",
     lineHeight: "1.5",
     color: "var(--secondary-black)",
     backgroundColor: "var(--accent-white)",
     border: "2px solid var(--gray-300)",
-    borderRadius: "16px" /* Reduzido */,
+    borderRadius: "clamp(12px, 3vw, 16px)",
     outline: "none",
     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
     fontFamily: "inherit",
@@ -52,19 +52,19 @@ const Financiamento = () => {
 
   const modernTextareaStyles = {
     ...modernInputStyles,
-    minHeight: "130px" /* Reduzido */,
+    minHeight: "clamp(100px, 20vw, 130px)",
     resize: "vertical",
-    paddingTop: "1rem" /* Reduzido */,
-    paddingBottom: "1rem" /* Reduzido */,
+    paddingTop: "clamp(0.75rem, 2vw, 1rem)",
+    paddingBottom: "clamp(0.75rem, 2vw, 1rem)",
   }
 
   const modernLabelStyles = {
     display: "flex",
     alignItems: "center",
-    fontSize: "0.8rem" /* Reduzido */,
+    fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
     fontWeight: "700",
     color: "var(--secondary-black)",
-    marginBottom: "0.6rem" /* Reduzido */,
+    marginBottom: "clamp(0.5rem, 1.5vw, 0.6rem)",
     letterSpacing: "0.5px",
     textTransform: "uppercase",
   }
@@ -72,24 +72,25 @@ const Financiamento = () => {
   const sectionHeaderStyles = {
     display: "flex",
     alignItems: "center",
-    marginBottom: "2.5rem" /* Reduzido */,
-    padding: "1.25rem 0" /* Reduzido */,
+    marginBottom: "clamp(2rem, 5vw, 2.5rem)",
+    padding: "clamp(1rem, 2.5vw, 1.25rem) 0",
     borderBottom: "3px solid var(--gray-200)",
+    flexDirection: window.innerWidth <= 480 ? "column" : "row",
+    textAlign: window.innerWidth <= 480 ? "center" : "left",
+    gap: window.innerWidth <= 480 ? "1rem" : "0",
   }
 
   return (
-    <div style={{ paddingTop: "85px" }}>
-      {" "}
-      {/* Reduzido */}
+    <div style={{ paddingTop: "clamp(60px, 12vw, 85px)" }}>
       {/* Header */}
       <section
         style={{
-          paddingTop: "2rem" /* Reduzido */,
-          paddingBottom: "3rem" /* Reduzido */,
+          paddingTop: "clamp(1.5rem, 4vw, 2rem)",
+          paddingBottom: "clamp(2rem, 5vw, 3rem)",
           background: "var(--secondary-black)",
           color: "var(--accent-white)",
           position: "relative",
-          minHeight: "30vh" /* Reduzido */,
+          minHeight: "clamp(25vh, 40vw, 30vh)",
           display: "flex",
           alignItems: "center",
         }}
@@ -98,8 +99,8 @@ const Financiamento = () => {
           <h1
             style={{
               color: "var(--accent-white)",
-              fontSize: "3rem" /* Reduzido */,
-              marginBottom: "1rem" /* Reduzido */,
+              fontSize: "clamp(1.75rem, 6vw, 3rem)",
+              marginBottom: "clamp(0.75rem, 2vw, 1rem)",
               fontWeight: "900",
             }}
           >
@@ -108,8 +109,8 @@ const Financiamento = () => {
           <p
             style={{
               textAlign: "center",
-              fontSize: "1.25rem" /* Reduzido */,
-              maxWidth: "650px" /* Reduzido */,
+              fontSize: "clamp(1rem, 3vw, 1.25rem)",
+              maxWidth: "min(650px, 90%)",
               margin: "1rem auto",
               color: "rgba(255, 255, 255, 0.9)",
               fontWeight: "500",
@@ -120,141 +121,148 @@ const Financiamento = () => {
           </p>
         </div>
       </section>
-      {/* Benefits - Layout Simples */}
-      <section style={{ backgroundColor: "var(--gray-50)", padding: "4rem 0" }}>
-        {" "}
-        {/* Reduzido */}
+
+      {/* Benefits - Layout Responsivo */}
+      <section style={{ backgroundColor: "var(--gray-50)", padding: "clamp(2.5rem, 6vw, 4rem) 0" }}>
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", textAlign: "center" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(200px, 100%), 1fr))",
+              gap: "clamp(1.5rem, 4vw, 2rem)",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
             <div style={{ flex: 1 }}>
               <div
                 style={{
-                  width: "70px" /* Reduzido */,
-                  height: "70px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 70px)",
+                  height: "clamp(60px, 12vw, 70px)",
                   background: "var(--primary-orange)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.25rem" /* Reduzido */,
+                  margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
                   opacity: 0.1,
                 }}
               >
-                <Shield size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <Shield size={window.innerWidth <= 480 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "800",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Segurança
               </h3>
-              <p style={{ color: "var(--gray-600)", fontSize: "1rem" }}>Dados protegidos e processo seguro</p>{" "}
-              {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>
+                Dados protegidos e processo seguro
+              </p>
             </div>
 
             <div style={{ flex: 1 }}>
               <div
                 style={{
-                  width: "70px" /* Reduzido */,
-                  height: "70px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 70px)",
+                  height: "clamp(60px, 12vw, 70px)",
                   background: "var(--primary-orange)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.25rem" /* Reduzido */,
+                  margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
                   opacity: 0.1,
                 }}
               >
-                <Zap size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <Zap size={window.innerWidth <= 480 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "800",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Aprovação Rápida
               </h3>
-              <p style={{ color: "var(--gray-600)", fontSize: "1rem" }}>Resposta em até 2 horas</p> {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>
+                Resposta em até 2 horas
+              </p>
             </div>
 
             <div style={{ flex: 1 }}>
               <div
                 style={{
-                  width: "70px" /* Reduzido */,
-                  height: "70px" /* Reduzido */,
+                  width: "clamp(60px, 12vw, 70px)",
+                  height: "clamp(60px, 12vw, 70px)",
                   background: "var(--primary-orange)",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  margin: "0 auto 1.25rem" /* Reduzido */,
+                  margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
                   opacity: 0.1,
                 }}
               >
-                <CreditCard size={36} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                <CreditCard size={window.innerWidth <= 480 ? 28 : 36} style={{ color: "var(--accent-white)" }} />
               </div>
               <h3
                 style={{
-                  fontSize: "1.25rem" /* Reduzido */,
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
                   fontWeight: "800",
-                  marginBottom: "0.75rem" /* Reduzido */,
+                  marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   color: "var(--secondary-black)",
                 }}
               >
                 Parcelas Acessíveis
               </h3>
-              <p style={{ color: "var(--gray-600)", fontSize: "1rem" }}>Até 60x para pagar</p> {/* Reduzido */}
+              <p style={{ color: "var(--gray-600)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>Até 60x para pagar</p>
             </div>
           </div>
         </div>
       </section>
+
       {/* Contact Form */}
       <section className="section">
         <div className="container">
-          <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-            {" "}
-            {/* Reduzido */}
+          <div style={{ maxWidth: "min(900px, 100%)", margin: "0 auto" }}>
             <div
               style={{
                 backgroundColor: "var(--accent-white)",
-                borderRadius: "25px" /* Reduzido */,
-                padding: "3.5rem" /* Reduzido */,
+                borderRadius: "clamp(20px, 5vw, 25px)",
+                padding: "clamp(2rem, 6vw, 3.5rem)",
                 boxShadow: "var(--shadow-xl)",
                 border: "2px solid var(--gray-200)",
               }}
             >
               <form onSubmit={handleSubmit}>
                 {/* Veículo de Interesse */}
-                <div style={{ marginBottom: "3.5rem" }}>
-                  {" "}
-                  {/* Reduzido */}
+                <div style={{ marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
                   <div style={sectionHeaderStyles}>
                     <div
                       style={{
-                        width: "60px" /* Reduzido */,
-                        height: "60px" /* Reduzido */,
+                        width: "clamp(50px, 10vw, 60px)",
+                        height: "clamp(50px, 10vw, 60px)",
                         background: "var(--primary-orange)",
-                        borderRadius: "18px" /* Reduzido */,
+                        borderRadius: "clamp(14px, 3vw, 18px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        marginRight: "1.25rem" /* Reduzido */,
+                        marginRight: window.innerWidth <= 480 ? "0" : "clamp(1rem, 2.5vw, 1.25rem)",
                         boxShadow: "var(--shadow-lg)",
                       }}
                     >
-                      <Car size={28} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                      <Car size={window.innerWidth <= 480 ? 24 : 28} style={{ color: "var(--accent-white)" }} />
                     </div>
                     <h3
                       style={{
-                        fontSize: "1.75rem" /* Reduzido */,
+                        fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
                         fontWeight: "800",
                         color: "var(--secondary-black)",
                         textTransform: "uppercase",
@@ -265,9 +273,7 @@ const Financiamento = () => {
                       Veículo de Interesse
                     </h3>
                   </div>
-                  <div style={{ marginBottom: "1.75rem" }}>
-                    {" "}
-                    {/* Reduzido */}
+                  <div style={{ marginBottom: "clamp(1.25rem, 3vw, 1.75rem)" }}>
                     <textarea
                       style={
                         focusedField === "descricaoVeiculo"
@@ -279,7 +285,7 @@ const Financiamento = () => {
                             }
                           : modernTextareaStyles
                       }
-                      rows="4" /* Reduzido */
+                      rows="4"
                       required
                       placeholder="Descreva detalhadamente o veículo desejado (marca, modelo, ano), valor estimado, condições de financiamento (entrada, número de parcelas), possibilidade de troca, etc."
                       value={formData.descricaoVeiculo}
@@ -291,28 +297,26 @@ const Financiamento = () => {
                 </div>
 
                 {/* Dados Pessoais */}
-                <div style={{ marginBottom: "3.5rem" }}>
-                  {" "}
-                  {/* Reduzido */}
+                <div style={{ marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
                   <div style={sectionHeaderStyles}>
                     <div
                       style={{
-                        width: "60px" /* Reduzido */,
-                        height: "60px" /* Reduzido */,
+                        width: "clamp(50px, 10vw, 60px)",
+                        height: "clamp(50px, 10vw, 60px)",
                         background: "var(--primary-orange)",
-                        borderRadius: "18px" /* Reduzido */,
+                        borderRadius: "clamp(14px, 3vw, 18px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        marginRight: "1.25rem" /* Reduzido */,
+                        marginRight: window.innerWidth <= 480 ? "0" : "clamp(1rem, 2.5vw, 1.25rem)",
                         boxShadow: "var(--shadow-lg)",
                       }}
                     >
-                      <User size={28} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                      <User size={window.innerWidth <= 480 ? 24 : 28} style={{ color: "var(--accent-white)" }} />
                     </div>
                     <h3
                       style={{
-                        fontSize: "1.75rem" /* Reduzido */,
+                        fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
                         fontWeight: "800",
                         color: "var(--secondary-black)",
                         textTransform: "uppercase",
@@ -323,15 +327,18 @@ const Financiamento = () => {
                       Dados Pessoais
                     </h3>
                   </div>
+
                   <div
-                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.75rem", marginBottom: "1.75rem" }}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(min(250px, 100%), 1fr))",
+                      gap: "clamp(1.25rem, 3vw, 1.75rem)",
+                      marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
+                    }}
                   >
-                    {" "}
-                    {/* Reduzido */}
                     <div>
                       <label style={modernLabelStyles}>
-                        <FileText size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <FileText size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         CPF *
                       </label>
                       <input
@@ -347,8 +354,7 @@ const Financiamento = () => {
                     </div>
                     <div>
                       <label style={modernLabelStyles}>
-                        <Calendar size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Calendar size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Data de Nascimento *
                       </label>
                       <input
@@ -362,12 +368,10 @@ const Financiamento = () => {
                       />
                     </div>
                   </div>
-                  <div style={{ marginBottom: "1.75rem" }}>
-                    {" "}
-                    {/* Reduzido */}
+
+                  <div style={{ marginBottom: "clamp(1.25rem, 3vw, 1.75rem)" }}>
                     <label style={modernLabelStyles}>
-                      <User size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                      {/* Reduzido */}
+                      <User size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                       Nome Completo *
                     </label>
                     <input
@@ -381,12 +385,10 @@ const Financiamento = () => {
                       onBlur={() => setFocusedField("")}
                     />
                   </div>
-                  <div style={{ marginBottom: "1.75rem" }}>
-                    {" "}
-                    {/* Reduzido */}
+
+                  <div style={{ marginBottom: "clamp(1.25rem, 3vw, 1.75rem)" }}>
                     <label style={modernLabelStyles}>
-                      <User size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                      {/* Reduzido */}
+                      <User size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                       Nome Completo da Mãe *
                     </label>
                     <input
@@ -400,10 +402,10 @@ const Financiamento = () => {
                       onBlur={() => setFocusedField("")}
                     />
                   </div>
+
                   <div>
                     <label style={modernLabelStyles}>
-                      <MapPin size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                      {/* Reduzido */}
+                      <MapPin size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                       Cidade *
                     </label>
                     <input
@@ -420,28 +422,26 @@ const Financiamento = () => {
                 </div>
 
                 {/* Dados para Contato */}
-                <div style={{ marginBottom: "3.5rem" }}>
-                  {" "}
-                  {/* Reduzido */}
+                <div style={{ marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
                   <div style={sectionHeaderStyles}>
                     <div
                       style={{
-                        width: "60px" /* Reduzido */,
-                        height: "60px" /* Reduzido */,
+                        width: "clamp(50px, 10vw, 60px)",
+                        height: "clamp(50px, 10vw, 60px)",
                         background: "var(--primary-orange)",
-                        borderRadius: "18px" /* Reduzido */,
+                        borderRadius: "clamp(14px, 3vw, 18px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        marginRight: "1.25rem" /* Reduzido */,
+                        marginRight: window.innerWidth <= 480 ? "0" : "clamp(1rem, 2.5vw, 1.25rem)",
                         boxShadow: "var(--shadow-lg)",
                       }}
                     >
-                      <Phone size={28} style={{ color: "var(--accent-white)" }} /> {/* Reduzido */}
+                      <Phone size={window.innerWidth <= 480 ? 24 : 28} style={{ color: "var(--accent-white)" }} />
                     </div>
                     <h3
                       style={{
-                        fontSize: "1.75rem" /* Reduzido */,
+                        fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
                         fontWeight: "800",
                         color: "var(--secondary-black)",
                         textTransform: "uppercase",
@@ -452,13 +452,17 @@ const Financiamento = () => {
                       Dados para Contato
                     </h3>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.75rem" }}>
-                    {" "}
-                    {/* Reduzido */}
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(min(250px, 100%), 1fr))",
+                      gap: "clamp(1.25rem, 3vw, 1.75rem)",
+                    }}
+                  >
                     <div>
                       <label style={modernLabelStyles}>
-                        <Mail size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Mail size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         E-mail *
                       </label>
                       <input
@@ -474,8 +478,7 @@ const Financiamento = () => {
                     </div>
                     <div>
                       <label style={modernLabelStyles}>
-                        <Phone size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />{" "}
-                        {/* Reduzido */}
+                        <Phone size={16} style={{ marginRight: "0.6rem", color: "var(--primary-orange)" }} />
                         Telefone (WhatsApp) *
                       </label>
                       <input
@@ -497,15 +500,15 @@ const Financiamento = () => {
                   className="btn btn-primary"
                   style={{
                     width: "100%",
-                    padding: "1.25rem 1.75rem" /* Reduzido */,
-                    fontSize: "1rem" /* Reduzido */,
+                    padding: "clamp(1rem, 2.5vw, 1.25rem) clamp(1.5rem, 3vw, 1.75rem)",
+                    fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "0.6rem" /* Reduzido */,
+                    gap: "clamp(0.5rem, 1.5vw, 0.6rem)",
                   }}
                 >
-                  <Send size={20} /> {/* Reduzido */}
+                  <Send size={window.innerWidth <= 480 ? 18 : 20} />
                   Enviar Dados
                 </button>
               </form>
