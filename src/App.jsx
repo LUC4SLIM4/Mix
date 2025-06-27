@@ -3,6 +3,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Home from "./pages/Home"
 import Estoque from "./pages/Estoque"
+import VeiculoDetalhes from "./pages/VeiculoDetalhes"
 import VendaSeuVeiculo from "./pages/VendaSeuVeiculo"
 import Financiamento from "./pages/Financiamento"
 import Contato from "./pages/Contato"
@@ -15,10 +16,11 @@ function App() {
     <div className="App">
       <Header />
       <ScrollToTop />
-      <main style={{ minHeight: "100vh" }}>
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/estoque" element={<Estoque />} />
+          <Route path="/veiculo/:id" element={<VeiculoDetalhes />} />
           <Route path="/venda" element={<VendaSeuVeiculo />} />
           <Route path="/simulacao" element={<Financiamento />} />
           <Route path="/contato" element={<Contato />} />

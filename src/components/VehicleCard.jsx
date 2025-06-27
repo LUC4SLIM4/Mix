@@ -1,6 +1,7 @@
 "use client"
 
-import { Eye, MessageCircle, Gauge, Fuel, Calendar, Heart, CheckCircle, Clock } from "lucide-react"
+import { Eye, MessageCircle, Gauge, Fuel, Calendar, Star, Heart, CheckCircle, Clock } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const VehicleCard = ({ vehicle }) => {
   const isVendido = vehicle.status === "vendido"
@@ -16,9 +17,6 @@ const VehicleCard = ({ vehicle }) => {
         opacity: isVendido ? 0.6 : 1,
         filter: isVendido ? "grayscale(0.3)" : "none",
         transition: "all 0.3s ease",
-        width: "100%",
-        maxWidth: "400px",
-        margin: "0 auto",
       }}
     >
       <div style={{ position: "relative", overflow: "hidden" }}>
@@ -27,7 +25,7 @@ const VehicleCard = ({ vehicle }) => {
           alt={vehicle.name}
           style={{
             width: "100%",
-            height: "clamp(180px, 25vw, 220px)",
+            height: "220px",
             objectFit: "cover",
             transition: "transform 0.3s ease",
           }}
@@ -50,8 +48,8 @@ const VehicleCard = ({ vehicle }) => {
         <div
           style={{
             position: "absolute",
-            top: "clamp(0.5rem, 2vw, 0.75rem)",
-            left: "clamp(0.5rem, 2vw, 0.75rem)",
+            top: "0.75rem",
+            left: "0.75rem",
             display: "flex",
             flexDirection: "column",
             gap: "0.5rem",
@@ -64,10 +62,13 @@ const VehicleCard = ({ vehicle }) => {
                 display: "flex",
                 alignItems: "center",
                 gap: "0.25rem",
-                fontSize: "clamp(0.6rem, 1.5vw, 0.7rem)",
-                padding: "clamp(0.25rem, 1vw, 0.375rem) clamp(0.5rem, 1.5vw, 0.75rem)",
+                fontSize: "0.7rem",
+                padding: "0.375rem 0.75rem",
               }}
-            ></div>
+            >
+              <Star size={12} fill="currentColor" />
+              Premium
+            </div>
           )}
 
           {isVendido && (
@@ -75,9 +76,9 @@ const VehicleCard = ({ vehicle }) => {
               style={{
                 background: "var(--error)",
                 color: "var(--accent-white)",
-                padding: "clamp(0.375rem, 1.5vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)",
+                padding: "0.5rem 1rem",
                 borderRadius: "20px",
-                fontSize: "clamp(0.65rem, 1.5vw, 0.75rem)",
+                fontSize: "0.75rem",
                 fontWeight: "700",
                 textTransform: "uppercase",
                 letterSpacing: "0.5px",
@@ -97,9 +98,9 @@ const VehicleCard = ({ vehicle }) => {
               style={{
                 background: "var(--warning)",
                 color: "var(--accent-white)",
-                padding: "clamp(0.375rem, 1.5vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)",
+                padding: "0.5rem 1rem",
                 borderRadius: "20px",
-                fontSize: "clamp(0.65rem, 1.5vw, 0.75rem)",
+                fontSize: "0.75rem",
                 fontWeight: "700",
                 textTransform: "uppercase",
                 letterSpacing: "0.5px",
@@ -120,10 +121,10 @@ const VehicleCard = ({ vehicle }) => {
           <button
             style={{
               position: "absolute",
-              top: "clamp(0.5rem, 2vw, 0.75rem)",
-              right: "clamp(0.5rem, 2vw, 0.75rem)",
-              width: "clamp(32px, 6vw, 36px)",
-              height: "clamp(32px, 6vw, 36px)",
+              top: "0.75rem",
+              right: "0.75rem",
+              width: "36px",
+              height: "36px",
               background: "rgba(255, 255, 255, 0.9)",
               border: "none",
               borderRadius: "50%",
@@ -143,7 +144,7 @@ const VehicleCard = ({ vehicle }) => {
               e.target.style.transform = "scale(1)"
             }}
           >
-            <Heart size={window.innerWidth <= 480 ? 14 : 16} style={{ color: "var(--gray-600)" }} />
+            <Heart size={16} style={{ color: "var(--gray-600)" }} />
           </button>
         )}
 
@@ -151,18 +152,18 @@ const VehicleCard = ({ vehicle }) => {
         <div
           style={{
             position: "absolute",
-            bottom: "clamp(0.5rem, 2vw, 0.75rem)",
-            left: "clamp(0.5rem, 2vw, 0.75rem)",
+            bottom: "0.75rem",
+            left: "0.75rem",
             background: isVendido ? "var(--gray-500)" : "var(--primary-orange)",
             color: "var(--accent-white)",
-            padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.75rem, 2vw, 1rem)",
-            borderRadius: "clamp(15px, 3vw, 20px)",
+            padding: "0.6rem 1rem",
+            borderRadius: "20px",
             boxShadow: isVendido ? "var(--shadow)" : "var(--shadow-orange)",
           }}
         >
           <div
             style={{
-              fontSize: "clamp(1rem, 3vw, 1.25rem)",
+              fontSize: "1.25rem",
               fontWeight: "800",
               lineHeight: "1",
             }}
@@ -191,9 +192,9 @@ const VehicleCard = ({ vehicle }) => {
               style={{
                 background: "var(--accent-white)",
                 color: "var(--error)",
-                padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem)",
+                padding: "1rem 2rem",
                 borderRadius: "25px",
-                fontSize: "clamp(0.875rem, 2.5vw, 1.125rem)",
+                fontSize: "1.125rem",
                 fontWeight: "800",
                 textTransform: "uppercase",
                 letterSpacing: "1px",
@@ -207,15 +208,15 @@ const VehicleCard = ({ vehicle }) => {
         )}
       </div>
 
-      <div style={{ padding: "clamp(1.25rem, 3vw, 1.75rem)" }}>
+      <div style={{ padding: "1.75rem" }}>
         <h3
           style={{
-            fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
+            fontSize: "1rem",
             fontWeight: "700",
-            marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
+            marginBottom: "1.25rem",
             color: isVendido ? "var(--gray-500)" : "var(--secondary-black)",
             lineHeight: "1.3",
-            minHeight: "clamp(2rem, 5vw, 2.4rem)",
+            minHeight: "2.4rem",
             display: "-webkit-box",
             WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
@@ -230,8 +231,8 @@ const VehicleCard = ({ vehicle }) => {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
-            marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
+            gap: "0.75rem",
+            marginBottom: "1.75rem",
           }}
         >
           <div
@@ -240,9 +241,9 @@ const VehicleCard = ({ vehicle }) => {
               flexDirection: "column",
               alignItems: "center",
               gap: "0.5rem",
-              padding: "clamp(0.625rem, 2vw, 0.875rem)",
+              padding: "0.875rem",
               backgroundColor: isVendido ? "var(--gray-100)" : "var(--gray-50)",
-              borderRadius: "clamp(8px, 2vw, 10px)",
+              borderRadius: "10px",
               border: "2px solid transparent",
               transition: "all 0.2s ease",
             }}
@@ -257,21 +258,18 @@ const VehicleCard = ({ vehicle }) => {
               e.currentTarget.style.backgroundColor = isVendido ? "var(--gray-100)" : "var(--gray-50)"
             }}
           >
-            <Gauge
-              size={window.innerWidth <= 480 ? 16 : 18}
-              style={{ color: isVendido ? "var(--gray-400)" : "var(--primary-orange)" }}
-            />
+            <Gauge size={18} style={{ color: isVendido ? "var(--gray-400)" : "var(--primary-orange)" }} />
             <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  fontSize: "clamp(0.7rem, 2vw, 0.8rem)",
+                  fontSize: "0.8rem",
                   fontWeight: "700",
                   color: isVendido ? "var(--gray-400)" : "var(--secondary-black)",
                 }}
               >
                 {vehicle.km}
               </div>
-              <div style={{ fontSize: "clamp(0.6rem, 1.5vw, 0.7rem)", color: "var(--gray-600)" }}>KM</div>
+              <div style={{ fontSize: "0.7rem", color: "var(--gray-600)" }}>KM</div>
             </div>
           </div>
 
@@ -281,9 +279,9 @@ const VehicleCard = ({ vehicle }) => {
               flexDirection: "column",
               alignItems: "center",
               gap: "0.5rem",
-              padding: "clamp(0.625rem, 2vw, 0.875rem)",
+              padding: "0.875rem",
               backgroundColor: isVendido ? "var(--gray-100)" : "var(--gray-50)",
-              borderRadius: "clamp(8px, 2vw, 10px)",
+              borderRadius: "10px",
               border: "2px solid transparent",
               transition: "all 0.2s ease",
             }}
@@ -298,21 +296,18 @@ const VehicleCard = ({ vehicle }) => {
               e.currentTarget.style.backgroundColor = isVendido ? "var(--gray-100)" : "var(--gray-50)"
             }}
           >
-            <Fuel
-              size={window.innerWidth <= 480 ? 16 : 18}
-              style={{ color: isVendido ? "var(--gray-400)" : "var(--primary-orange)" }}
-            />
+            <Fuel size={18} style={{ color: isVendido ? "var(--gray-400)" : "var(--primary-orange)" }} />
             <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  fontSize: "clamp(0.7rem, 2vw, 0.8rem)",
+                  fontSize: "0.8rem",
                   fontWeight: "700",
                   color: isVendido ? "var(--gray-400)" : "var(--secondary-black)",
                 }}
               >
                 {vehicle.fuel}
               </div>
-              <div style={{ fontSize: "clamp(0.6rem, 1.5vw, 0.7rem)", color: "var(--gray-600)" }}>COMBUSTÍVEL</div>
+              <div style={{ fontSize: "0.7rem", color: "var(--gray-600)" }}>COMBUSTÍVEL</div>
             </div>
           </div>
 
@@ -322,9 +317,9 @@ const VehicleCard = ({ vehicle }) => {
               flexDirection: "column",
               alignItems: "center",
               gap: "0.5rem",
-              padding: "clamp(0.625rem, 2vw, 0.875rem)",
+              padding: "0.875rem",
               backgroundColor: isVendido ? "var(--gray-100)" : "var(--gray-50)",
-              borderRadius: "clamp(8px, 2vw, 10px)",
+              borderRadius: "10px",
               border: "2px solid transparent",
               transition: "all 0.2s ease",
             }}
@@ -339,58 +334,52 @@ const VehicleCard = ({ vehicle }) => {
               e.currentTarget.style.backgroundColor = isVendido ? "var(--gray-100)" : "var(--gray-50)"
             }}
           >
-            <Calendar
-              size={window.innerWidth <= 480 ? 16 : 18}
-              style={{ color: isVendido ? "var(--gray-400)" : "var(--primary-orange)" }}
-            />
+            <Calendar size={18} style={{ color: isVendido ? "var(--gray-400)" : "var(--primary-orange)" }} />
             <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  fontSize: "clamp(0.7rem, 2vw, 0.8rem)",
+                  fontSize: "0.8rem",
                   fontWeight: "700",
                   color: isVendido ? "var(--gray-400)" : "var(--secondary-black)",
                 }}
               >
                 {vehicle.year}
               </div>
-              <div style={{ fontSize: "clamp(0.6rem, 1.5vw, 0.7rem)", color: "var(--gray-600)" }}>ANO</div>
+              <div style={{ fontSize: "0.7rem", color: "var(--gray-600)" }}>ANO</div>
             </div>
           </div>
         </div>
 
         {/* Botões de Ação */}
-        <div
-          style={{
-            display: "flex",
-            gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
-            flexDirection: window.innerWidth <= 480 ? "column" : "row",
-          }}
-        >
+        <div style={{ display: "flex", gap: "0.75rem" }}>
           {isDisponivel ? (
             <>
-              <button
+              <Link
+                to={`/veiculo/${vehicle.id}`}
                 className="btn btn-primary"
                 style={{
                   flex: 1,
-                  padding: "clamp(0.75rem, 2vw, 0.875rem)",
-                  fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                  minHeight: "44px",
+                  padding: "0.875rem",
+                  fontSize: "0.8rem",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem",
                 }}
               >
-                <Eye size={window.innerWidth <= 480 ? 14 : 16} />
+                <Eye size={16} />
                 Ver Detalhes
-              </button>
+              </Link>
               <button
                 className="btn btn-outline"
                 style={{
-                  padding: "clamp(0.75rem, 2vw, 0.875rem)",
-                  minWidth: window.innerWidth <= 480 ? "100%" : "50px",
-                  borderRadius: "clamp(8px, 2vw, 10px)",
-                  minHeight: "44px",
+                  padding: "0.875rem",
+                  minWidth: "50px",
+                  borderRadius: "10px",
                 }}
               >
-                <MessageCircle size={window.innerWidth <= 480 ? 14 : 16} />
-                {window.innerWidth <= 480 && <span style={{ marginLeft: "0.5rem" }}>WhatsApp</span>}
+                <MessageCircle size={16} />
               </button>
             </>
           ) : (
@@ -399,13 +388,12 @@ const VehicleCard = ({ vehicle }) => {
               disabled
               style={{
                 flex: 1,
-                padding: "clamp(0.75rem, 2vw, 0.875rem)",
-                fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
+                padding: "0.875rem",
+                fontSize: "0.8rem",
                 background: "var(--gray-300)",
                 color: "var(--gray-600)",
                 cursor: "not-allowed",
                 opacity: 0.7,
-                minHeight: "44px",
               }}
             >
               {isVendido ? "Indisponível" : "Reservado"}

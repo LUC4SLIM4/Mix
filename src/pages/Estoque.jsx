@@ -1,23 +1,26 @@
 "use client"
 
 import { useState } from "react"
-import { Search, List, ArrowUpDown, Filter, Car, X } from "lucide-react"
+import { Search, SlidersHorizontal, ChevronDown, ArrowUp, Car, FileText, Fuel } from "lucide-react"
 import VehicleCard from "../components/VehicleCard"
 
 const Estoque = () => {
   const [filters, setFilters] = useState({
     marca: "",
     modelo: "",
+    tipo: "",
     precoMin: "",
     precoMax: "",
+    kmMax: "",
     combustivel: "",
+    cor: "",
+    portas: "",
   })
 
-  const [viewMode, setViewMode] = useState("grid")
-  const [sortBy, setSortBy] = useState("relevancia")
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [showMobileFilters, setShowMobileFilters] = useState(false)
-  const itemsPerPage = 12
+  const [sortBy, setSortBy] = useState("relevancia")
+  const itemsPerPage = 9
 
   const vehicles = [
     {
@@ -92,76 +95,121 @@ const Estoque = () => {
       featured: true,
       status: "disponivel",
     },
-        {
+    {
       id: 7,
-      name: "TOYOTA HILUX CD GR-S 4X4 2.8 TDI DIES. AUT.",
-      price: 295900,
-      km: "23.000",
-      fuel: "Diesel",
-      year: "2023",
+      name: "Honda Civic 2020",
+      price: 85000,
+      km: "45.000",
+      fuel: "Flex",
+      year: "2020",
+      color: "Prata",
+      doors: "4",
       image:
-        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      featured: true,
+        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       status: "disponivel",
     },
     {
       id: 8,
-      name: "BMW 320IA 2.0 TB M SPORT A.FLEX/M.SPORT 4P",
-      price: 320900,
-      km: "17.200",
+      name: "Toyota Corolla 2021",
+      price: 95000,
+      km: "32.000",
       fuel: "Flex",
-      year: "2024",
+      year: "2021",
+      color: "Branco",
+      doors: "4",
       image:
-        "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      featured: true,
-      status: "reservado",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      status: "disponivel",
     },
     {
       id: 9,
-      name: "HONDA ZR-V TOURING 2.0 16V 5P AUT.",
-      price: 169900,
-      km: "4.700",
-      fuel: "Gasolina",
-      year: "2023",
+      name: "Volkswagen Jetta 2019",
+      price: 78000,
+      km: "58.000",
+      fuel: "Flex",
+      year: "2019",
+      color: "Preto",
+      doors: "4",
       image:
-        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      featured: true,
-      status: "vendido",
+        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      status: "disponivel",
     },
     {
       id: 10,
-      name: "FORD BRONCO SPORT WILDTRAK 2.0 TB 16V AWD AUT",
-      price: 168000,
-      km: "24.000",
-      fuel: "Gasolina",
-      year: "2021",
+      name: "Ford Ka 2020",
+      price: 45000,
+      km: "35.000",
+      fuel: "Flex",
+      year: "2020",
+      color: "Vermelho",
+      doors: "4",
       image:
-        "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      featured: true,
+        "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       status: "disponivel",
     },
     {
       id: 11,
-      name: "MERCEDES C180 KOMPRESSOR 1.8 16V AUT.",
-      price: 165000,
-      km: "41.000",
-      fuel: "Gasolina",
-      year: "2020",
+      name: "Chevrolet Onix 2021",
+      price: 55000,
+      km: "28.000",
+      fuel: "Flex",
+      year: "2021",
+      color: "Azul",
+      doors: "4",
       image:
-        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      featured: true,
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       status: "disponivel",
     },
     {
       id: 12,
-      name: "AUDI A4 ATTRACTION 2.0 TFSI 16V AUT.",
+      name: "Hyundai HB20 2020",
+      price: 48000,
+      km: "42.000",
+      fuel: "Flex",
+      year: "2020",
+      color: "Branco",
+      doors: "4",
+      image:
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      status: "disponivel",
+    },
+    {
+      id: 13,
+      name: "BMW X3 2022",
+      price: 180000,
+      km: "25.000",
+      fuel: "Flex",
+      year: "2022",
+      color: "Preto",
+      doors: "4",
+      image:
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      status: "disponivel",
+    },
+    {
+      id: 14,
+      name: "Audi A4 2021",
       price: 150000,
       km: "38.000",
-      fuel: "Gasolina",
+      fuel: "Flex",
       year: "2021",
+      color: "Prata",
+      doors: "4",
       image:
-        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      featured: true,
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      status: "disponivel",
+    },
+    {
+      id: 15,
+      name: "Mercedes C180 2020",
+      price: 165000,
+      km: "41.000",
+      fuel: "Flex",
+      year: "2020",
+      color: "Branco",
+      doors: "4",
+      image:
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       status: "disponivel",
     },
   ]
@@ -170,9 +218,40 @@ const Estoque = () => {
   const startIndex = (currentPage - 1) * itemsPerPage
   const currentVehicles = vehicles.slice(startIndex, startIndex + itemsPerPage)
 
+  const handleFilterChange = (field, value) => {
+    setFilters({ ...filters, [field]: value })
+    setCurrentPage(1)
+  }
+
+  const clearFilters = () => {
+    setFilters({
+      marca: "",
+      modelo: "",
+      tipo: "",
+      precoMin: "",
+      precoMax: "",
+      kmMax: "",
+      combustivel: "",
+      cor: "",
+      portas: "",
+    })
+    setCurrentPage(1)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+    scrollToTop()
+  }
+
+  const activeFiltersCount = Object.values(filters).filter((value) => value !== "").length
+
   return (
-    <div style={{ paddingTop: "clamp(60px, 12vw, 83px)" }}>
-      {/* Hero Banner */}
+    <div style={{ paddingTop: "90px" }}>
+      {/* Header */}
       <section
         style={{
           background: "var(--secondary-black)",
@@ -225,497 +304,766 @@ const Estoque = () => {
         </div>
       </section>
 
-      {/* Filtros + Conteúdo */}
+      {/* Enhanced Filters - Redesigned */}
+      <section style={{ backgroundColor: "#f8fafc", padding: "2rem 0", borderBottom: "1px solid #e2e8f0" }}>
+        <div className="container">
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "12px",
+              padding: "2rem",
+              boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+              border: "1px solid #e2e8f0",
+            }}
+          >
+            {/* Filter Header */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "2rem",
+                flexWrap: "wrap",
+                gap: "1rem",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "1.25rem",
+                  fontWeight: "600",
+                  color: "#1e293b",
+                  margin: 0,
+                }}
+              >
+                Encontre seu veículo ideal
+              </h3>
+            </div>
+
+            {/* Quick Search - Centralized */}
+            <div style={{ marginBottom: "1.5rem" }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                  gap: "1rem",
+                  maxWidth: "1000px",
+                  margin: "0 auto",
+                }}
+              >
+                <div style={{ position: "relative" }}>
+                  <Car
+                    size={16}
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#64748b",
+                      zIndex: 1,
+                    }}
+                  />
+                  <select
+                    style={{
+                      padding: "0.75rem 1rem 0.75rem 2.5rem",
+                      border: "2px solid #e2e8f0",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      backgroundColor: "white",
+                      color: "#374151",
+                      outline: "none",
+                      transition: "all 0.2s ease",
+                      cursor: "pointer",
+                      width: "100%",
+                    }}
+                    value={filters.marca}
+                    onChange={(e) => handleFilterChange("marca", e.target.value)}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                    onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                  >
+                    <option value="">Todas as Marcas</option>
+                    <option value="honda">Honda</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="volkswagen">Volkswagen</option>
+                    <option value="ford">Ford</option>
+                    <option value="chevrolet">Chevrolet</option>
+                    <option value="bmw">BMW</option>
+                    <option value="audi">Audi</option>
+                    <option value="mercedes">Mercedes-Benz</option>
+                  </select>
+                </div>
+
+                <div style={{ position: "relative" }}>
+                  <FileText
+                    size={16}
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#64748b",
+                      zIndex: 1,
+                    }}
+                  />
+                  <select
+                    style={{
+                      padding: "0.75rem 1rem 0.75rem 2.5rem",
+                      border: "2px solid #e2e8f0",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      backgroundColor: "white",
+                      color: "#374151",
+                      outline: "none",
+                      transition: "all 0.2s ease",
+                      cursor: "pointer",
+                      width: "100%",
+                    }}
+                    value={filters.modelo}
+                    onChange={(e) => handleFilterChange("modelo", e.target.value)}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                    onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                  >
+                    <option value="">Todos os Modelos</option>
+                    <option value="civic">Civic</option>
+                    <option value="corolla">Corolla</option>
+                    <option value="jetta">Jetta</option>
+                    <option value="ka">Ka</option>
+                    <option value="onix">Onix</option>
+                  </select>
+                </div>
+
+                <div style={{ position: "relative" }}>
+                  <Fuel
+                    size={16}
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#64748b",
+                      zIndex: 1,
+                    }}
+                  />
+                  <select
+                    style={{
+                      padding: "0.75rem 1rem 0.75rem 2.5rem",
+                      border: "2px solid #e2e8f0",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      backgroundColor: "white",
+                      color: "#374151",
+                      outline: "none",
+                      transition: "all 0.2s ease",
+                      cursor: "pointer",
+                      width: "100%",
+                    }}
+                    value={filters.combustivel}
+                    onChange={(e) => handleFilterChange("combustivel", e.target.value)}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                    onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                  >
+                    <option value="">Combustível</option>
+                    <option value="flex">Flex</option>
+                    <option value="gasolina">Gasolina</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="eletrico">Elétrico</option>
+                    <option value="hibrido">Híbrido</option>
+                  </select>
+                </div>
+
+                <button
+                  style={{
+                    padding: "0.75rem 1.5rem",
+                    backgroundColor: "var(--primary-orange)",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    fontSize: "0.875rem",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    transition: "all 0.2s ease",
+                    outline: "none",
+                  }}
+                  onMouseEnter={(e) => (e.target.style.backgroundColor = "var(--primary-orange-dark)")}
+                  onMouseLeave={(e) => (e.target.style.backgroundColor = "var(--primary-orange)")}
+                >
+                  <Search size={16} />
+                  Buscar
+                </button>
+              </div>
+            </div>
+
+            {/* Filter Controls - Centralized */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "1rem",
+                flexWrap: "wrap",
+              }}
+            >
+              <button
+                style={{
+                  padding: "0.5rem 1rem",
+                  backgroundColor: showAdvancedFilters ? "var(--primary-orange)" : "#f1f5f9",
+                  color: showAdvancedFilters ? "white" : "#64748b",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "6px",
+                  fontSize: "0.875rem",
+                  fontWeight: "500",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  transition: "all 0.2s ease",
+                  outline: "none",
+                }}
+                onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+                onMouseEnter={(e) => {
+                  if (!showAdvancedFilters) {
+                    e.target.style.backgroundColor = "#e2e8f0"
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!showAdvancedFilters) {
+                    e.target.style.backgroundColor = "#f1f5f9"
+                  }
+                }}
+              >
+                <SlidersHorizontal size={16} />
+                Filtros Avançados
+                <ChevronDown
+                  size={16}
+                  style={{
+                    transform: showAdvancedFilters ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 0.2s ease",
+                  }}
+                />
+              </button>
+
+              {activeFiltersCount > 0 && (
+                <button
+                  style={{
+                    padding: "0.5rem 1rem",
+                    backgroundColor: "#fef2f2",
+                    color: "#dc2626",
+                    border: "1px solid #fecaca",
+                    borderRadius: "6px",
+                    fontSize: "0.875rem",
+                    fontWeight: "500",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                    outline: "none",
+                  }}
+                  onClick={clearFilters}
+                  onMouseEnter={(e) => (e.target.style.backgroundColor = "#fee2e2")}
+                  onMouseLeave={(e) => (e.target.style.backgroundColor = "#fef2f2")}
+                >
+                  Limpar Filtros ({activeFiltersCount})
+                </button>
+              )}
+            </div>
+
+            {/* Advanced Filters */}
+            {showAdvancedFilters && (
+              <div
+                style={{
+                  marginTop: "2rem",
+                  paddingTop: "2rem",
+                  borderTop: "1px solid #e2e8f0",
+                  animation: "slideDown 0.3s ease",
+                }}
+              >
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                    gap: "1rem",
+                    maxWidth: "1000px",
+                    margin: "0 auto 1.5rem",
+                  }}
+                >
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        color: "#374151",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      Tipo de Veículo
+                    </label>
+                    <select
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "2px solid #e2e8f0",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        backgroundColor: "white",
+                        color: "#374151",
+                        outline: "none",
+                        transition: "all 0.2s ease",
+                        cursor: "pointer",
+                      }}
+                      value={filters.tipo}
+                      onChange={(e) => handleFilterChange("tipo", e.target.value)}
+                      onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                      onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                    >
+                      <option value="">Todos os Tipos</option>
+                      <option value="sedan">Sedan</option>
+                      <option value="hatch">Hatchback</option>
+                      <option value="suv">SUV</option>
+                      <option value="pickup">Pickup</option>
+                      <option value="coupe">Coupé</option>
+                      <option value="conversivel">Conversível</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        color: "#374151",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      Cor
+                    </label>
+                    <select
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "2px solid #e2e8f0",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        backgroundColor: "white",
+                        color: "#374151",
+                        outline: "none",
+                        transition: "all 0.2s ease",
+                        cursor: "pointer",
+                      }}
+                      value={filters.cor}
+                      onChange={(e) => handleFilterChange("cor", e.target.value)}
+                      onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                      onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                    >
+                      <option value="">Todas as Cores</option>
+                      <option value="branco">Branco</option>
+                      <option value="preto">Preto</option>
+                      <option value="prata">Prata</option>
+                      <option value="vermelho">Vermelho</option>
+                      <option value="azul">Azul</option>
+                      <option value="cinza">Cinza</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        color: "#374151",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      Número de Portas
+                    </label>
+                    <select
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "2px solid #e2e8f0",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        backgroundColor: "white",
+                        color: "#374151",
+                        outline: "none",
+                        transition: "all 0.2s ease",
+                        cursor: "pointer",
+                      }}
+                      value={filters.portas}
+                      onChange={(e) => handleFilterChange("portas", e.target.value)}
+                      onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                      onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                    >
+                      <option value="">Qualquer</option>
+                      <option value="2">2 Portas</option>
+                      <option value="4">4 Portas</option>
+                      <option value="5">5 Portas</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        color: "#374151",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      KM Máxima
+                    </label>
+                    <select
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "2px solid #e2e8f0",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        backgroundColor: "white",
+                        color: "#374151",
+                        outline: "none",
+                        transition: "all 0.2s ease",
+                        cursor: "pointer",
+                      }}
+                      value={filters.kmMax}
+                      onChange={(e) => handleFilterChange("kmMax", e.target.value)}
+                      onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                      onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                    >
+                      <option value="">Qualquer KM</option>
+                      <option value="20000">Até 20.000 km</option>
+                      <option value="50000">Até 50.000 km</option>
+                      <option value="100000">Até 100.000 km</option>
+                      <option value="150000">Até 150.000 km</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "1rem",
+                    maxWidth: "500px",
+                    margin: "0 auto",
+                  }}
+                >
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        color: "#374151",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      Preço Mínimo
+                    </label>
+                    <input
+                      type="number"
+                      placeholder="R$ 0"
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "2px solid #e2e8f0",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        backgroundColor: "white",
+                        color: "#374151",
+                        outline: "none",
+                        transition: "all 0.2s ease",
+                      }}
+                      value={filters.precoMin}
+                      onChange={(e) => handleFilterChange("precoMin", e.target.value)}
+                      onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                      onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        color: "#374151",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      Preço Máximo
+                    </label>
+                    <input
+                      type="number"
+                      placeholder="R$ 500.000"
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "2px solid #e2e8f0",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        backgroundColor: "white",
+                        color: "#374151",
+                        outline: "none",
+                        transition: "all 0.2s ease",
+                      }}
+                      value={filters.precoMax}
+                      onChange={(e) => handleFilterChange("precoMax", e.target.value)}
+                      onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                      onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Vehicle Grid */}
       <section className="section">
         <div className="container">
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: window.innerWidth > 1024 ? "280px 1fr" : "1fr",
-              gap: "clamp(1.5rem, 4vw, 2.5rem)",
-              alignItems: "start",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "2rem",
+              flexWrap: "wrap",
+              gap: "1rem",
             }}
           >
-            {/* Sidebar de Filtros - Desktop */}
-            {window.innerWidth > 1024 && (
-              <div
-                style={{
-                  position: "sticky",
-                  top: "clamp(100px, 15vw, 120px)",
-                }}
-              >
-                <div
-                  className="card"
-                  style={{
-                    padding: "clamp(1.5rem, 3vw, 1.75rem)",
-                    background: "var(--accent-white)",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.75rem",
-                      marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "clamp(32px, 6vw, 36px)",
-                        height: "clamp(32px, 6vw, 36px)",
-                        background: "var(--primary-orange)",
-                        borderRadius: "clamp(8px, 2vw, 10px)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Filter size={18} style={{ color: "var(--accent-white)" }} />
-                    </div>
-                    <h3
-                      style={{
-                        fontSize: "clamp(1rem, 2.5vw, 1.125rem)",
-                        fontWeight: "700",
-                        color: "var(--secondary-black)",
-                        margin: 0,
-                      }}
-                    >
-                      Filtrar Veículos
-                    </h3>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Marca</label>
-                    <select
-                      className="form-input"
-                      value={filters.marca}
-                      onChange={(e) => setFilters({ ...filters, marca: e.target.value })}
-                    >
-                      <option value="">Todas as marcas</option>
-                      <option value="honda">Honda</option>
-                      <option value="toyota">Toyota</option>
-                      <option value="bmw">BMW</option>
-                      <option value="audi">Audi</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Modelo</label>
-                    <select
-                      className="form-input"
-                      value={filters.modelo}
-                      onChange={(e) => setFilters({ ...filters, modelo: e.target.value })}
-                    >
-                      <option value="">Todos os modelos</option>
-                      <option value="civic">Civic</option>
-                      <option value="corolla">Corolla</option>
-                      <option value="hilux">Hilux</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Preço Mínimo</label>
-                    <input
-                      type="number"
-                      className="form-input"
-                      placeholder="R$ 0"
-                      value={filters.precoMin}
-                      onChange={(e) => setFilters({ ...filters, precoMin: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Preço Máximo</label>
-                    <input
-                      type="number"
-                      className="form-input"
-                      placeholder="R$ 500.000"
-                      value={filters.precoMax}
-                      onChange={(e) => setFilters({ ...filters, precoMax: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Combustível</label>
-                    <select
-                      className="form-input"
-                      value={filters.combustivel}
-                      onChange={(e) => setFilters({ ...filters, combustivel: e.target.value })}
-                    >
-                      <option value="">Todos</option>
-                      <option value="flex">Flex</option>
-                      <option value="gasolina">Gasolina</option>
-                      <option value="diesel">Diesel</option>
-                    </select>
-                  </div>
-
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "100%", marginTop: "clamp(0.5rem, 1.5vw, 0.75rem)" }}
-                  >
-                    <Search size={16} />
-                    Aplicar Filtros
-                  </button>
-
-                  <button
-                    className="btn btn-outline"
-                    style={{ width: "100%", marginTop: "clamp(0.5rem, 1.5vw, 0.6rem)" }}
-                    onClick={() => setFilters({ marca: "", modelo: "", precoMin: "", precoMax: "", combustivel: "" })}
-                  >
-                    Limpar Filtros
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Área Principal */}
             <div>
-              {/* Barra de Controles */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "clamp(1.25rem, 3vw, 1.75rem)",
-                  padding: "clamp(1rem, 2.5vw, 1.25rem)",
-                  background: "var(--accent-white)",
-                  borderRadius: "clamp(12px, 3vw, 14px)",
-                  boxShadow: "var(--shadow)",
-                  border: "1px solid var(--gray-200)",
-                  flexWrap: "wrap",
-                  gap: "1rem",
-                }}
-              >
-                <div style={{ flex: "1", minWidth: "200px" }}>
-                  <p
-                    style={{
-                      fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
-                      fontWeight: "600",
-                      color: "var(--secondary-black)",
-                      margin: 0,
-                    }}
-                  >
-                    {vehicles.length} veículos encontrados
-                  </p>
-                  <p style={{ fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)", color: "var(--gray-600)", margin: 0 }}>
-                    Página {currentPage} de {totalPages}
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {/* Botão Filtros Mobile */}
-                  {window.innerWidth <= 1024 && (
-                    <button
-                      className="btn btn-outline"
-                      onClick={() => setShowMobileFilters(!showMobileFilters)}
-                      style={{
-                        padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.75rem, 2vw, 1rem)",
-                        fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                      }}
-                    >
-                      <Filter size={16} />
-                      Filtros
-                    </button>
-                  )}
-
-                  {/* View Mode Toggle */}
-                  <div
-                    style={{
-                      display: "flex",
-                      background: "var(--gray-100)",
-                      borderRadius: "clamp(8px, 2vw, 10px)",
-                      padding: "clamp(0.15rem, 0.5vw, 0.2rem)",
-                    }}
-                  >
-                    <button
-                      style={{
-                        padding: "clamp(0.3rem, 1vw, 0.4rem)",
-                        background: viewMode === "grid" ? "var(--accent-white)" : "transparent",
-                        border: "none",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        transition: "all 0.2s ease",
-                        boxShadow: viewMode === "grid" ? "var(--shadow-sm)" : "none",
-                      }}
-                      onClick={() => setViewMode("grid")}
-                    >
-                      <div
-                        style={{
-                          width: "16px",
-                          height: "16px",
-                          display: "grid",
-                          gridTemplateColumns: "1fr 1fr",
-                          gap: "2px",
-                        }}
-                      >
-                        {[...Array(4)].map((_, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              width: "6px",
-                              height: "6px",
-                              background: viewMode === "grid" ? "var(--primary-orange)" : "var(--gray-600)",
-                              borderRadius: "1px",
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </button>
-                    <button
-                      style={{
-                        padding: "clamp(0.3rem, 1vw, 0.4rem)",
-                        background: viewMode === "list" ? "var(--accent-white)" : "transparent",
-                        border: "none",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        transition: "all 0.2s ease",
-                        boxShadow: viewMode === "list" ? "var(--shadow-sm)" : "none",
-                      }}
-                      onClick={() => setViewMode("list")}
-                    >
-                      <List
-                        size={16}
-                        style={{ color: viewMode === "list" ? "var(--primary-orange)" : "var(--gray-600)" }}
-                      />
-                    </button>
-                  </div>
-
-                  {/* Sort Dropdown */}
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                    <ArrowUpDown size={16} style={{ color: "var(--gray-600)" }} />
-                    <select
-                      className="form-input"
-                      style={{
-                        minWidth: "clamp(140px, 25vw, 160px)",
-                        padding: "clamp(0.5rem, 1.5vw, 0.6rem)",
-                        fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                      }}
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                    >
-                      <option value="relevancia">Relevância</option>
-                      <option value="menor-preco">Menor Preço</option>
-                      <option value="maior-preco">Maior Preço</option>
-                      <option value="menor-km">Menor KM</option>
-                      <option value="mais-novo">Mais Novo</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              {/* Filtros Mobile */}
-              {showMobileFilters && window.innerWidth <= 1024 && (
-                <div
-                  className="card"
-                  style={{
-                    padding: "clamp(1.5rem, 4vw, 2rem)",
-                    marginBottom: "clamp(1.5rem, 3vw, 2rem)",
-                    background: "var(--accent-white)",
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      marginBottom: "1.5rem",
-                    }}
-                  >
-                    <h3
-                      style={{
-                        fontSize: "clamp(1rem, 3vw, 1.25rem)",
-                        fontWeight: "700",
-                        color: "var(--secondary-black)",
-                        margin: 0,
-                      }}
-                    >
-                      Filtrar Veículos
-                    </h3>
-                    <button
-                      onClick={() => setShowMobileFilters(false)}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                        padding: "0.5rem",
-                        color: "var(--gray-600)",
-                      }}
-                    >
-                      <X size={20} />
-                    </button>
-                  </div>
-
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(auto-fit, minmax(min(200px, 100%), 1fr))",
-                      gap: "1rem",
-                    }}
-                  >
-                    <div className="form-group">
-                      <label className="form-label">Marca</label>
-                      <select
-                        className="form-input"
-                        value={filters.marca}
-                        onChange={(e) => setFilters({ ...filters, marca: e.target.value })}
-                      >
-                        <option value="">Todas as marcas</option>
-                        <option value="honda">Honda</option>
-                        <option value="toyota">Toyota</option>
-                        <option value="bmw">BMW</option>
-                        <option value="audi">Audi</option>
-                      </select>
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">Modelo</label>
-                      <select
-                        className="form-input"
-                        value={filters.modelo}
-                        onChange={(e) => setFilters({ ...filters, modelo: e.target.value })}
-                      >
-                        <option value="">Todos os modelos</option>
-                        <option value="civic">Civic</option>
-                        <option value="corolla">Corolla</option>
-                        <option value="hilux">Hilux</option>
-                      </select>
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">Preço Mínimo</label>
-                      <input
-                        type="number"
-                        className="form-input"
-                        placeholder="R$ 0"
-                        value={filters.precoMin}
-                        onChange={(e) => setFilters({ ...filters, precoMin: e.target.value })}
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">Preço Máximo</label>
-                      <input
-                        type="number"
-                        className="form-input"
-                        placeholder="R$ 500.000"
-                        value={filters.precoMax}
-                        onChange={(e) => setFilters({ ...filters, precoMax: e.target.value })}
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">Combustível</label>
-                      <select
-                        className="form-input"
-                        value={filters.combustivel}
-                        onChange={(e) => setFilters({ ...filters, combustivel: e.target.value })}
-                      >
-                        <option value="">Todos</option>
-                        <option value="flex">Flex</option>
-                        <option value="gasolina">Gasolina</option>
-                        <option value="diesel">Diesel</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
-                    <button className="btn btn-primary" style={{ flex: 1, minWidth: "120px" }}>
-                      <Search size={16} />
-                      Aplicar
-                    </button>
-                    <button
-                      className="btn btn-outline"
-                      style={{ flex: 1, minWidth: "120px" }}
-                      onClick={() => setFilters({ marca: "", modelo: "", precoMin: "", precoMax: "", combustivel: "" })}
-                    >
-                      Limpar
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Grid de Veículos */}
-              <div
-                className={viewMode === "grid" ? "grid grid-3" : ""}
-                style={{ gap: viewMode === "list" ? "1rem" : undefined }}
-              >
-                {currentVehicles.map((vehicle) => (
-                  <VehicleCard key={vehicle.id} vehicle={vehicle} />
-                ))}
-              </div>
-
-              {/* Paginação */}
-              {totalPages > 1 && (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
-                    marginTop: "clamp(2rem, 5vw, 2.5rem)",
-                    padding: "clamp(1.5rem, 3vw, 1.75rem)",
-                    background: "var(--accent-white)",
-                    borderRadius: "clamp(12px, 3vw, 14px)",
-                    boxShadow: "var(--shadow)",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <button
-                    className="btn btn-outline"
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                    style={{
-                      opacity: currentPage === 1 ? 0.5 : 1,
-                      cursor: currentPage === 1 ? "not-allowed" : "pointer",
-                      padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(1rem, 2vw, 1.25rem)",
-                      fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                    }}
-                  >
-                    Anterior
-                  </button>
-
-                  {[...Array(totalPages)].map((_, index) => (
-                    <button
-                      key={index + 1}
-                      className={currentPage === index + 1 ? "btn btn-primary" : "btn btn-outline"}
-                      onClick={() => setCurrentPage(index + 1)}
-                      style={{
-                        minWidth: "clamp(36px, 8vw, 44px)",
-                        padding: "clamp(0.5rem, 1.5vw, 0.6rem)",
-                        fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                      }}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-
-                  <button
-                    className="btn btn-outline"
-                    disabled={currentPage === totalPages}
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    style={{
-                      opacity: currentPage === totalPages ? 0.5 : 1,
-                      cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-                      padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(1rem, 2vw, 1.25rem)",
-                      fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                    }}
-                  >
-                    Próxima
-                  </button>
-                </div>
+              <p style={{ color: "var(--gray-600)", fontSize: "0.875rem" }}>
+                Mostrando {startIndex + 1}-{Math.min(startIndex + itemsPerPage, vehicles.length)} de {vehicles.length}{" "}
+                veículos
+              </p>
+              {activeFiltersCount > 0 && (
+                <p style={{ color: "var(--primary-orange)", fontSize: "0.875rem", fontWeight: "500" }}>
+                  {activeFiltersCount} filtro(s) aplicado(s)
+                </p>
               )}
             </div>
+
+            {/* Improved Sort Dropdown */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                backgroundColor: "white",
+                padding: "0.5rem 1rem",
+                borderRadius: "8px",
+                border: "1px solid #e2e8f0",
+                boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+              }}
+            >
+              <label
+                style={{
+                  fontSize: "0.875rem",
+                  color: "#64748b",
+                  fontWeight: "500",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Ordenar por:
+              </label>
+              <select
+                style={{
+                  padding: "0.5rem 0.75rem",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "6px",
+                  fontSize: "0.875rem",
+                  backgroundColor: "white",
+                  color: "#374151",
+                  outline: "none",
+                  cursor: "pointer",
+                  minWidth: "160px",
+                  fontWeight: "500",
+                }}
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                onFocus={(e) => (e.target.style.borderColor = "var(--primary-orange)")}
+                onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+              >
+                <option value="relevancia">Relevância</option>
+                <option value="menor-preco">Menor Preço</option>
+                <option value="maior-preco">Maior Preço</option>
+                <option value="menor-km">Menor KM</option>
+                <option value="mais-novo">Mais Novo</option>
+                <option value="marca">Marca A-Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-3">
+            {currentVehicles.map((vehicle) => (
+              <VehicleCard key={vehicle.id} vehicle={vehicle} />
+            ))}
+          </div>
+
+          {/* Enhanced Pagination */}
+          {totalPages > 1 && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "0.5rem",
+                marginTop: "3rem",
+                padding: "2rem 0",
+              }}
+            >
+              <button
+                style={{
+                  padding: "0.75rem 1.5rem",
+                  backgroundColor: currentPage === 1 ? "#f1f5f9" : "var(--primary-orange)",
+                  color: currentPage === 1 ? "#94a3b8" : "white",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "8px",
+                  fontSize: "0.875rem",
+                  fontWeight: "500",
+                  cursor: currentPage === 1 ? "not-allowed" : "pointer",
+                  transition: "all 0.2s ease",
+                  outline: "none",
+                }}
+                disabled={currentPage === 1}
+                onClick={() => handlePageChange(currentPage - 1)}
+                onMouseEnter={(e) => {
+                  if (currentPage !== 1) {
+                    e.target.style.backgroundColor = "var(--primary-orange-dark)"
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (currentPage !== 1) {
+                    e.target.style.backgroundColor = "var(--primary-orange)"
+                  }
+                }}
+              >
+                Anterior
+              </button>
+
+              {[...Array(totalPages)].map((_, index) => (
+                <button
+                  key={index + 1}
+                  style={{
+                    minWidth: "40px",
+                    height: "40px",
+                    backgroundColor: currentPage === index + 1 ? "var(--primary-orange)" : "white",
+                    color: currentPage === index + 1 ? "white" : "#374151",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: "8px",
+                    fontSize: "0.875rem",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                    outline: "none",
+                  }}
+                  onClick={() => handlePageChange(index + 1)}
+                  onMouseEnter={(e) => {
+                    if (currentPage !== index + 1) {
+                      e.target.style.backgroundColor = "#f8fafc"
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (currentPage !== index + 1) {
+                      e.target.style.backgroundColor = "white"
+                    }
+                  }}
+                >
+                  {index + 1}
+                </button>
+              ))}
+
+              <button
+                style={{
+                  padding: "0.75rem 1.5rem",
+                  backgroundColor: currentPage === totalPages ? "#f1f5f9" : "var(--primary-orange)",
+                  color: currentPage === totalPages ? "#94a3b8" : "white",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "8px",
+                  fontSize: "0.875rem",
+                  fontWeight: "500",
+                  cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+                  transition: "all 0.2s ease",
+                  outline: "none",
+                }}
+                disabled={currentPage === totalPages}
+                onClick={() => handlePageChange(currentPage + 1)}
+                onMouseEnter={(e) => {
+                  if (currentPage !== totalPages) {
+                    e.target.style.backgroundColor = "var(--primary-orange-dark)"
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (currentPage !== totalPages) {
+                    e.target.style.backgroundColor = "var(--primary-orange)"
+                  }
+                }}
+              >
+                Próxima
+              </button>
+            </div>
+          )}
+
+          {/* Scroll to Top Button */}
+          <div
+            style={{
+              position: "fixed",
+              bottom: "2rem",
+              right: "2rem",
+              zIndex: 1000,
+            }}
+          >
+            <button
+              style={{
+                width: "50px",
+                height: "50px",
+                backgroundColor: "var(--primary-orange)",
+                color: "white",
+                border: "none",
+                borderRadius: "50%",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                transition: "all 0.2s ease",
+                outline: "none",
+              }}
+              onClick={scrollToTop}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "var(--primary-orange-dark)"
+                e.target.style.transform = "scale(1.1)"
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "var(--primary-orange)"
+                e.target.style.transform = "scale(1)"
+              }}
+            >
+              <ArrowUp size={20} />
+            </button>
           </div>
         </div>
       </section>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   )
 }
