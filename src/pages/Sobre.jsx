@@ -7,7 +7,7 @@ const Sobre = () => {
     {
       year: "2008",
       title: "Fundação",
-      description: "Mix Veículos é fundada com a missão de revolucionar o mercado de carros usados.",
+      description: "Mix Automóveis é fundada com a missão de revolucionar o mercado de carros usados.",
       icon: Zap,
     },
     {

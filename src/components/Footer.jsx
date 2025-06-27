@@ -57,7 +57,7 @@ const Footer = () => {
             <div style={{ textAlign: window.innerWidth <= 768 ? "center" : "left" }}>
               <img
                 src={logo}
-                alt="Logo Mix Veículos"
+                alt="Logo Mix Automóveis"
                 style={{
                   height: "clamp(40px, 10vw, 60px)",
                   objectFit: "contain",
@@ -75,7 +75,6 @@ const Footer = () => {
                   letterSpacing: "2px",
                 }}
               >
-                Veículos
               </p>
             </div>
 
@@ -356,7 +355,7 @@ const Footer = () => {
           opacity: 0.8,
         }}
       >
-        <p>&copy; {new Date().getFullYear()} Mix Veículos. Todos os direitos reservados.</p>
+        <p>&copy; {new Date().getFullYear()} Mix Automóveis. Todos os direitos reservados.</p>
       </div>
     </footer>
   )

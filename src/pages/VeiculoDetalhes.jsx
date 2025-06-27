@@ -106,11 +106,26 @@ const VeiculoDetalhes = () => {
   }, [])
 
   return (
-    <div style={{ paddingTop: "90px", backgroundColor: "#f8fafc", minHeight: "100vh" }}>
+    <div style={{ paddingTop: "clamp(70px, 15vw, 102px)", backgroundColor: "#f8fafc", minHeight: "100vh" }}>
       {/* Breadcrumb */}
       <div style={{ backgroundColor: "white", borderBottom: "1px solid #e2e8f0" }}>
-        <div className="container" style={{ padding: "1rem 1rem" }}>
-          <nav style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.875rem" }}>
+        <div
+          className="container"
+          style={{
+            padding: "clamp(0.75rem, 2vw, 1rem)",
+            maxWidth: "min(1200px, 95%)",
+            margin: "0 auto",
+          }}
+        >
+          <nav
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "clamp(0.25rem, 1vw, 0.5rem)",
+              fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+              flexWrap: "wrap",
+            }}
+          >
             <Link to="/" style={{ color: "#64748b", textDecoration: "none" }}>
               Home
             </Link>
@@ -119,24 +134,47 @@ const VeiculoDetalhes = () => {
               Estoque
             </Link>
             <span style={{ color: "#cbd5e1" }}>›</span>
-            <span style={{ color: "#1e293b", fontWeight: "500" }}>{vehicle.name}</span>
+            <span
+              style={{
+                color: "#1e293b",
+                fontWeight: "500",
+                wordBreak: "break-word",
+                lineHeight: "1.4",
+              }}
+            >
+              {vehicle.name}
+            </span>
           </nav>
         </div>
       </div>
 
-      <div className="container" style={{ padding: "2rem 2rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "2rem", alignItems: "start" }}>
+      <div
+        className="container"
+        style={{
+          padding: "clamp(1rem, 3vw, 2rem)",
+          maxWidth: "min(1200px, 95%)",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "clamp(1.5rem, 4vw, 2rem)",
+            alignItems: "start",
+          }}
+        >
           {/* Galeria Principal */}
-          <div>
+          <div style={{ order: 1 }}>
             {/* Imagem Principal */}
             <div
               style={{
                 position: "relative",
                 backgroundColor: "#f1f5f9",
-                borderRadius: "12px",
+                borderRadius: "clamp(8px, 2vw, 12px)",
                 overflow: "hidden",
-                marginBottom: "1rem",
-                height: "500px",
+                marginBottom: "clamp(0.75rem, 2vw, 1rem)",
+                height: "clamp(250px, 50vw, 500px)",
               }}
             >
               <img
@@ -154,11 +192,11 @@ const VeiculoDetalhes = () => {
                 onClick={prevImage}
                 style={{
                   position: "absolute",
-                  left: "1rem",
+                  left: "clamp(0.5rem, 2vw, 1rem)",
                   top: "50%",
                   transform: "translateY(-50%)",
-                  width: "40px",
-                  height: "40px",
+                  width: "clamp(32px, 8vw, 40px)",
+                  height: "clamp(32px, 8vw, 40px)",
                   backgroundColor: "rgba(255, 255, 255, 0.9)",
                   border: "none",
                   borderRadius: "50%",
@@ -172,18 +210,18 @@ const VeiculoDetalhes = () => {
                 onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
                 onMouseLeave={(e) => (e.target.style.backgroundColor = "rgba(255, 255, 255, 0.9)")}
               >
-                <ChevronLeft size={20} style={{ color: "#374151" }} />
+                <ChevronLeft size={window.innerWidth <= 480 ? 16 : 20} style={{ color: "#374151" }} />
               </button>
 
               <button
                 onClick={nextImage}
                 style={{
                   position: "absolute",
-                  right: "1rem",
+                  right: "clamp(0.5rem, 2vw, 1rem)",
                   top: "50%",
                   transform: "translateY(-50%)",
-                  width: "40px",
-                  height: "40px",
+                  width: "clamp(32px, 8vw, 40px)",
+                  height: "clamp(32px, 8vw, 40px)",
                   backgroundColor: "rgba(255, 255, 255, 0.9)",
                   border: "none",
                   borderRadius: "50%",
@@ -197,64 +235,68 @@ const VeiculoDetalhes = () => {
                 onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
                 onMouseLeave={(e) => (e.target.style.backgroundColor = "rgba(255, 255, 255, 0.9)")}
               >
-                <ChevronRight size={20} style={{ color: "#374151" }} />
+                <ChevronRight size={window.innerWidth <= 480 ? 16 : 20} style={{ color: "#374151" }} />
               </button>
 
               {/* Botões de Ação sobre a Imagem */}
               <div
                 style={{
                   position: "absolute",
-                  bottom: "1rem",
+                  bottom: "clamp(0.5rem, 2vw, 1rem)",
                   left: "50%",
                   transform: "translateX(-50%)",
                   display: "flex",
-                  gap: "0.75rem",
+                  gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
                 }}
               >
                 <button
                   onClick={() => setShowAllPhotos(true)}
                   style={{
-                    padding: "0.75rem 1.5rem",
+                    padding: "clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1.5rem)",
                     backgroundColor: "#22c55e",
                     color: "white",
                     border: "none",
-                    borderRadius: "8px",
-                    fontSize: "0.875rem",
+                    borderRadius: "clamp(6px, 1.5vw, 8px)",
+                    fontSize: "clamp(0.7rem, 1.8vw, 0.875rem)",
                     fontWeight: "600",
                     cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
-                    gap: "0.5rem",
+                    gap: "clamp(0.25rem, 1vw, 0.5rem)",
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                     transition: "all 0.2s ease",
+                    whiteSpace: "nowrap",
                   }}
                   onMouseEnter={(e) => (e.target.style.backgroundColor = "#16a34a")}
                   onMouseLeave={(e) => (e.target.style.backgroundColor = "#22c55e")}
                 >
-                  Ver Todas as Fotos
+                  {window.innerWidth <= 480 ? "Fotos" : "Ver Todas as Fotos"}
                 </button>
 
                 <button
                   onClick={() => setShowVideoModal(true)}
                   style={{
-                    padding: "0.75rem 1.5rem",
+                    padding: "clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1.5rem)",
                     backgroundColor: "rgba(255, 255, 255, 0.95)",
                     color: "#374151",
                     border: "none",
-                    borderRadius: "8px",
-                    fontSize: "0.875rem",
+                    borderRadius: "clamp(6px, 1.5vw, 8px)",
+                    fontSize: "clamp(0.7rem, 1.8vw, 0.875rem)",
                     fontWeight: "600",
                     cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
-                    gap: "0.5rem",
+                    gap: "clamp(0.25rem, 1vw, 0.5rem)",
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                     transition: "all 0.2s ease",
+                    whiteSpace: "nowrap",
                   }}
                   onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
                   onMouseLeave={(e) => (e.target.style.backgroundColor = "rgba(255, 255, 255, 0.95)")}
                 >
-                  <Play size={16} />
+                  <Play size={window.innerWidth <= 480 ? 12 : 16} />
                   Vídeos
                 </button>
               </div>
@@ -264,8 +306,9 @@ const VeiculoDetalhes = () => {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(6, 1fr)",
-                gap: "0.5rem",
+                gridTemplateColumns: "repeat(auto-fit, minmax(clamp(60px, 15vw, 100px), 1fr))",
+                gap: "clamp(0.25rem, 1vw, 0.5rem)",
+                marginBottom: "clamp(1.5rem, 4vw, 2rem)",
               }}
             >
               {vehicle.images.map((image, index) => (
@@ -273,8 +316,8 @@ const VeiculoDetalhes = () => {
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
                   style={{
-                    height: "80px",
-                    borderRadius: "8px",
+                    height: "clamp(50px, 12vw, 80px)",
+                    borderRadius: "clamp(4px, 1vw, 8px)",
                     overflow: "hidden",
                     border: currentImageIndex === index ? "3px solid var(--primary-orange)" : "2px solid #e2e8f0",
                     cursor: "pointer",
@@ -298,72 +341,87 @@ const VeiculoDetalhes = () => {
           </div>
 
           {/* Informações do Veículo */}
-          <div>
+          <div style={{ order: 2 }}>
             <div
               style={{
                 backgroundColor: "white",
-                borderRadius: "12px",
-                padding: "2rem",
+                borderRadius: "clamp(8px, 2vw, 12px)",
+                padding: "clamp(1.25rem, 4vw, 2rem)",
                 boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
                 border: "1px solid #e2e8f0",
-                position: "sticky",
-                top: "110px",
+                marginBottom: "clamp(1.5rem, 4vw, 2rem)",
               }}
             >
               {/* Cabeçalho */}
-              <div style={{ marginBottom: "1.5rem" }}>
+              <div style={{ marginBottom: "clamp(1rem, 3vw, 1.5rem)" }}>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "flex-start",
-                    marginBottom: "1rem",
+                    marginBottom: "clamp(0.75rem, 2vw, 1rem)",
+                    flexDirection: window.innerWidth <= 640 ? "column" : "row",
+                    gap: window.innerWidth <= 640 ? "1rem" : "0",
                   }}
                 >
-                  <div>
+                  <div style={{ flex: 1 }}>
                     {vehicle.featured && (
                       <div
                         style={{
                           display: "inline-flex",
                           alignItems: "center",
-                          gap: "0.25rem",
+                          gap: "clamp(0.125rem, 0.5vw, 0.25rem)",
                           backgroundColor: "var(--primary-orange)",
                           color: "white",
-                          padding: "0.25rem 0.75rem",
-                          borderRadius: "20px",
-                          fontSize: "0.75rem",
+                          padding: "clamp(0.125rem, 0.5vw, 0.25rem) clamp(0.5rem, 1.5vw, 0.75rem)",
+                          borderRadius: "clamp(10px, 3vw, 20px)",
+                          fontSize: "clamp(0.625rem, 1.5vw, 0.75rem)",
                           fontWeight: "600",
-                          marginBottom: "0.75rem",
+                          marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                         }}
                       >
-                        <Award size={12} />
+                        <Award size={window.innerWidth <= 480 ? 10 : 12} />
                         Premium
                       </div>
                     )}
                     <h1
                       style={{
-                        fontSize: "1.5rem",
+                        fontSize: "clamp(1.125rem, 4vw, 1.5rem)",
                         fontWeight: "800",
                         color: "#1e293b",
                         lineHeight: "1.3",
-                        marginBottom: "0.5rem",
+                        marginBottom: "clamp(0.25rem, 1vw, 0.5rem)",
+                        wordBreak: "break-word",
                       }}
                     >
                       {vehicle.name}
                     </h1>
-                    <p style={{ color: "#64748b", fontSize: "0.875rem" }}>
+                    <p
+                      style={{
+                        color: "#64748b",
+                        fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                        lineHeight: "1.4",
+                      }}
+                    >
                       {vehicle.brand} • {vehicle.model} • {vehicle.version}
                     </p>
                   </div>
 
-                  <div style={{ display: "flex", gap: "0.5rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "clamp(0.25rem, 1vw, 0.5rem)",
+                      flexShrink: 0,
+                      alignSelf: window.innerWidth <= 640 ? "center" : "flex-start",
+                    }}
+                  >
                     <button
                       style={{
-                        width: "40px",
-                        height: "40px",
+                        width: "clamp(32px, 8vw, 40px)",
+                        height: "clamp(32px, 8vw, 40px)",
                         backgroundColor: "#f8fafc",
                         border: "1px solid #e2e8f0",
-                        borderRadius: "8px",
+                        borderRadius: "clamp(6px, 1.5vw, 8px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -379,15 +437,15 @@ const VeiculoDetalhes = () => {
                         e.target.style.borderColor = "#e2e8f0"
                       }}
                     >
-                      <Heart size={18} style={{ color: "#ef4444" }} />
+                      <Heart size={window.innerWidth <= 480 ? 14 : 18} style={{ color: "#ef4444" }} />
                     </button>
                     <button
                       style={{
-                        width: "40px",
-                        height: "40px",
+                        width: "clamp(32px, 8vw, 40px)",
+                        height: "clamp(32px, 8vw, 40px)",
                         backgroundColor: "#f8fafc",
                         border: "1px solid #e2e8f0",
-                        borderRadius: "8px",
+                        borderRadius: "clamp(6px, 1.5vw, 8px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -403,7 +461,7 @@ const VeiculoDetalhes = () => {
                         e.target.style.borderColor = "#e2e8f0"
                       }}
                     >
-                      <Share2 size={18} style={{ color: "#3b82f6" }} />
+                      <Share2 size={window.innerWidth <= 480 ? 14 : 18} style={{ color: "#3b82f6" }} />
                     </button>
                   </div>
                 </div>
@@ -413,15 +471,15 @@ const VeiculoDetalhes = () => {
                   style={{
                     backgroundColor: "#fef7ed",
                     border: "2px solid var(--primary-orange)",
-                    borderRadius: "12px",
-                    padding: "1.5rem",
+                    borderRadius: "clamp(8px, 2vw, 12px)",
+                    padding: "clamp(1rem, 3vw, 1.5rem)",
                     textAlign: "center",
-                    marginBottom: "1.5rem",
+                    marginBottom: "clamp(1rem, 3vw, 1.5rem)",
                   }}
                 >
                   <div
                     style={{
-                      fontSize: "2rem",
+                      fontSize: "clamp(1.5rem, 5vw, 2rem)",
                       fontWeight: "900",
                       color: "var(--primary-orange)",
                       lineHeight: "1",
@@ -429,39 +487,68 @@ const VeiculoDetalhes = () => {
                   >
                     R$ {vehicle.price.toLocaleString("pt-BR")}
                   </div>
-                  <p style={{ color: "#92400e", fontSize: "0.875rem", marginTop: "0.5rem" }}>À vista ou financiado</p>
+                  <p
+                    style={{
+                      color: "#92400e",
+                      fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                      marginTop: "clamp(0.25rem, 1vw, 0.5rem)",
+                    }}
+                  >
+                    À vista ou financiado
+                  </p>
                 </div>
               </div>
 
               {/* Especificações Principais */}
-              <div style={{ marginBottom: "2rem" }}>
+              <div style={{ marginBottom: "clamp(1.5rem, 4vw, 2rem)" }}>
                 <h3
                   style={{
-                    fontSize: "1.125rem",
+                    fontSize: "clamp(1rem, 3vw, 1.125rem)",
                     fontWeight: "700",
                     color: "#1e293b",
-                    marginBottom: "1rem",
+                    marginBottom: "clamp(0.75rem, 2vw, 1rem)",
                   }}
                 >
                   Especificações
                 </h3>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(clamp(140px, 40vw, 180px), 1fr))",
+                    gap: "clamp(0.5rem, 1.5vw, 1rem)",
+                  }}
+                >
                   <div
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.75rem",
-                      padding: "0.75rem",
+                      gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                      padding: "clamp(0.5rem, 1.5vw, 0.75rem)",
                       backgroundColor: "#f8fafc",
-                      borderRadius: "8px",
+                      borderRadius: "clamp(6px, 1.5vw, 8px)",
                       border: "1px solid #e2e8f0",
                     }}
                   >
-                    <Calendar size={18} style={{ color: "var(--primary-orange)" }} />
+                    <Calendar size={window.innerWidth <= 480 ? 14 : 18} style={{ color: "var(--primary-orange)" }} />
                     <div>
-                      <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1e293b" }}>{vehicle.year}</div>
-                      <div style={{ fontSize: "0.75rem", color: "#64748b" }}>Ano</div>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                          fontWeight: "600",
+                          color: "#1e293b",
+                        }}
+                      >
+                        {vehicle.year}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.625rem, 1.5vw, 0.75rem)",
+                          color: "#64748b",
+                        }}
+                      >
+                        Ano
+                      </div>
                     </div>
                   </div>
 
@@ -469,17 +556,32 @@ const VeiculoDetalhes = () => {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.75rem",
-                      padding: "0.75rem",
+                      gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                      padding: "clamp(0.5rem, 1.5vw, 0.75rem)",
                       backgroundColor: "#f8fafc",
-                      borderRadius: "8px",
+                      borderRadius: "clamp(6px, 1.5vw, 8px)",
                       border: "1px solid #e2e8f0",
                     }}
                   >
-                    <Gauge size={18} style={{ color: "var(--primary-orange)" }} />
+                    <Gauge size={window.innerWidth <= 480 ? 14 : 18} style={{ color: "var(--primary-orange)" }} />
                     <div>
-                      <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1e293b" }}>{vehicle.km} km</div>
-                      <div style={{ fontSize: "0.75rem", color: "#64748b" }}>Quilometragem</div>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                          fontWeight: "600",
+                          color: "#1e293b",
+                        }}
+                      >
+                        {vehicle.km} km
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.625rem, 1.5vw, 0.75rem)",
+                          color: "#64748b",
+                        }}
+                      >
+                        Quilometragem
+                      </div>
                     </div>
                   </div>
 
@@ -487,17 +589,32 @@ const VeiculoDetalhes = () => {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.75rem",
-                      padding: "0.75rem",
+                      gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                      padding: "clamp(0.5rem, 1.5vw, 0.75rem)",
                       backgroundColor: "#f8fafc",
-                      borderRadius: "8px",
+                      borderRadius: "clamp(6px, 1.5vw, 8px)",
                       border: "1px solid #e2e8f0",
                     }}
                   >
-                    <Fuel size={18} style={{ color: "var(--primary-orange)" }} />
+                    <Fuel size={window.innerWidth <= 480 ? 14 : 18} style={{ color: "var(--primary-orange)" }} />
                     <div>
-                      <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1e293b" }}>{vehicle.fuel}</div>
-                      <div style={{ fontSize: "0.75rem", color: "#64748b" }}>Combustível</div>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                          fontWeight: "600",
+                          color: "#1e293b",
+                        }}
+                      >
+                        {vehicle.fuel}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.625rem, 1.5vw, 0.75rem)",
+                          color: "#64748b",
+                        }}
+                      >
+                        Combustível
+                      </div>
                     </div>
                   </div>
 
@@ -505,68 +622,87 @@ const VeiculoDetalhes = () => {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.75rem",
-                      padding: "0.75rem",
+                      gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                      padding: "clamp(0.5rem, 1.5vw, 0.75rem)",
                       backgroundColor: "#f8fafc",
-                      borderRadius: "8px",
+                      borderRadius: "clamp(6px, 1.5vw, 8px)",
                       border: "1px solid #e2e8f0",
                     }}
                   >
-                    <Settings size={18} style={{ color: "var(--primary-orange)" }} />
+                    <Settings size={window.innerWidth <= 480 ? 14 : 18} style={{ color: "var(--primary-orange)" }} />
                     <div>
-                      <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1e293b" }}>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                          fontWeight: "600",
+                          color: "#1e293b",
+                        }}
+                      >
                         {vehicle.transmission}
                       </div>
-                      <div style={{ fontSize: "0.75rem", color: "#64748b" }}>Transmissão</div>
+                      <div
+                        style={{
+                          fontSize: "clamp(0.625rem, 1.5vw, 0.75rem)",
+                          color: "#64748b",
+                        }}
+                      >
+                        Transmissão
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Botões de Ação */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                }}
+              >
                 <a
                   href="https://wa.me/5511999999999"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    padding: "1rem",
+                    padding: "clamp(0.75rem, 2vw, 1rem)",
                     backgroundColor: "var(--primary-orange)",
                     color: "white",
                     border: "none",
-                    borderRadius: "8px",
-                    fontSize: "0.875rem",
+                    borderRadius: "clamp(6px, 1.5vw, 8px)",
+                    fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
                     fontWeight: "600",
                     cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "0.5rem",
+                    gap: "clamp(0.25rem, 1vw, 0.5rem)",
                     textDecoration: "none",
                     transition: "all 0.2s ease",
                   }}
                   onMouseEnter={(e) => (e.target.style.backgroundColor = "var(--primary-orange-dark)")}
                   onMouseLeave={(e) => (e.target.style.backgroundColor = "var(--primary-orange)")}
                 >
-                  <MessageCircle size={18} />
+                  <MessageCircle size={window.innerWidth <= 480 ? 16 : 18} />
                   Conversar no WhatsApp
                 </a>
 
                 <a
                   href="tel:1134567890"
                   style={{
-                    padding: "1rem",
+                    padding: "clamp(0.75rem, 2vw, 1rem)",
                     backgroundColor: "white",
                     color: "var(--primary-orange)",
                     border: "2px solid var(--primary-orange)",
-                    borderRadius: "8px",
-                    fontSize: "0.875rem",
+                    borderRadius: "clamp(6px, 1.5vw, 8px)",
+                    fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
                     fontWeight: "600",
                     cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "0.5rem",
+                    gap: "clamp(0.25rem, 1vw, 0.5rem)",
                     textDecoration: "none",
                     transition: "all 0.2s ease",
                   }}
@@ -579,7 +715,7 @@ const VeiculoDetalhes = () => {
                     e.target.style.color = "var(--primary-orange)"
                   }}
                 >
-                  <Phone size={18} />
+                  <Phone size={window.innerWidth <= 480 ? 16 : 18} />
                   Ligar Agora
                 </a>
               </div>
@@ -587,20 +723,63 @@ const VeiculoDetalhes = () => {
               {/* Informações da Loja */}
               <div
                 style={{
-                  marginTop: "1.5rem",
-                  paddingTop: "1.5rem",
+                  marginTop: "clamp(1rem, 3vw, 1.5rem)",
+                  paddingTop: "clamp(1rem, 3vw, 1.5rem)",
                   borderTop: "1px solid #e2e8f0",
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
-                  <MapPin size={16} style={{ color: "var(--primary-orange)" }} />
-                  <span style={{ fontSize: "0.875rem", color: "#64748b" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                    marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                    flexDirection: window.innerWidth <= 480 ? "column" : "row",
+                  }}
+                >
+                  <MapPin
+                    size={window.innerWidth <= 480 ? 14 : 16}
+                    style={{
+                      color: "var(--primary-orange)",
+                      flexShrink: 0,
+                      marginTop: window.innerWidth <= 480 ? "0" : "2px",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                      color: "#64748b",
+                      lineHeight: "1.4",
+                    }}
+                  >
                     Rua das Flores, 123 - Centro, São Paulo
                   </span>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  <Clock size={16} style={{ color: "var(--primary-orange)" }} />
-                  <span style={{ fontSize: "0.875rem", color: "#64748b" }}>Seg-Sex: 8h às 18h | Sáb: 8h às 15h</span>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                    flexDirection: window.innerWidth <= 480 ? "column" : "row",
+                  }}
+                >
+                  <Clock
+                    size={window.innerWidth <= 480 ? 14 : 16}
+                    style={{
+                      color: "var(--primary-orange)",
+                      flexShrink: 0,
+                      marginTop: window.innerWidth <= 480 ? "0" : "2px",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                      color: "#64748b",
+                      lineHeight: "1.4",
+                    }}
+                  >
+                    Seg-Sex: 8h às 18h | Sáb: 8h às 15h
+                  </span>
                 </div>
               </div>
             </div>
@@ -608,36 +787,42 @@ const VeiculoDetalhes = () => {
         </div>
 
         {/* Seção de Detalhes Completos */}
-        <div style={{ marginTop: "3rem" }}>
+        <div style={{ marginTop: "clamp(2rem, 5vw, 3rem)" }}>
           <div
             style={{
               backgroundColor: "white",
-              borderRadius: "12px",
-              padding: "2rem",
+              borderRadius: "clamp(8px, 2vw, 12px)",
+              padding: "clamp(1.25rem, 4vw, 2rem)",
               boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
               border: "1px solid #e2e8f0",
             }}
           >
             <h2
               style={{
-                fontSize: "1.5rem",
+                fontSize: "clamp(1.25rem, 4vw, 1.5rem)",
                 fontWeight: "800",
                 color: "#1e293b",
-                marginBottom: "1.5rem",
+                marginBottom: "clamp(1rem, 3vw, 1.5rem)",
               }}
             >
               Detalhes Completos
             </h2>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr",
+                gap: "clamp(1.5rem, 4vw, 2rem)",
+              }}
+            >
               {/* Descrição */}
               <div>
                 <h3
                   style={{
-                    fontSize: "1.125rem",
+                    fontSize: "clamp(1rem, 3vw, 1.125rem)",
                     fontWeight: "700",
                     color: "#1e293b",
-                    marginBottom: "1rem",
+                    marginBottom: "clamp(0.75rem, 2vw, 1rem)",
                   }}
                 >
                   Descrição
@@ -646,7 +831,8 @@ const VeiculoDetalhes = () => {
                   style={{
                     color: "#64748b",
                     lineHeight: "1.6",
-                    marginBottom: "1.5rem",
+                    marginBottom: "clamp(1rem, 3vw, 1.5rem)",
+                    fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
                   }}
                 >
                   {vehicle.description}
@@ -654,27 +840,40 @@ const VeiculoDetalhes = () => {
 
                 <h4
                   style={{
-                    fontSize: "1rem",
+                    fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
                     fontWeight: "600",
                     color: "#1e293b",
-                    marginBottom: "0.75rem",
+                    marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
                   }}
                 >
                   Opcionais e Equipamentos
                 </h4>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(clamp(200px, 45vw, 250px), 1fr))",
+                    gap: "clamp(0.25rem, 1vw, 0.5rem)",
+                  }}
+                >
                   {vehicle.features.map((feature, index) => (
                     <div
                       key={index}
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "0.5rem",
-                        fontSize: "0.875rem",
+                        gap: "clamp(0.25rem, 1vw, 0.5rem)",
+                        fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
                         color: "#64748b",
+                        lineHeight: "1.4",
                       }}
                     >
-                      <CheckCircle size={14} style={{ color: "#22c55e" }} />
+                      <CheckCircle
+                        size={window.innerWidth <= 480 ? 12 : 14}
+                        style={{
+                          color: "#22c55e",
+                          flexShrink: 0,
+                        }}
+                      />
                       {feature}
                     </div>
                   ))}
@@ -685,16 +884,22 @@ const VeiculoDetalhes = () => {
               <div>
                 <h3
                   style={{
-                    fontSize: "1.125rem",
+                    fontSize: "clamp(1rem, 3vw, 1.125rem)",
                     fontWeight: "700",
                     color: "#1e293b",
-                    marginBottom: "1rem",
+                    marginBottom: "clamp(0.75rem, 2vw, 1rem)",
                   }}
                 >
                   Especificações Técnicas
                 </h3>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                  }}
+                >
                   {[
                     { label: "Marca", value: vehicle.brand },
                     { label: "Modelo", value: vehicle.model },
@@ -716,13 +921,34 @@ const VeiculoDetalhes = () => {
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        padding: "0.75rem",
+                        padding: "clamp(0.5rem, 1.5vw, 0.75rem)",
                         backgroundColor: index % 2 === 0 ? "#f8fafc" : "transparent",
-                        borderRadius: "6px",
+                        borderRadius: "clamp(4px, 1vw, 6px)",
+                        flexDirection: window.innerWidth <= 480 ? "column" : "row",
+                        alignItems: window.innerWidth <= 480 ? "flex-start" : "center",
+                        gap: window.innerWidth <= 480 ? "0.25rem" : "0",
                       }}
                     >
-                      <span style={{ fontSize: "0.875rem", color: "#64748b", fontWeight: "500" }}>{spec.label}:</span>
-                      <span style={{ fontSize: "0.875rem", color: "#1e293b", fontWeight: "600" }}>{spec.value}</span>
+                      <span
+                        style={{
+                          fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                          color: "#64748b",
+                          fontWeight: "500",
+                        }}
+                      >
+                        {spec.label}:
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                          color: "#1e293b",
+                          fontWeight: "600",
+                          wordBreak: "break-all",
+                          textAlign: window.innerWidth <= 480 ? "left" : "right",
+                        }}
+                      >
+                        {spec.value}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -746,32 +972,50 @@ const VeiculoDetalhes = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "2rem",
+            padding: "clamp(1rem, 3vw, 2rem)",
           }}
           onClick={() => setShowAllPhotos(false)}
         >
           <div
             style={{
               backgroundColor: "white",
-              borderRadius: "12px",
-              padding: "2rem",
-              maxWidth: "90vw",
-              maxHeight: "90vh",
+              borderRadius: "clamp(8px, 2vw, 12px)",
+              padding: "clamp(1rem, 3vw, 2rem)",
+              maxWidth: "min(95vw, 1000px)",
+              maxHeight: "min(95vh, 800px)",
               overflow: "auto",
+              width: "100%",
             }}
             onClick={(e) => e.stopPropagation()}
           >
             <div
-              style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "clamp(1rem, 3vw, 1.5rem)",
+                flexDirection: window.innerWidth <= 480 ? "column" : "row",
+                gap: window.innerWidth <= 480 ? "1rem" : "0",
+              }}
             >
-              <h3 style={{ fontSize: "1.25rem", fontWeight: "700", color: "#1e293b" }}>
+              <h3
+                style={{
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
+                  fontWeight: "700",
+                  color: "#1e293b",
+                  textAlign: window.innerWidth <= 480 ? "center" : "left",
+                  wordBreak: "break-word",
+                  lineHeight: "1.3",
+                  margin: 0,
+                }}
+              >
                 Todas as Fotos - {vehicle.name}
               </h3>
               <button
                 onClick={() => setShowAllPhotos(false)}
                 style={{
-                  width: "32px",
-                  height: "32px",
+                  width: "clamp(28px, 6vw, 32px)",
+                  height: "clamp(28px, 6vw, 32px)",
                   backgroundColor: "#f1f5f9",
                   border: "none",
                   borderRadius: "50%",
@@ -779,13 +1023,21 @@ const VeiculoDetalhes = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  flexShrink: 0,
+                  fontSize: "clamp(0.875rem, 2vw, 1rem)",
                 }}
               >
                 ✕
               </button>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1rem" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(clamp(200px, 45vw, 300px), 1fr))",
+                gap: "clamp(0.75rem, 2vw, 1rem)",
+              }}
+            >
               {vehicle.images.map((image, index) => (
                 <img
                   key={index}
@@ -793,9 +1045,9 @@ const VeiculoDetalhes = () => {
                   alt={`${vehicle.name} - Foto ${index + 1}`}
                   style={{
                     width: "100%",
-                    height: "200px",
+                    height: "clamp(150px, 35vw, 200px)",
                     objectFit: "cover",
-                    borderRadius: "8px",
+                    borderRadius: "clamp(6px, 1.5vw, 8px)",
                   }}
                 />
               ))}
@@ -818,30 +1070,50 @@ const VeiculoDetalhes = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "2rem",
+            padding: "clamp(1rem, 3vw, 2rem)",
           }}
           onClick={() => setShowVideoModal(false)}
         >
           <div
             style={{
               backgroundColor: "white",
-              borderRadius: "12px",
-              padding: "2rem",
-              maxWidth: "90vw",
-              maxHeight: "90vh",
+              borderRadius: "clamp(8px, 2vw, 12px)",
+              padding: "clamp(1rem, 3vw, 2rem)",
+              maxWidth: "min(95vw, 1000px)",
+              maxHeight: "min(95vh, 800px)",
               overflow: "auto",
+              width: "100%",
             }}
             onClick={(e) => e.stopPropagation()}
           >
             <div
-              style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "clamp(1rem, 3vw, 1.5rem)",
+                flexDirection: window.innerWidth <= 480 ? "column" : "row",
+                gap: window.innerWidth <= 480 ? "1rem" : "0",
+              }}
             >
-              <h3 style={{ fontSize: "1.25rem", fontWeight: "700", color: "#1e293b" }}>Vídeos - {vehicle.name}</h3>
+              <h3
+                style={{
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
+                  fontWeight: "700",
+                  color: "#1e293b",
+                  textAlign: window.innerWidth <= 480 ? "center" : "left",
+                  wordBreak: "break-word",
+                  lineHeight: "1.3",
+                  margin: 0,
+                }}
+              >
+                Vídeos - {vehicle.name}
+              </h3>
               <button
                 onClick={() => setShowVideoModal(false)}
                 style={{
-                  width: "32px",
-                  height: "32px",
+                  width: "clamp(28px, 6vw, 32px)",
+                  height: "clamp(28px, 6vw, 32px)",
                   backgroundColor: "#f1f5f9",
                   border: "none",
                   borderRadius: "50%",
@@ -849,6 +1121,8 @@ const VeiculoDetalhes = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  flexShrink: 0,
+                  fontSize: "clamp(0.875rem, 2vw, 1rem)",
                 }}
               >
                 ✕
@@ -856,11 +1130,24 @@ const VeiculoDetalhes = () => {
             </div>
 
             <div
-              style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "1.5rem" }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(clamp(300px, 80vw, 400px), 1fr))",
+                gap: "clamp(1rem, 3vw, 1.5rem)",
+              }}
             >
               {vehicle.videos.map((video) => (
                 <div key={video.id}>
-                  <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1e293b", marginBottom: "0.75rem" }}>
+                  <h4
+                    style={{
+                      fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
+                      fontWeight: "600",
+                      color: "#1e293b",
+                      marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
+                      wordBreak: "break-word",
+                      lineHeight: "1.3",
+                    }}
+                  >
                     {video.title}
                   </h4>
                   <iframe
@@ -868,8 +1155,8 @@ const VeiculoDetalhes = () => {
                     title={video.title}
                     style={{
                       width: "100%",
-                      height: "250px",
-                      borderRadius: "8px",
+                      height: "clamp(180px, 40vw, 250px)",
+                      borderRadius: "clamp(6px, 1.5vw, 8px)",
                       border: "none",
                     }}
                     allowFullScreen
@@ -880,6 +1167,35 @@ const VeiculoDetalhes = () => {
           </div>
         </div>
       )}
+
+      {/* CSS Variables */}
+      <style jsx>{`
+        :root {
+          --primary-orange: #f97316;
+          --primary-orange-dark: #ea580c;
+        }
+
+        @media (min-width: 1024px) {
+          .container > div:first-child {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: clamp(1.5rem, 4vw, 2rem);
+          }
+          
+          .container > div:first-child > div:nth-child(2) > div {
+            position: sticky;
+            top: clamp(80px, 15vw, 110px);
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .container > div:last-child > div > div:last-child {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(1.5rem, 4vw, 2rem);
+          }
+        }
+      `}</style>
     </div>
   )
 }

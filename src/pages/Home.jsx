@@ -11,8 +11,6 @@ import {
   Star,
   Users,
   TrendingUp,
-  Zap,
-  CheckCircle,
   Heart,
   Target,
 } from "lucide-react"
@@ -63,7 +61,7 @@ const Home = () => {
       featured: true,
       status: "disponivel",
     },
-        {
+    {
       id: 4,
       name: "TOYOTA HILUX CD GR-S 4X4 2.8 TDI DIES. AUT.",
       price: 295900,
@@ -99,7 +97,7 @@ const Home = () => {
       featured: true,
       status: "disponivel",
     },
-        {
+    {
       id: 7,
       name: "BMW 320IA 2.0 TB M SPORT A.FLEX/M.SPORT 4P",
       price: 320900,
@@ -136,13 +134,13 @@ const Home = () => {
           right: 0,
           height: "100vh",
           background: `
-            linear-gradient(135deg, 
-              rgba(26, 26, 26, 0.8) 0%, 
-              rgba(255, 107, 53, 0.1) 50%, 
-              rgba(26, 26, 26, 0.9) 100%
-            ),
-            url(${faxada})
-          `,
+  linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95) 0%, 
+    rgba(255, 107, 53, 0.08) 50%, 
+    rgba(26, 26, 26, 0.98) 100%
+  ),
+  url(${faxada})
+`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: window.innerWidth > 768 ? "fixed" : "scroll",
@@ -152,248 +150,138 @@ const Home = () => {
 
       {/* Conteúdo Flutuante */}
       <div style={{ position: "relative", zIndex: 1 }}>
-        {/* Hero Section Flutuante */}
+        {/* Hero Section Minimalista */}
         <section
           style={{
             minHeight: "100vh",
             background: "transparent",
             position: "relative",
             display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
             paddingTop: "0",
           }}
         >
-          {/* Elementos Decorativos Flutuantes */}
-          <div
-            style={{
-              position: "absolute",
-              top: "10%",
-              right: "5%",
-              width: "clamp(150px, 30vw, 250px)",
-              height: "clamp(150px, 30vw, 250px)",
-              background: "rgba(255, 107, 53, 0.1)",
-              borderRadius: "50%",
-              filter: "blur(100px)",
-              animation: "float 6s ease-in-out infinite",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              bottom: "15%",
-              left: "8%",
-              width: "clamp(120px, 25vw, 180px)",
-              height: "clamp(120px, 25vw, 180px)",
-              background: "rgba(255, 255, 255, 0.05)",
-              borderRadius: "50%",
-              filter: "blur(80px)",
-              animation: "float 8s ease-in-out infinite reverse",
-            }}
-          />
-
           <div className="container" style={{ position: "relative", zIndex: 2 }}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(min(400px, 100%), 1fr))",
-                alignItems: "center",
-                gap: "clamp(2rem, 6vw, 3rem)",
-              }}
-            >
-              {/* Conteúdo Principal */}
-              <div className="animate-slide-in">
-                <div
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    background: "rgba(255, 255, 255, 0.1)",
-                    backdropFilter: "blur(20px)",
-                    padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(1rem, 2.5vw, 1.25rem)",
-                    borderRadius: "40px",
-                    marginBottom: "clamp(1rem, 3vw, 1.5rem)",
-                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  <Zap size={14} style={{ color: "var(--primary-orange)" }} />
-                  <span
-                    style={{ fontSize: "clamp(0.7rem, 2vw, 0.8rem)", fontWeight: "600", color: "var(--accent-white)" }}
-                  >
-                    Mais de 15 anos de experiência
-                  </span>
-                </div>
+            {/* Conteúdo Principal - Centralizado */}
+            <div className="animate-slide-in" style={{ textAlign: "center", marginBottom: "clamp(3rem, 8vw, 4rem)" }}>
+              <h1
+                style={{
+                  fontSize: "clamp(2rem, 8vw, 4rem)",
+                  fontWeight: "900",
+                  marginBottom: "clamp(1rem, 3vw, 1.5rem)",
+                  lineHeight: "1.1",
+                  color: "var(--accent-white)",
+                  textShadow: "0 4px 20px rgba(0, 0, 0, 0.8)",
+                  maxWidth: "min(800px, 90%)",
+                  margin: "0 auto clamp(1rem, 3vw, 1.5rem)",
+                }}
+              >
+                Seu próximo <span style={{ color: "var(--primary-orange)" }}>veículo dos sonhos</span> está aqui
+              </h1>
 
-                <h1
+              <p
+                style={{
+                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
+                  color: "rgba(255, 255, 255, 0.9)",
+                  marginBottom: "clamp(2rem, 5vw, 2.5rem)",
+                  textShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
+                  maxWidth: "min(600px, 90%)",
+                  margin: "0 auto clamp(2rem, 5vw, 2.5rem)",
+                  lineHeight: "1.6",
+                }}
+              >
+                Encontre o veículo perfeito com qualidade garantida e atendimento especializado
+              </p>
+
+              {/* CTA Buttons */}
+              <div
+                style={{
+                  display: "flex",
+                  gap: "clamp(0.75rem, 2vw, 1rem)",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
+              >
+                <a
+                  href="/estoque"
+                  className="btn"
                   style={{
-                    fontSize: "clamp(1.75rem, 7vw, 3.5rem)",
-                    fontWeight: "900",
-                    marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
-                    lineHeight: "1.1",
+                    padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
+                    background: "var(--primary-orange)",
                     color: "var(--accent-white)",
-                    textShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-                  }}
-                >
-                  Seu próximo <span style={{ color: "var(--primary-orange)" }}>veículo dos sonhos</span> está aqui
-                </h1>
-
-                <p
-                  style={{
-                    fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)",
-                    marginBottom: "clamp(1.5rem, 4vw, 2rem)",
-                    color: "rgba(255, 255, 255, 0.9)",
-                    lineHeight: "1.6",
-                    maxWidth: "min(480px, 100%)",
-                    textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-                  }}
-                >
-                  Descubra nossa seleção premium de veículos com qualidade garantida, preços justos e atendimento
-                  personalizado que você merece.
-                </p>
-
-                {/* Lista de Benefícios */}
-                <div style={{ marginBottom: "clamp(2rem, 5vw, 2.5rem)" }}>
-                  {[
-                    "Veículos inspecionados e certificados",
-                    "Financiamento facilitado em até 60x",
-                    "Garantia estendida disponível",
-                    "Suporte pós-venda especializado",
-                  ].map((benefit, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "clamp(0.5rem, 1.5vw, 0.75rem)",
-                        marginBottom: "clamp(0.4rem, 1vw, 0.6rem)",
-                      }}
-                    >
-                      <CheckCircle
-                        size={window.innerWidth <= 480 ? 16 : 18}
-                        style={{ color: "var(--success)", flexShrink: 0 }}
-                      />
-                      <span
-                        style={{
-                          color: "rgba(255, 255, 255, 0.9)",
-                          fontWeight: "500",
-                          fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
-                          textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-                        }}
-                      >
-                        {benefit}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* CTA Buttons */}
-                <div style={{ display: "flex", gap: "clamp(0.75rem, 2vw, 1rem)", flexWrap: "wrap" }}>
-                  <a
-                    href="/estoque"
-                    className="btn"
-                    style={{
-                      padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
-                      background: "var(--primary-orange)",
-                      color: "var(--accent-white)",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      backdropFilter: "blur(20px)",
-                      fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
-                    }}
-                  >
-                    <Car size={18} />
-                    Explorar Veículos
-                  </a>
-                  <a
-                    href="/contato"
-                    className="btn"
-                    style={{
-                      padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
-                      background: "rgba(255, 255, 255, 0.1)",
-                      color: "var(--accent-white)",
-                      border: "2px solid rgba(255, 255, 255, 0.3)",
-                      backdropFilter: "blur(20px)",
-                      boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-                      fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
-                    }}
-                  >
-                    <MessageCircle size={18} />
-                    <span style={{ display: window.innerWidth <= 480 ? "none" : "inline" }}>
-                      Falar com Especialista
-                    </span>
-                    <span style={{ display: window.innerWidth <= 480 ? "inline" : "none" }}>Contato</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Formulário de Busca Lateral Flutuante */}
-              <div className="animate-slide-up">
-                <div
-                  style={{
-                    background: "rgba(255, 255, 255, 0.1)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
                     backdropFilter: "blur(20px)",
-                    borderRadius: "clamp(16px, 4vw, 20px)",
-                    padding: "clamp(2rem, 5vw, 2.5rem)",
-                    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
-                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                    position: "relative",
+                    fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                    fontWeight: "600",
+                    boxShadow: "0 8px 25px rgba(255, 107, 53, 0.4)",
                   }}
                 >
+                  <Car size={18} />
+                  Explorar Veículos
+                </a>
+                <a
+                  href="/contato"
+                  className="btn"
+                  style={{
+                    padding: "clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)",
+                    background: "rgba(255, 255, 255, 0.15)",
+                    color: "var(--accent-white)",
+                    border: "2px solid rgba(255, 255, 255, 0.4)",
+                    backdropFilter: "blur(20px)",
+                    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+                    fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                    fontWeight: "600",
+                  }}
+                >
+                  <MessageCircle size={18} />
+                  <span style={{ display: window.innerWidth <= 480 ? "none" : "inline" }}>Falar com Especialista</span>
+                  <span style={{ display: window.innerWidth <= 480 ? "inline" : "none" }}>Contato</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Formulário de Busca Minimalista - Posicionado abaixo */}
+            <div className="animate-slide-up" style={{ maxWidth: "min(600px, 90%)", margin: "0 auto" }}>
+              <div
+                style={{
+                  background: "rgba(255, 255, 255, 0.1)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: "16px",
+                  padding: "clamp(1.25rem, 3vw, 1.5rem)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+                }}
+              >
+                <form>
                   <div
                     style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: "4px",
-                      background: "var(--primary-orange)",
-                      borderRadius: "20px 20px 0 0",
+                      display: "grid",
+                      gridTemplateColumns: window.innerWidth > 768 ? "1fr 1fr 1fr auto" : "1fr",
+                      gap: "clamp(0.75rem, 2vw, 1rem)",
+                      alignItems: "end",
                     }}
-                  />
-
-                  <div style={{ textAlign: "center", marginBottom: "clamp(1.25rem, 3vw, 1.75rem)" }}>
-                    <h3
-                      style={{
-                        fontSize: "clamp(1rem, 3vw, 1.25rem)",
-                        fontWeight: "700",
-                        color: "var(--accent-white)",
-                        marginBottom: "0.5rem",
-                        textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-                      }}
-                    >
-                      Encontre seu veículo ideal
-                    </h3>
-                    <p style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
-                      Preencha os filtros e descubra as melhores opções
-                    </p>
-                  </div>
-
-                  <form>
+                  >
                     <div className="form-group">
-                      <label
-                        className="form-label"
-                        style={{
-                          color: "rgba(255, 255, 255, 0.9)",
-                          textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-                          fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                        }}
-                      >
-                        Marca do Veículo
-                      </label>
                       <select
                         className="form-input"
                         style={{
                           background: "rgba(255, 255, 255, 0.1)",
                           backdropFilter: "blur(10px)",
-                          border: "2px solid rgba(255, 255, 255, 0.2)",
+                          border: "1px solid rgba(255, 255, 255, 0.2)",
                           color: "var(--accent-white)",
                           fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                          padding: "clamp(0.75rem, 2vw, 0.875rem)",
+                          borderRadius: "8px",
+                          width: "100%",
                         }}
                         value={searchFilters.marca}
                         onChange={(e) => setSearchFilters({ ...searchFilters, marca: e.target.value })}
                       >
                         <option value="" style={{ color: "var(--secondary-black)" }}>
-                          Selecione a marca
+                          Marca
                         </option>
                         <option value="honda" style={{ color: "var(--secondary-black)" }}>
                           Honda
@@ -417,30 +305,23 @@ const Home = () => {
                     </div>
 
                     <div className="form-group">
-                      <label
-                        className="form-label"
-                        style={{
-                          color: "rgba(255, 255, 255, 0.9)",
-                          textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-                          fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                        }}
-                      >
-                        Modelo
-                      </label>
                       <select
                         className="form-input"
                         style={{
                           background: "rgba(255, 255, 255, 0.1)",
                           backdropFilter: "blur(10px)",
-                          border: "2px solid rgba(255, 255, 255, 0.2)",
+                          border: "1px solid rgba(255, 255, 255, 0.2)",
                           color: "var(--accent-white)",
                           fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                          padding: "clamp(0.75rem, 2vw, 0.875rem)",
+                          borderRadius: "8px",
+                          width: "100%",
                         }}
                         value={searchFilters.modelo}
                         onChange={(e) => setSearchFilters({ ...searchFilters, modelo: e.target.value })}
                       >
                         <option value="" style={{ color: "var(--secondary-black)" }}>
-                          Selecione o modelo
+                          Modelo
                         </option>
                         <option value="civic" style={{ color: "var(--secondary-black)" }}>
                           Civic
@@ -461,30 +342,23 @@ const Home = () => {
                     </div>
 
                     <div className="form-group">
-                      <label
-                        className="form-label"
-                        style={{
-                          color: "rgba(255, 255, 255, 0.9)",
-                          textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-                          fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                        }}
-                      >
-                        Ano
-                      </label>
                       <select
                         className="form-input"
                         style={{
                           background: "rgba(255, 255, 255, 0.1)",
                           backdropFilter: "blur(10px)",
-                          border: "2px solid rgba(255, 255, 255, 0.2)",
+                          border: "1px solid rgba(255, 255, 255, 0.2)",
                           color: "var(--accent-white)",
                           fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                          padding: "clamp(0.75rem, 2vw, 0.875rem)",
+                          borderRadius: "8px",
+                          width: "100%",
                         }}
                         value={searchFilters.ano}
                         onChange={(e) => setSearchFilters({ ...searchFilters, ano: e.target.value })}
                       >
                         <option value="" style={{ color: "var(--secondary-black)" }}>
-                          Selecione o ano
+                          Ano
                         </option>
                         <option value="2024" style={{ color: "var(--secondary-black)" }}>
                           2024
@@ -508,53 +382,41 @@ const Home = () => {
                       type="submit"
                       className="btn"
                       style={{
-                        width: "100%",
                         background: "var(--primary-orange)",
                         color: "var(--accent-white)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                        border: "none",
                         fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                        padding: "clamp(0.75rem, 2vw, 0.875rem) clamp(1rem, 2.5vw, 1.25rem)",
+                        fontWeight: "600",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 15px rgba(255, 107, 53, 0.4)",
+                        minWidth: window.innerWidth > 768 ? "auto" : "100%",
+                        marginTop: window.innerWidth <= 768 ? "0.5rem" : "0",
                       }}
                     >
-                      <Search size={18} />
-                      Buscar Veículos
-                    </button>
-                  </form>
-
-                  <div
-                    style={{
-                      marginTop: "clamp(1.25rem, 3vw, 1.75rem)",
-                      padding: "clamp(1rem, 2.5vw, 1.25rem)",
-                      background: "rgba(255, 255, 255, 0.05)",
-                      borderRadius: "clamp(12px, 3vw, 14px)",
-                      textAlign: "center",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: "clamp(0.7rem, 1.8vw, 0.8rem)",
-                        color: "rgba(255, 255, 255, 0.8)",
-                        marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)",
-                      }}
-                    >
-                      Precisa de ajuda para escolher?
-                    </p>
-                    <button
-                      className="btn"
-                      style={{
-                        fontSize: "clamp(0.7rem, 1.8vw, 0.75rem)",
-                        padding: "clamp(0.5rem, 1.5vw, 0.6rem) clamp(1rem, 2.5vw, 1.25rem)",
-                        background: "rgba(255, 255, 255, 0.1)",
-                        color: "var(--accent-white)",
-                        border: "2px solid rgba(255, 255, 255, 0.2)",
-                        backdropFilter: "blur(10px)",
-                      }}
-                    >
-                      <Phone size={14} />
-                      <span style={{ display: window.innerWidth <= 480 ? "none" : "inline" }}>Falar com Consultor</span>
-                      <span style={{ display: window.innerWidth <= 480 ? "inline" : "none" }}>Consultor</span>
+                      <Search size={16} />
+                      {window.innerWidth > 768 ? "Buscar" : "Buscar Veículos"}
                     </button>
                   </div>
+                </form>
+
+                {/* Link para ajuda - Minimalista */}
+                <div style={{ textAlign: "center", marginTop: "1rem" }}>
+                  <button
+                    className="btn"
+                    style={{
+                      fontSize: "clamp(0.75rem, 1.8vw, 0.8rem)",
+                      padding: "0.5rem 1rem",
+                      background: "transparent",
+                      color: "rgba(255, 255, 255, 0.8)",
+                      border: "1px solid rgba(255, 255, 255, 0.2)",
+                      borderRadius: "6px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    <Phone size={14} />
+                    Precisa de ajuda? Fale conosco
+                  </button>
                 </div>
               </div>
             </div>
@@ -563,9 +425,6 @@ const Home = () => {
 
         {/* Resto das seções com fundo sólido */}
         <div style={{ background: "var(--accent-white)", position: "relative", zIndex: 2 }}>
-          {/* Seção de Diferenciais - Layout Responsivo */}
-          
-
           {/* Veículos em Destaque */}
           <section className="section">
             <div className="container">
@@ -597,154 +456,218 @@ const Home = () => {
 
           <section className="section" style={{ backgroundColor: "var(--gray-50)" }}>
             <div className="container">
-              <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
-                <h2 className="section-title">Por que escolher a Mix Veículos?</h2>
+              <div style={{ textAlign: "center", marginBottom: "clamp(3rem, 7vw, 4rem)" }}>
+                <h2 className="section-title">Por que escolher a Mix Automóveis?</h2>
                 <p className="section-subtitle">
                   Somos especialistas em conectar você ao veículo perfeito com segurança, qualidade e confiança
                 </p>
               </div>
 
-              {/* Layout Responsivo */}
+              {/* Layout de Cards Minimalista */}
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth > 768 ? "2fr 1fr 2fr" : "1fr",
-                  gap: "clamp(2rem, 5vw, 2.5rem)",
-                  alignItems: "center",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))",
+                  gap: "clamp(1.5rem, 4vw, 2rem)",
+                  maxWidth: "1000px",
+                  margin: "0 auto",
                 }}
               >
-                {/* Feature 1 */}
+                {/* Card 1 - Qualidade Certificada */}
                 <div
+                  className="feature-card"
                   style={{
-                    textAlign: window.innerWidth > 768 ? "right" : "center",
-                    padding: "clamp(1rem, 3vw, 1.5rem)",
+                    background: "var(--accent-white)",
+                    borderRadius: "16px",
+                    padding: "clamp(2rem, 5vw, 2.5rem)",
+                    textAlign: "center",
+                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: "1px solid rgba(0, 0, 0, 0.05)",
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   <div
                     style={{
-                      width: "clamp(60px, 12vw, 70px)",
-                      height: "clamp(60px, 12vw, 70px)",
-                      background: "var(--success)",
-                      borderRadius: "clamp(14px, 3vw, 18px)",
+                      width: "80px",
+                      height: "80px",
+                      background: "linear-gradient(135deg, var(--success), #10b981)",
+                      borderRadius: "20px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      marginLeft: window.innerWidth > 768 ? "auto" : "auto",
-                      marginRight: window.innerWidth > 768 ? "0" : "auto",
-                      marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
-                      opacity: 0.1,
+                      margin: "0 auto 1.5rem",
+                      boxShadow: "0 8px 25px rgba(34, 197, 94, 0.25)",
                     }}
                   >
-                    <Shield size={window.innerWidth <= 480 ? 28 : 32} style={{ color: "var(--accent-white)" }} />
+                    <Shield size={36} style={{ color: "var(--accent-white)" }} />
                   </div>
                   <h3
-                    className="text-xl"
-                    style={{ marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)", color: "var(--secondary-black)" }}
+                    style={{
+                      fontSize: "clamp(1.1rem, 3vw, 1.25rem)",
+                      fontWeight: "700",
+                      marginBottom: "1rem",
+                      color: "var(--secondary-black)",
+                    }}
                   >
                     Qualidade Certificada
                   </h3>
-                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
-                    Todos os veículos passam por inspeção rigorosa de 150 pontos antes da venda
+                  <p
+                    style={{
+                      color: "var(--gray-600)",
+                      lineHeight: "1.6",
+                      fontSize: "clamp(0.875rem, 2.2vw, 0.95rem)",
+                      margin: "0",
+                    }}
+                  >
+                    Todos os veículos passam por inspeção rigorosa de 150 pontos antes da venda, garantindo máxima
+                    segurança
                   </p>
+                  {/* Elemento decorativo */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-50px",
+                      right: "-50px",
+                      width: "100px",
+                      height: "100px",
+                      background: "linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05))",
+                      borderRadius: "50%",
+                      zIndex: 0,
+                    }}
+                  />
                 </div>
 
-                {/* Centro - Ícone Principal */}
-                {window.innerWidth > 768 && (
-                  <div style={{ textAlign: "center" }}>
-                    <div
-                      style={{
-                        width: "clamp(80px, 15vw, 100px)",
-                        height: "clamp(80px, 15vw, 100px)",
-                        background: "var(--primary-orange)",
-                        borderRadius: "clamp(20px, 5vw, 25px)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: "0 auto",
-                        boxShadow: "var(--shadow-xl)",
-                      }}
-                    >
-                      <Car size={window.innerWidth <= 480 ? 40 : 50} style={{ color: "var(--accent-white)" }} />
-                    </div>
-                  </div>
-                )}
-
-                {/* Feature 2 */}
+                {/* Card 2 - Atendimento Humanizado */}
                 <div
+                  className="feature-card"
                   style={{
-                    textAlign: window.innerWidth > 768 ? "left" : "center",
-                    padding: "clamp(1rem, 3vw, 1.5rem)",
+                    background: "var(--accent-white)",
+                    borderRadius: "16px",
+                    padding: "clamp(2rem, 5vw, 2.5rem)",
+                    textAlign: "center",
+                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: "1px solid rgba(0, 0, 0, 0.05)",
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   <div
                     style={{
-                      width: "clamp(60px, 12vw, 70px)",
-                      height: "clamp(60px, 12vw, 70px)",
-                      background: "var(--error)",
-                      borderRadius: "clamp(14px, 3vw, 18px)",
+                      width: "80px",
+                      height: "80px",
+                      background: "linear-gradient(135deg, var(--primary-orange), #f97316)",
+                      borderRadius: "20px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      marginLeft: window.innerWidth > 768 ? "0" : "auto",
-                      marginRight: window.innerWidth > 768 ? "auto" : "auto",
-                      marginBottom: "clamp(1rem, 2.5vw, 1.25rem)",
-                      opacity: 0.1,
+                      margin: "0 auto 1.5rem",
+                      boxShadow: "0 8px 25px rgba(255, 107, 53, 0.25)",
                     }}
                   >
-                    <Heart size={window.innerWidth <= 480 ? 28 : 32} style={{ color: "var(--accent-white)" }} />
+                    <Heart size={36} style={{ color: "var(--accent-white)" }} />
                   </div>
                   <h3
-                    className="text-xl"
-                    style={{ marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)", color: "var(--secondary-black)" }}
+                    style={{
+                      fontSize: "clamp(1.1rem, 3vw, 1.25rem)",
+                      fontWeight: "700",
+                      marginBottom: "1rem",
+                      color: "var(--secondary-black)",
+                    }}
                   >
                     Atendimento Humanizado
                   </h3>
-                  <p style={{ color: "var(--gray-600)", lineHeight: "1.6", fontSize: "clamp(0.8rem, 2vw, 0.9rem)" }}>
-                    Equipe especializada pronta para entender suas necessidades e sonhos
+                  <p
+                    style={{
+                      color: "var(--gray-600)",
+                      lineHeight: "1.6",
+                      fontSize: "clamp(0.875rem, 2.2vw, 0.95rem)",
+                      margin: "0",
+                    }}
+                  >
+                    Equipe especializada pronta para entender suas necessidades e transformar sonhos em realidade
                   </p>
+                  {/* Elemento decorativo */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-50px",
+                      right: "-50px",
+                      width: "100px",
+                      height: "100px",
+                      background: "linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.05))",
+                      borderRadius: "50%",
+                      zIndex: 0,
+                    }}
+                  />
                 </div>
-              </div>
 
-              {/* Feature 3 - Centralizada */}
-              <div
-                style={{
-                  textAlign: "center",
-                  marginTop: "clamp(2rem, 5vw, 2.5rem)",
-                  padding: "clamp(1rem, 3vw, 1.5rem)",
-                }}
-              >
+                {/* Card 3 - Preço Justo */}
                 <div
+                  className="feature-card"
                   style={{
-                    width: "clamp(60px, 12vw, 70px)",
-                    height: "clamp(60px, 12vw, 70px)",
-                    background: "var(--primary-orange)",
-                    borderRadius: "clamp(14px, 3vw, 18px)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto clamp(1rem, 2.5vw, 1.25rem)",
-                    opacity: 0.1,
+                    background: "var(--accent-white)",
+                    borderRadius: "16px",
+                    padding: "clamp(2rem, 5vw, 2.5rem)",
+                    textAlign: "center",
+                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: "1px solid rgba(0, 0, 0, 0.05)",
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
-                  <Target size={window.innerWidth <= 480 ? 28 : 32} style={{ color: "var(--accent-white)" }} />
+                  <div
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+                      borderRadius: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 1.5rem",
+                      boxShadow: "0 8px 25px rgba(59, 130, 246, 0.25)",
+                    }}
+                  >
+                    <Target size={36} style={{ color: "var(--accent-white)" }} />
+                  </div>
+                  <h3
+                    style={{
+                      fontSize: "clamp(1.1rem, 3vw, 1.25rem)",
+                      fontWeight: "700",
+                      marginBottom: "1rem",
+                      color: "var(--secondary-black)",
+                    }}
+                  >
+                    Preço Justo Sempre
+                  </h3>
+                  <p
+                    style={{
+                      color: "var(--gray-600)",
+                      lineHeight: "1.6",
+                      fontSize: "clamp(0.875rem, 2.2vw, 0.95rem)",
+                      margin: "0",
+                    }}
+                  >
+                    Avaliação transparente e preços competitivos com as melhores condições de financiamento do mercado
+                  </p>
+                  {/* Elemento decorativo */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-50px",
+                      right: "-50px",
+                      width: "100px",
+                      height: "100px",
+                      background: "linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05))",
+                      borderRadius: "50%",
+                      zIndex: 0,
+                    }}
+                  />
                 </div>
-                <h3
-                  className="text-xl"
-                  style={{ marginBottom: "clamp(0.5rem, 1.5vw, 0.75rem)", color: "var(--secondary-black)" }}
-                >
-                  Preço Justo Sempre
-                </h3>
-                <p
-                  style={{
-                    color: "var(--gray-600)",
-                    lineHeight: "1.6",
-                    maxWidth: "min(450px, 90%)",
-                    margin: "0 auto",
-                    fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
-                  }}
-                >
-                  Avaliação transparente e preços competitivos com as melhores condições do mercado
-                </p>
               </div>
             </div>
           </section>
@@ -894,29 +817,62 @@ const Home = () => {
 
       {/* Animações CSS */}
       <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-
         .form-input::placeholder {
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.7);
         }
 
         .form-input:focus {
           border-color: var(--primary-orange) !important;
-          box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2) !important;
+          box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2) !important;
+          outline: none;
+        }
+
+        .form-input option {
+          background: var(--secondary-black);
+          color: var(--accent-white);
         }
 
         @media (max-width: 768px) {
           .animate-slide-in,
           .animate-slide-up {
             animation: none;
+          }
+        }
+
+        .btn {
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          text-decoration: none;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+
+        .btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .feature-card > div:first-child {
+          position: relative;
+          z-index: 1;
+        }
+
+        .feature-card h3,
+        .feature-card p {
+          position: relative;
+          z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+          .feature-card:hover {
+            transform: none;
           }
         }
       `}</style>

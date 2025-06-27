@@ -83,7 +83,7 @@ const Header = () => {
             >
               <img
                 src={isTransparent ? logo : logoLaranja}
-                alt="Logo MIX Veículos"
+                alt="Logo MIX Automóveis"
                 style={{
                   height: "64px",
                   objectFit: "contain",
