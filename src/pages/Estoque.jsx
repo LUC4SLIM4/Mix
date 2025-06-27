@@ -92,6 +92,78 @@ const Estoque = () => {
       featured: true,
       status: "disponivel",
     },
+        {
+      id: 7,
+      name: "TOYOTA HILUX CD GR-S 4X4 2.8 TDI DIES. AUT.",
+      price: 295900,
+      km: "23.000",
+      fuel: "Diesel",
+      year: "2023",
+      image:
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "disponivel",
+    },
+    {
+      id: 8,
+      name: "BMW 320IA 2.0 TB M SPORT A.FLEX/M.SPORT 4P",
+      price: 320900,
+      km: "17.200",
+      fuel: "Flex",
+      year: "2024",
+      image:
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "reservado",
+    },
+    {
+      id: 9,
+      name: "HONDA ZR-V TOURING 2.0 16V 5P AUT.",
+      price: 169900,
+      km: "4.700",
+      fuel: "Gasolina",
+      year: "2023",
+      image:
+        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "vendido",
+    },
+    {
+      id: 10,
+      name: "FORD BRONCO SPORT WILDTRAK 2.0 TB 16V AWD AUT",
+      price: 168000,
+      km: "24.000",
+      fuel: "Gasolina",
+      year: "2021",
+      image:
+        "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "disponivel",
+    },
+    {
+      id: 11,
+      name: "MERCEDES C180 KOMPRESSOR 1.8 16V AUT.",
+      price: 165000,
+      km: "41.000",
+      fuel: "Gasolina",
+      year: "2020",
+      image:
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "disponivel",
+    },
+    {
+      id: 12,
+      name: "AUDI A4 ATTRACTION 2.0 TFSI 16V AUT.",
+      price: 150000,
+      km: "38.000",
+      fuel: "Gasolina",
+      year: "2021",
+      image:
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "disponivel",
+    },
   ]
 
   const totalPages = Math.ceil(vehicles.length / itemsPerPage)
