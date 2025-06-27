@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Menu, X, MessageCircle } from "lucide-react"
+import logo from "../assets/logo.png"
+import logoLaranja from "../assets/logoPreta.png"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -46,21 +48,18 @@ const Header = () => {
       <header
         style={{
           position: "fixed",
-          top: isTransparent ? "0" : "0",
+          top: 0,
           left: 0,
           right: 0,
           zIndex: 1000,
-          background: isTransparent
-            ? "rgba(0, 0, 0, 0.1)"
-            : isScrolled
-              ? "rgba(255, 255, 255, 0.95)"
-              : "var(--accent-white)",
-          backdropFilter: isTransparent ? "blur(10px)" : isScrolled ? "blur(20px)" : "none",
+          background: isTransparent ? "transparent" : "rgba(255, 255, 255, 0.95)",
+          backdropFilter: isTransparent ? "none" : "blur(20px)",
           transition: "all 0.3s ease",
-          boxShadow: isTransparent ? "none" : isScrolled ? "var(--shadow-lg)" : "var(--shadow)",
-          border: isTransparent ? "1px solid rgba(255, 255, 255, 0.1)" : "none",
+          boxShadow: isTransparent ? "none" : "var(--shadow-lg)",
+          border: isTransparent ? "none" : "1px solid rgba(0, 0, 0, 0.05)",
         }}
       >
+
         <div className="container">
           <nav
             style={{
@@ -71,7 +70,7 @@ const Header = () => {
               minHeight: "70px",
             }}
           >
-            {/* Logo Responsivo */}
+            {/* Logo com imagem */}
             <Link
               to="/"
               style={{
@@ -82,34 +81,20 @@ const Header = () => {
                 flexShrink: 0,
               }}
             >
-              <div>
-                <h1
-                  style={{
-                    fontSize: "clamp(1.25rem, 3vw, 1.5rem)",
-                    fontWeight: "800",
-                    color: isTransparent ? "var(--accent-white)" : "var(--secondary-black)",
-                    margin: 0,
-                    letterSpacing: "1px",
-                    transition: "color 0.3s ease",
-                    textShadow: isTransparent ? "0 2px 4px rgba(0, 0, 0, 0.3)" : "none",
-                  }}
-                >
-                  MIX
-                </h1>
-                <p
-                  style={{
-                    fontSize: "clamp(0.6rem, 2vw, 0.75rem)",
-                    color: isTransparent ? "rgba(255, 107, 53, 0.9)" : "var(--primary-orange)",
-                    margin: 0,
-                    fontWeight: "600",
-                    letterSpacing: "2px",
-                    transition: "color 0.3s ease",
-                  }}
-                >
-                  VEÍCULOS
-                </p>
-              </div>
+              <img
+                src={isTransparent ? logo : logoLaranja}
+                alt="Logo MIX Veículos"
+                style={{
+                  height: "64px",
+                  objectFit: "contain",
+                  transition: "filter 0.3s ease",
+                  filter: isTransparent ? "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))" : "none",
+                }}
+              />
+
             </Link>
+
+
 
             {/* Navigation Desktop */}
             <div

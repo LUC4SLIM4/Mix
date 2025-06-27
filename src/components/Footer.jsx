@@ -2,6 +2,7 @@
 
 import { Link } from "react-router-dom"
 import { Facebook, Instagram, MessageCircle, MapPin, Phone, Mail } from "lucide-react"
+import logo from "../assets/logo.png"
 
 const Footer = () => {
   const linkStyle = {
@@ -34,14 +35,16 @@ const Footer = () => {
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
           gap: "clamp(2rem, 5vw, 3rem)",
-          alignItems: "start",
         }}
       >
+
         {/* LOGO + SOBRE */}
-        <div style={{ gridColumn: window.innerWidth > 768 ? "1 / -1" : "auto", maxWidth: "100%" }}>
+        <div style={{ flex: "1 1 300px", minWidth: "280px", maxWidth: "400px" }}>
           <div
             style={{
               display: "flex",
@@ -52,18 +55,16 @@ const Footer = () => {
             }}
           >
             <div style={{ textAlign: window.innerWidth <= 768 ? "center" : "left" }}>
-              <h1
+              <img
+                src={logo}
+                alt="Logo Mix Veículos"
                 style={{
-                  fontSize: "clamp(1.5rem, 4vw, 2rem)",
-                  fontWeight: "900",
-                  color: "#ffffff",
-                  margin: 0,
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
+                  height: "clamp(40px, 10vw, 60px)",
+                  objectFit: "contain",
+                  marginBottom: "0.5rem",
+                  filter: "brightness(1.1)",
                 }}
-              >
-                Mix
-              </h1>
+              />
               <p
                 style={{
                   fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
@@ -77,6 +78,7 @@ const Footer = () => {
                 Veículos
               </p>
             </div>
+
           </div>
           <p
             style={{
@@ -185,7 +187,7 @@ const Footer = () => {
         </div>
 
         {/* LINKS RÁPIDOS */}
-        <div style={{ minWidth: "0" }}>
+        <div style={{ flex: "1 1 200px", minWidth: "200px" }}>
           <h4
             style={{
               fontSize: "clamp(1rem, 3vw, 1.25rem)",
@@ -232,7 +234,7 @@ const Footer = () => {
         </div>
 
         {/* CONTATO */}
-        <div style={{ minWidth: "0" }}>
+        <div style={{ flex: "1 1 200px", minWidth: "200px" }}>
           <h4
             style={{
               fontSize: "clamp(1rem, 3vw, 1.25rem)",

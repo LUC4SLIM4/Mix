@@ -17,6 +17,7 @@ import {
   Target,
 } from "lucide-react"
 import VehicleCard from "../components/VehicleCard"
+import faxada from "../assets/faxada.png"
 
 const Home = () => {
   const [searchFilters, setSearchFilters] = useState({
@@ -62,6 +63,66 @@ const Home = () => {
       featured: true,
       status: "disponivel",
     },
+        {
+      id: 4,
+      name: "TOYOTA HILUX CD GR-S 4X4 2.8 TDI DIES. AUT.",
+      price: 295900,
+      km: "23.000",
+      fuel: "Diesel",
+      year: "2023",
+      image:
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "disponivel",
+    },
+    {
+      id: 5,
+      name: "BMW 320IA 2.0 TB M SPORT A.FLEX/M.SPORT 4P",
+      price: 320900,
+      km: "17.200",
+      fuel: "Flex",
+      year: "2024",
+      image:
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "reservado",
+    },
+    {
+      id: 6,
+      name: "HONDA ZR-V TOURING 2.0 16V 5P AUT.",
+      price: 169900,
+      km: "4.700",
+      fuel: "Gasolina",
+      year: "2023",
+      image:
+        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "disponivel",
+    },
+        {
+      id: 7,
+      name: "BMW 320IA 2.0 TB M SPORT A.FLEX/M.SPORT 4P",
+      price: 320900,
+      km: "17.200",
+      fuel: "Flex",
+      year: "2024",
+      image:
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "reservado",
+    },
+    {
+      id: 8,
+      name: "HONDA ZR-V TOURING 2.0 16V 5P AUT.",
+      price: 169900,
+      km: "4.700",
+      fuel: "Gasolina",
+      year: "2023",
+      image:
+        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      featured: true,
+      status: "disponivel",
+    },
   ]
 
   return (
@@ -80,7 +141,7 @@ const Home = () => {
               rgba(255, 107, 53, 0.1) 50%, 
               rgba(26, 26, 26, 0.9) 100%
             ),
-            url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')
+            url(${faxada})
           `,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -503,6 +564,37 @@ const Home = () => {
         {/* Resto das seções com fundo sólido */}
         <div style={{ background: "var(--accent-white)", position: "relative", zIndex: 2 }}>
           {/* Seção de Diferenciais - Layout Responsivo */}
+          
+
+          {/* Veículos em Destaque */}
+          <section className="section">
+            <div className="container">
+              <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
+                <h2 className="section-title">Veículos em Destaque</h2>
+                <p className="section-subtitle">
+                  Seleção especial dos nossos melhores veículos com condições imperdíveis
+                </p>
+              </div>
+
+              <div className="grid grid-3">
+                {featuredVehicles.map((vehicle) => (
+                  <VehicleCard key={vehicle.id} vehicle={vehicle} />
+                ))}
+              </div>
+
+              <div style={{ textAlign: "center", marginTop: "clamp(2rem, 5vw, 2.5rem)" }}>
+                <a
+                  href="/estoque"
+                  className="btn btn-primary"
+                  style={{ padding: "clamp(0.75rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem)" }}
+                >
+                  Ver Todo o Estoque
+                  <ArrowRight size={18} />
+                </a>
+              </div>
+            </div>
+          </section>
+
           <section className="section" style={{ backgroundColor: "var(--gray-50)" }}>
             <div className="container">
               <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
@@ -653,35 +745,6 @@ const Home = () => {
                 >
                   Avaliação transparente e preços competitivos com as melhores condições do mercado
                 </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Veículos em Destaque */}
-          <section className="section">
-            <div className="container">
-              <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 6vw, 3.5rem)" }}>
-                <h2 className="section-title">Veículos em Destaque</h2>
-                <p className="section-subtitle">
-                  Seleção especial dos nossos melhores veículos com condições imperdíveis
-                </p>
-              </div>
-
-              <div className="grid grid-3">
-                {featuredVehicles.map((vehicle) => (
-                  <VehicleCard key={vehicle.id} vehicle={vehicle} />
-                ))}
-              </div>
-
-              <div style={{ textAlign: "center", marginTop: "clamp(2rem, 5vw, 2.5rem)" }}>
-                <a
-                  href="/estoque"
-                  className="btn btn-primary"
-                  style={{ padding: "clamp(0.75rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem)" }}
-                >
-                  Ver Todo o Estoque
-                  <ArrowRight size={18} />
-                </a>
               </div>
             </div>
           </section>
