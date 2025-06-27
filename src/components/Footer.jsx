@@ -102,7 +102,7 @@ const Footer = () => {
             }}
           >
             <a
-              href="https://www.facebook.com/mixveiculos"
+              href="https://www.facebook.com/profile.php?id=61550941570557"
               aria-label="Facebook"
               style={{
                 ...linkStyle,
@@ -129,7 +129,7 @@ const Footer = () => {
               <Facebook size={window.innerWidth <= 480 ? 20 : 24} />
             </a>
             <a
-              href="https://www.instagram.com/mixveiculos/"
+              href="https://www.instagram.com/mix.automoveis/"
               aria-label="Instagram"
               style={{
                 ...linkStyle,
@@ -156,7 +156,7 @@ const Footer = () => {
               <Instagram size={window.innerWidth <= 480 ? 20 : 24} />
             </a>
             <a
-              href="https://wa.me/5511999999999"
+              href="https://wa.me/5534997130663"
               aria-label="WhatsApp"
               target="_blank"
               rel="noopener noreferrer"
